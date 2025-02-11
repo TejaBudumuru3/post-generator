@@ -1,2 +1,2 @@
 # post-generator
-npm i axios groq express dotenv nodemon
+# npm i axios groq-sdk express dotenv nodemon
