@@ -4,7 +4,7 @@ const axios = require('axios')
 const Groq = require('groq-sdk')
 const route = express.Router()
 
-route.post("/generate", async (req, res) => {
+route.post("/", async (req, res) => {
     const { input } = req.body;
 
     if (!input) {
