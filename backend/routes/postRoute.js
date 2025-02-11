@@ -1,6 +1,5 @@
 const express = require("express")
 require('dotenv').config({ path: '../myenv.env' })
-const axios = require('axios')
 const Groq = require('groq-sdk')
 const route = express.Router()
 
