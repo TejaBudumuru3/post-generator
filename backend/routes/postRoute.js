@@ -25,7 +25,7 @@ route.post("/", async (req, res) => {
         res.status(200).json({response:response.choices[0].message.content});
         // res.send(response.choices[0].message.content);
     } catch (error) {
-        console.error("Error generating post:", error.response?.data || error.message);
+        console.error(`Error generating post:", ${error.response?.data || error.message}`);
         res.status(500).json({ error: "Failed to generate post" });
     }
 });
