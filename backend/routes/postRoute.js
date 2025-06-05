@@ -220,10 +220,10 @@ const Groq = require('groq-sdk');
 
 const app = express();
 app.use(express.json());
-const twitterClient = new TwitterApi(process.env.X_BEARER_TOKEN_AMBATI);
+const twitterClient = new TwitterApi(process.env.X_BEARER_TOKEN);
 
-app.post('/', async (req, res) => {
-  const { input } = req.body;
+app.get('/', async (req, res) => {
+  const { input } = req.query;
 
   if (!input || typeof input !== 'string' || input.trim().length < 2) {
     return res.status(400).json({ error: 'Input must be a non-empty string with at least 2 characters' });
@@ -267,7 +267,7 @@ app.post('/', async (req, res) => {
           content: `${prompt}`,
         },
       ],
-      model: 'qwen-2.5-32b',
+      model: 'llama-3.3-70b-versatile',
       temperature: 0.7,
       max_tokens: 50,
     });
