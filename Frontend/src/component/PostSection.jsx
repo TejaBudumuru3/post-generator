@@ -4,6 +4,11 @@ const PostSection = () => {
   return (
     <>
     <p>Post Section</p>
+    <p>Post Section</p>
+    <p>Post Section</p>
+    <p>Post Section</p><p>Post Section</p>
+    <p>Post Section</p>
+    <p>Post Section</p>
     </>
   )
 }
