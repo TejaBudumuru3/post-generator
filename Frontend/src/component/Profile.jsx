@@ -1,16 +1,17 @@
 import React from 'react'
 
-const profile = (props) => {
-    const user = props.user ? props.user : "Guest";
+const Profile = (props) => {
+    const user = props.user;
+    console.log(user);
+    
   return (
     <>
-    <div>
-      <img className='profile-logo' src="profileLogo.png" />
-      <label className='profile-name'>{user}</label>
-    </div>
+      <div className='profile-section'>
+        <img className='profile-logo' src="profileLogo.png" />
+        <label className='profile-name'>{user}</label>
+      </div>
     </>
-
   )
 }
 
-export default profile
+export default Profile

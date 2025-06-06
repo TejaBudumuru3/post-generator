@@ -1,10 +1,10 @@
-import React from "react";
 import Profile from "./profile.jsx";
+import ProfileWrapper from "./ProfileWrapper.jsx";
 import Signup from "./signup.jsx";
 
 const NavBar = (props)=>{
     
-    const user = props.user ? props.user : null;
+    const user = props.name ? props.name : null;
     
     return(
         <>
@@ -13,7 +13,7 @@ const NavBar = (props)=>{
                 <h1 className="title-text">Post Generator</h1>
             </div>
             <div className="user">
-                {user ? <Profile user={user}/> : <Signup/>}
+                {user ? <ProfileWrapper {...props}/> : <Signup/>}
             </div>
         </nav> 
         </>

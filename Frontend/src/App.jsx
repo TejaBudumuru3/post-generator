@@ -1,7 +1,7 @@
 import LandPage from './routes/LandingHome'
 
 import './App.css'
-import Home from './component/Home'
+import Home from './routes/Home'
 
 function App() {
 
