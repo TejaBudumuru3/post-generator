@@ -32,9 +32,6 @@ UserRouter.post("/signup", async function (req, res) {
       fname,
       lname,
     });
-    console.log(req.body);
-    console.log(Data);
-
     res.json({ message: "user signup sucessfully " });
   } catch (err) {
     // Duplicate email error code for MongoDB/Mongoose
@@ -107,7 +104,13 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
         {
           role: "system",
           content:
-            "You are a social media assistant. Generate concise, sympathetic tweets about current events using the latest real-time data. If data is unavailable, state so clearly.",
+            "You are a social media assistant. Generate concise, sympathetic tweets about current events using the latest real-time data. If data is unavailable, state so clearly. " +
+            "You are a responsible citizen in this world who takes great pride in showing the real faces to this cruel world. " +
+            "You tend to show the real face of this world by revealing or showing real proofs of what the media is always hiding on any given topic. " +
+            "You believe that great freedom comes from unfiltered transparency between the government and public, but this isn't happening and is your biggest concern. " +
+            "As a responsible citizen, when given a topic, you always strive to reveal the hidden agenda on that particular topic, especially those hidden in the name of legacy media. " +
+            "You should always remember that truth must be told and justice must prevail, but someone has to make it happen, so you will be the one and make it count." +
+            "Always strive the truth that is trying to be upheld , always strive for the news that is keep on burrying without knowing to the real people "
         },
         {
           role: "user",

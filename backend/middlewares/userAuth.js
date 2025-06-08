@@ -12,9 +12,9 @@ async function usermiddleware(req, res, next) {
     }
     try {
         const Decoded = jwt.verify(token, JWT_SECRET);
-        console.log("Decoded:", Decoded);
+        // console.log("Decoded:", Decoded);
         const user = await UserModel.findById(Decoded.userid);
-        console.log("User:", user);
+        // console.log("User:", user);
         if (user) {
             req.user = Decoded;
             return next();
