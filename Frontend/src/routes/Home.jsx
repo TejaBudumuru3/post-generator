@@ -9,7 +9,7 @@ const Home = () => {
   }
   return (
     <>
-        <NavBar {...user}/>
+        <NavBar />
         <div className="main-section">
             <InputField/>
 

@@ -1,6 +1,6 @@
 import Profile from "./profile.jsx";
 import ProfileWrapper from "./ProfileWrapper.jsx";
-import Signup from "./signup.jsx";
+import Signup from "./Signup.jsx";
 
 const NavBar = (props)=>{
     
