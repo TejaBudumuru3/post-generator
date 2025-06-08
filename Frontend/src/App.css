@@ -85,7 +85,7 @@
 .input-box{
     width: 70%;
     padding: 30px;
-    height:100px;
+    height:auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
