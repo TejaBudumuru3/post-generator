@@ -93,7 +93,7 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
   }
 
   const groq = new Groq({
-    apiKey: "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", // Replace with your actual API key
+    apiKey: process.env.GROQ_KEY, // Replace with your actual API key
   });
 
   async function main() {
