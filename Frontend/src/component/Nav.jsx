@@ -1,11 +1,9 @@
-import Profile from "./profile.jsx";
+import Profile from "./Profile.jsx";
 import ProfileWrapper from "./ProfileWrapper.jsx";
 import Signup from "./Signup.jsx";
 
-const NavBar = (props)=>{
-    
-    const user = props.name ? props.name : null;
-    
+const NavBar = ({userData,setUserData})=>{
+    console.log("syerdata",userData.data)
     return(
         <>
         <nav className="Navbar" style={{display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 20px", backgroundColor: "#6D28D9"}}>
@@ -13,7 +11,7 @@ const NavBar = (props)=>{
                 <h1 className="title-text">Post Generator</h1>
             </div>
             <div className="user">
-                {user ? <ProfileWrapper {...props}/> : <Signup/>}
+                {userData && userData.name  ? (<ProfileWrapper user={userData}/>) : (<Signup setUserData={setUserData}/>)}
             </div>
         </nav> 
         </>

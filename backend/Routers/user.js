@@ -21,7 +21,7 @@ UserRouter.post("/signup", async function (req, res) {
 
     const emailcheck = await UserModel.findOne({ email });
     if (emailcheck) {
-      return res.json({
+      return res.status(409).json({
         message: "email already taken ",
       });
     }
@@ -44,6 +44,8 @@ UserRouter.post("/signup", async function (req, res) {
     });
   }
 });
+
+
 UserRouter.post("/signin", async function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
@@ -65,10 +67,21 @@ UserRouter.post("/signin", async function (req, res) {
       },
       JWT_SECRET
     );
+
+     res.cookie("token",token,{
+      httpOnly:true,
+      sameSite:"lax",
+      secure:false,
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+    });
+    
     res.json({
       message: "user sign in success ",
       token,
     });
+
+   
+
   } else {
     res.json({
       message: "password is wrong",

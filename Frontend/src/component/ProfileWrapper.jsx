@@ -3,12 +3,13 @@ import Profile from './Profile.jsx'
 import ProfileMenu from './ProfileMenu.jsx';
 
 const ProfileWrapper = (props) => {
-    const {name, email} = props;
+    const {email,fname,lname,name} = props.user;
+    console.log("ProfileWrapper props: ", email, fname, lname, name);
     const [showMenu, setShowMenu] = React.useState(false);
   return (
     <>
         <div className='ProfileWrapper' onClick={() => setShowMenu(!showMenu)}>
-            <Profile user={name}/>
+            <Profile user={fname}/>
             { showMenu && 
             <ProfileMenu mail={email}/>
             }
