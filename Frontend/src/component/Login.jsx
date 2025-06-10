@@ -1,7 +1,7 @@
 import React from 'react'
 import ProfileWrapper from './ProfileWrapper';
 
-const Login = ({onClose, onLoginSuccess}) => {
+const Login = ({onClose}) => {
     const URL = "http://localhost:3000/user/";
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -28,20 +28,10 @@ const Login = ({onClose, onLoginSuccess}) => {
         console.log("logged in");
         console.log("data: ",data.token)
 
-          const profileResponse = await fetch(`${URL}getDetails`, {
-            method:"GET",
-            credentials:"include"
-          });
-            const profileData = await profileResponse.json();
-            if(profileResponse.ok){
-              console.log("profile data: ",profileData.data);
-              onLoginSuccess(profileData.data);
-            }
-            else{
-              console.log("Error fetching profile data");
-            }
-        }
         onClose();
+        window.location.reload();
+        }
+        
       
     }catch(e){
       console.log(e)

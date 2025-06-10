@@ -68,7 +68,7 @@ UserRouter.post("/signin", async function (req, res) {
       JWT_SECRET
     );
 
-     res.cookie("token",token,{
+    res.cookie("token",token,{
       httpOnly:true,
       sameSite:"lax",
       secure:false,
