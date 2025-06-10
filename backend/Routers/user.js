@@ -161,7 +161,7 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
           },
         {
           role: "user",
-          content: `generate a tweet on ${question} with tone ${req.body.tone || 'neutral'}`,
+          content: `generate a tweet only without explaination on ${question} with tone ${req.body.tone || 'neutral'}`,
         },
       ],
       // If the model supports tools, you can specify them here (example placeholder)
