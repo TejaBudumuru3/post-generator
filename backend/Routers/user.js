@@ -96,6 +96,12 @@ UserRouter.get("/getDetails", usermiddleware, async function (req, res) {
     message: "User details fetched success",
   });
 });
+UserRouter.delete("/logout", usermiddleware, async function (req, res) {
+  res.clearCookie("token");
+  res.json({
+    message: "user logout success",
+  });
+});
 UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
   const { question } = req.body; // Get question from request body
 
