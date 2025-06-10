@@ -155,17 +155,28 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
           },
         {
           role: "user",
-          content: question,
+          content: `generate a tweet on ${question} with tone ${req.body.tone || 'neutral'}`,
         },
       ],
       // If the model supports tools, you can specify them here (example placeholder)
 
       // Optionally, set temperature for more focused output
-      temperature: 0.7,
+      "temperature": 0.06,
+      "max_completion_tokens": 1024,
+      "top_p": 1,
+      "stream": true,
+      "stop": null
     });
-    const ans = completion.choices[0]?.message?.content;
+
+    let ans = "";
+    console.log(completion.iterator);
+    for await (const chunk of completion) {
+      process.stdout.write(chunk.choices[0]?.delta?.content || '');
+      ans += chunk.choices[0]?.delta?.content || '';
+    }
     res.json({
-      ans,
+      ans: ans,
+      message: "Data generated successfully",
     });
   }
 
