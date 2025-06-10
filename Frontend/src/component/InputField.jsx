@@ -32,8 +32,6 @@ const InputField = ({setPosts,userData}) => {
         setPosts(postData.ans);
       }
     }
-    
-
   }
 
     return (

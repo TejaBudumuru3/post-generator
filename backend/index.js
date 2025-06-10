@@ -10,10 +10,14 @@ const app = express()
 app.use(cookieParser());
 app.use(express.json());
 
+
 app.use(cors({
-	origin:"http://localhost:5173",
-	credentials:true
+  origin: 'http://localhost:5173', // Your frontend origin
+  credentials: true, // Allows cookies and authorization headers
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow necessary methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allow necessary headers
 }));
+
 
 app.use("/user" , UserRouter )
 
