@@ -19,28 +19,34 @@ UserRouter.post("/signup", async function (req, res) {
     const fname = req.body.fname;
     const lname = req.body.lname;
 
+    // Check if email already exists
     const emailcheck = await UserModel.findOne({ email });
     if (emailcheck) {
-      return res.status(409).json({
-        message: "email already taken ",
-      });
+      // res.status(409).
+      return res.status(409).json({ message: "Email already in use" })
+     
     }
-    const Data = await UserModel.create({
+
+    // Create new user
+    await UserModel.create({
       name,
       email,
       password: HashPassword,
       fname,
       lname,
     });
-    res.json({ message: "user signup sucessfully " });
+    
+    res.json({ message: "user signup successfully" });
   } catch (err) {
-    // Duplicate email error code for MongoDB/Mongoose
+    // Handle MongoDB duplicate key error
     if (err.code === 11000 && err.keyPattern && err.keyPattern.email) {
-      return res.status(409).json({ message: "Email already exists" });
+      return res.status(409).json({ message: "Email already  in use" });
     }
-    console.log(err);
+    
+    console.error("Signup error:", err);
     res.status(500).json({
-      message: "signup error",
+      message: "An error occurred during signup",
+      error: err.message
     });
   }
 });
