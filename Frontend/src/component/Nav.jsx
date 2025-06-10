@@ -3,7 +3,7 @@ import ProfileWrapper from "./ProfileWrapper.jsx";
 import Signup from "./Signup.jsx";
 
 const NavBar = ({userData,setUserData})=>{
-    console.log("syerdata",userData.data)
+    console.log("Userdata",userData.data)
     return(
         <>
         <nav className="Navbar" style={{display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 20px", backgroundColor: "#6D28D9"}}>

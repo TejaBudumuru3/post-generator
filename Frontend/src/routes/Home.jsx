@@ -1,22 +1,21 @@
-import React ,{useState,useEffect}from 'react'
+import React ,{useState}from 'react'
 import NavBar from '../component/Nav.jsx'
 import InputField from '../component/InputField.jsx'
 import PostSection from '../component/PostSection.jsx'
 const Home = () => {
-  // const user = {
-  //   name:"Teja",
-  //   email:"tejabudumuru3@gmail.com"
-  // }
+
   const [userData,setUserData] = React.useState({});
+
+  const [posts, setPosts] = useState({});
   console.log(userData)  
   return (
     <>
         <NavBar userData={userData} setUserData={setUserData}/>
         <div className="main-section">
-            <InputField/>
+            <InputField setPosts={setPosts} userData={userData}/>
 
             <div className="post-section">
-              <PostSection/>
+              <PostSection posts={posts}/>
             </div>
         </div>
         
