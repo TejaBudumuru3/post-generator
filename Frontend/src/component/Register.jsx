@@ -41,8 +41,8 @@ const Register = ({ onClose }) => {
           setToastMsg(data.message || "Registration successful! Please log in.");
           setToastState("success");
           setToast(true);
+          onClose(); 
           setTimeout(() => {
-            onClose(); 
             setToast(false);
           }, 3000);
           

@@ -5,7 +5,6 @@ const { UserModel } = require("../db");
 async function usermiddleware(req, res, next) {
     const token = req.cookies.token;
     //const token = req.headers.token;
-    console.log("Token:", token);
     if (!token) {
         console.log("No token provided");
         return res.status(401).json({

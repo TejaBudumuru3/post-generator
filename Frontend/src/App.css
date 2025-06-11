@@ -149,6 +149,7 @@
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.5);
+    top:0;
 }
 
 .form-wrapper{
@@ -217,8 +218,6 @@
 }
 
 .custom-toast{
-    margin-top: 10px; 
-    position : fixed; 
-    top: 10px;
-    text-align:center;
+    position: fixed;
+    right: 20px;
 }

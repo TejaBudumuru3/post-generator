@@ -15,8 +15,8 @@ const InputField = ({setPosts,userData}) => {
     setLoading(true);
     if(postInput.trim() === '') {
       setLoading(false);
-      setToastMsg("Please enter a post");
-      setToastState("danger");
+      setToastMsg("Please enter topic to a post");
+      setToastState("primary");
       setToast(true);
       setTimeout(() => {
         setToast(false);

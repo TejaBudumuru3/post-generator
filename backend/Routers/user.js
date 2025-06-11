@@ -174,6 +174,9 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
 
     let ans = "";
     console.log(completion.iterator);
+    if (!completion || !completion.iterator) {
+      return res.status(500).json({ message: "Failed to generate data." });
+    }
     for await (const chunk of completion) {
       process.stdout.write(chunk.choices[0]?.delta?.content || '');
       ans += chunk.choices[0]?.delta?.content || '';
@@ -184,7 +187,7 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
     });
   }
 
-  main().catch(console.error);
+  main().catch(error)
 });
 
 // UserRouter.post("/getDetailsWithQuestion", usermiddleware, async function (req, res) {

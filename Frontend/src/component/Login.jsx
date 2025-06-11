@@ -34,12 +34,12 @@ const Login = ({onClose}) => {
         setToast(true);
         setTimeout(() => {
           setToast(false);
-        }, 3000);
+        }, 30000000);
 
         setTimeout(()=>{
         onClose();
         window.location.reload();
-        },2000)
+        },2000    )
 
       }  
       // invalid password
@@ -52,7 +52,6 @@ const Login = ({onClose}) => {
           }, 3000);
           return;
         }
-        //const data = await response.json();
       // invalid email  
       if(response.status === 404){
         console.log("Login failed:", data.message);
@@ -64,14 +63,12 @@ const Login = ({onClose}) => {
         }, 3000);
         return;
       }
-      
-        
-      
+       
     }catch(e){
-      console.log(e)
       setToast(true);
-      setToastMsg("An error occurred. Please try again.");
+      setToastMsg(e);
       setToastState("danger");
+      console.log("server error",e)
       setTimeout(() => {
         setToast(false);
       }, 2000);
