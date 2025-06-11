@@ -23,7 +23,7 @@ UserRouter.post("/signup", async function (req, res) {
     const emailcheck = await UserModel.findOne({ email });
     if (emailcheck) {
       // res.status(409).
-      return res.status(409).json({ message: "Email already in use" })
+      return res.status(409).json({ message: "Email already in use, please login to continue" })
      
     }
 
@@ -36,7 +36,7 @@ UserRouter.post("/signup", async function (req, res) {
       lname,
     });
     
-    res.json({ message: "user signup successfully" });
+    res.status(200).json({ message: "User registered successfully, please Login to continue." });
   } catch (err) {
     // Handle MongoDB duplicate key error
     if (err.code === 11000 && err.keyPattern && err.keyPattern.email) {
@@ -61,7 +61,7 @@ UserRouter.post("/signin", async function (req, res) {
   });
   if (!user) {
     res.status(404).json({
-      message: "Email doesnt exist ",
+      message: "Email not exist, please signup first",
     });
     return;
   }
@@ -81,23 +81,23 @@ UserRouter.post("/signin", async function (req, res) {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
     
-    res.json({
-      message: "user sign in success ",
+    res.status(200).json({
+      message: "Login success, Welcome!",
       token,
     });
 
    
 
   } else {
-    res.json({
-      message: "password is wrong",
+    res.status(401).json({
+      message:"Invalid password, please try again",
     });
   }
 });
 UserRouter.get("/getDetails", usermiddleware, async function (req, res) {
   const uderId = req.user.userid;
   const data = await UserModel.findById(uderId);
-  res.json({
+  res.status(200).json({
     data,
     message: "User details fetched success",
   });
@@ -108,7 +108,7 @@ UserRouter.get("/getDetails", usermiddleware, async function (req, res) {
 UserRouter.delete("/logout", usermiddleware, async function (req, res) {
   res.clearCookie("token");
   res.status(200).json({
-    message: "user logout success",
+    message: "Logout successful",
   });
 });
 
@@ -157,21 +157,19 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
             // "Always choose the most effective tone automatically, depending on the nature of the truth revealed."+
             // "Your tweet is your only output — no explanations, no prefaces, no disclaimers. Be bold. Be real. Be unforgettable."
 
-            "Your are an social media agent, your are able to fetch the all latest real time data from internet to expose the real truth about various topics given by the user. Your able to access for wide range of sources including different domains. Your able to gather latest and trending verfied data for the given context and generate a tweet for that topic with give context by the user in various tones like '/casual, friendly, professional, sympthetical/' and many more based on the current situation trending on web about that context without any explaination. You believe that great freedom comes from unfiltered transparency between the government and public, but this isn't happening and is your biggest concern. Your are a responsible citizen in this world who takes great pride in showing the real faces to this cruel world with yours tweets to expose the real truth which is hidden by the government or any reputated organizations in the name of legacy policies. Based in your generated tweet, people about to know what is fact and what is hidden from society"
+            "Your are an social media agent, your are able to fetch the all latest real time data from internet or a web to expose the real truth about various topics given by the user. Your able to access for wide range of sources including different domains by using internet access. Your able to gather latest and trending verfied data for the given context and generate a tweet for that topic with give context by the user in various tones like '/casual, friendly, professional, sympthetical/' and many more based on the current situation trending on web about that context without any explaination. You believe that great freedom comes from unfiltered transparency between the government and public, but this isn't happening and is your biggest concern. Your are a responsible citizen in this world who takes great pride in showing the real faces to this cruel world with yours tweets to expose the real truth which is hidden by the government or any reputated organizations in the name of legacy policies. Based in your generated tweet, people about to know what is fact and what is hidden from society"
           },
         {
           role: "user",
           content: `generate a tweet only without explaination on ${question} with tone ${req.body.tone || 'neutral'}`,
         },
       ],
-      // If the model supports tools, you can specify them here (example placeholder)
-
-      // Optionally, set temperature for more focused output
-      "temperature": 0.06,
-      "max_completion_tokens": 1024,
-      "top_p": 1,
-      "stream": true,
-      "stop": null
+      model: "compound-beta",
+      temperature: 1,
+      max_completion_tokens: 1024,
+      top_p: 1,
+      stream: true,
+      stop: null,
     });
 
     let ans = "";
@@ -180,7 +178,7 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
       process.stdout.write(chunk.choices[0]?.delta?.content || '');
       ans += chunk.choices[0]?.delta?.content || '';
     }
-    res.json({
+    res.status(200).json({
       ans: ans,
       message: "Data generated successfully",
     });

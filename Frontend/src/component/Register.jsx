@@ -1,6 +1,5 @@
 import React from 'react';
-import Message from './Message';
-import Login from './Login';
+import Toast from './Toast';
 
 
 const Register = ({ onClose }) => {
@@ -13,12 +12,12 @@ const Register = ({ onClose }) => {
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [fname,setFname] = React.useState("");
   const [lname,setLname] = React.useState("");
-  const [loading, setLoading] = React.useState(false);
-  const [showLogin, setShowLogin] = React.useState(false);
+  const [toast, setToast] = React.useState(false);
+  const [toastMsg, setToastMsg] = React.useState('');
+  const [toastState, setToastState] = React.useState('');
 
   const registerEvent = async(e) => {
     e.preventDefault(); 
-    setLoading(true);
     if(password === confirmPassword){
       try {
         const response  =await fetch(`${URL}signup`, {
@@ -39,33 +38,50 @@ const Register = ({ onClose }) => {
         if(response.ok){
           console.log(data);
           console.log("res: ",response)
+          setToastMsg(data.message || "Registration successful! Please log in.");
+          setToastState("success");
+          setToast(true);
           setTimeout(() => {
             onClose(); 
-            setShowLogin(true);
+            setToast(false);
           }, 3000);
           
         }
         else {
-          console.error("Registration failed:", data.message);
-          alert(data.message || "Registration failed. Please try again.");
-          setLoading(false);
-          onClose();
+          console.log("Registration failed:", data.message);
+          setToastMsg(data.message);
+          setToastState("danger");
+          setToast(true);
+          setTimeout(() => {
+            setToast(false);
+          }, 2000);
+          return;
         }
       } catch (error) {
-        console.error("Error during registration:", error);
-        alert("Registration failed. Please try again.");
+        console.log("Error during registration:", error);
+        setToastMsg("An error occurred during registration. Please try again.");
+        setToastState("danger");
+        setToast(true);
+        setTimeout(() => {
+          setToast(false);
+        }, 2000);
         onClose();
       }
 
     }
     else{
-      alert("Passwords do not match");
+      setToastMsg("Passwords do not match");
+      setToastState("danger");
+      setToast(true);
+      setTimeout(() => {
+        setToast(false);
+      }, 2000);
     }
   };
 
   return (
     <>
-      {loading ? (<Message />) : (
+     
         <div className='auth-section'>
           <div className="form-wrapper">
             <button className='close-btn' onClick={onClose}>X</button>
@@ -81,8 +97,7 @@ const Register = ({ onClose }) => {
             </form>
           </div>
         </div>
-      )}
-      {showLogin && <Login onClose={() => setShowLogin(false)} />}
+      {toast && <Toast state={toastState} message={toastMsg} />}
     </>
   );
 };

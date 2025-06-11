@@ -1,0 +1,30 @@
+import {useEffect,useRef} from 'react';
+
+
+const Toast = ({state,message})=>{
+
+    const toastRef = useRef(null);
+
+    useEffect(() => {
+        const toastElement = toastRef.current;
+        if (toastElement) {
+            const toast = new bootstrap.Toast(toastElement);
+            toast.show();
+        }
+    }, []);
+
+    console.log("Toast called with state and message:", state," ", message);
+    return (<>
+    <div ref={toastRef} className={`toast custom-toast align-items-center text-bg-${state} border-0 margin-top-0`} role="alert" aria-live="assertive" aria-atomic="true" >
+        <div className="d-flex">
+            <div className="toast-body">
+            {message}
+            </div>
+            <button type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+
+    </>)
+}
+
+export default Toast;

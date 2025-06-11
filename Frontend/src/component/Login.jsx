@@ -1,16 +1,16 @@
 import React from 'react'
-import ProfileWrapper from './ProfileWrapper';
-import Message from './Message';
+import Toast from './Toast';
 
 const Login = ({onClose}) => {
     const URL = "http://localhost:3000/user/";
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [loading, setLoading] = React.useState(false); 
+    const [toast, setToast] = React.useState(false);
+    const [toastMsg, setToastMsg] = React.useState('');
+    const [toastState, setToastState] = React.useState('');
 
     const loginEvent = async(e)=> {
       e.preventDefault();
-      setLoading(true);
       try
       {
         const response = await fetch(`${URL}signin`, {
@@ -25,22 +25,58 @@ const Login = ({onClose}) => {
         })
       })
 
-      const data = await response.json();
+       const data = await response.json();
 
-      if(response.ok){
+      if(response.status === 200){
         console.log("logged in");
-        console.log("data: ",data.token)
-        
+        setToastMsg("Login successful!");
+        setToastState("success");
+        setToast(true);
+        setTimeout(() => {
+          setToast(false);
+        }, 3000);
+
         setTimeout(()=>{
-        setLoading(false);
         onClose();
         window.location.reload();
-        },3000)
+        },2000)
+
+      }  
+      // invalid password
+      if(response.status === 401){
+          setToast(true);
+          setToastMsg(data.message);
+          setToastState("danger");
+          setTimeout(() => {
+          setToast(false);
+          }, 3000);
+          return;
         }
+        //const data = await response.json();
+      // invalid email  
+      if(response.status === 404){
+        console.log("Login failed:", data.message);
+        setToast(true);
+        setToastMsg(data.message);
+        setToastState("danger");
+        setTimeout(() => {
+          setToast(false);
+        }, 3000);
+        return;
+      }
+      
         
       
     }catch(e){
       console.log(e)
+      setToast(true);
+      setToastMsg("An error occurred. Please try again.");
+      setToastState("danger");
+      setTimeout(() => {
+        setToast(false);
+      }, 2000);
+      onClose();
+
     }
   }
     
@@ -48,19 +84,18 @@ const Login = ({onClose}) => {
 
   return (
     <>
-      {loading ? (<Message/>) :(
       <div className='auth-section'>
           <div className="form-wrapper">
           <button className='close-btn' onClick={onClose}>X</button>
           <form className='sign-form'>
               <h2>Login</h2>
-              <input type="email" placeholder='example@gmail.com' required onChange={(e)=> setEmail(e.target.value)}/>
-              <input type="password" placeholder='Enter you password' required onChange={(e)=> setPassword(e.target.value)}/>
+              <input type="email" placeholder='example@gmail.com' onChange={(e)=> setEmail(e.target.value)} required/>
+              <input type="password" placeholder='Enter you password'  onChange={(e)=> setPassword(e.target.value)} required/>
               <button type="submit" onClick={loginEvent}> Login </button>
           </form>
           </div>
       </div>
-      )}
+      {toast && <Toast message={toastMsg} state={toastState} style={{marginTop: "10px", position: "fixed", top: "10px",textAlign:"center"}}/>}
     </>
   )
 }

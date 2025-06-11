@@ -1,20 +1,37 @@
 import React from 'react'
 import Message from './Message';
+import Toast from './Toast';
 
 const InputField = ({setPosts,userData}) => {
 
   const [postInput, setPostInput] = React.useState('');
   const [tone, setTone] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  const [toast, setToast] = React.useState(false);
+  const [toastMsg , setToastMsg] = React.useState('');
+  const [toastState, setToastState] = React.useState('');
+
   const handlePost = async()=>{
     setLoading(true);
     if(postInput.trim() === '') {
-      alert("Please enter a topic to post");
+      setLoading(false);
+      setToastMsg("Please enter a post");
+      setToastState("danger");
+      setToast(true);
+      setTimeout(() => {
+        setToast(false);
+      }, 2000);
       return;
     }
     else{
       if(!userData || !userData.name) {
-        alert("Please login to post");
+        setLoading(false);
+        setToastMsg("Please login to post");
+        setToastState("danger");
+        setToast(true);
+        setTimeout(() => {
+          setToast(false);
+        }, 2000);
         setLoading(false);
         return;
       }
@@ -61,6 +78,8 @@ const InputField = ({setPosts,userData}) => {
           </div>
         </div>
         {loading && <Message />}
+        {toast && <Toast state={toastState} message={toastMsg} />}
+        
     </>
   )
 }
