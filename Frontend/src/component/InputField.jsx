@@ -1,11 +1,13 @@
 import React from 'react'
+import Message from './Message';
 
 const InputField = ({setPosts,userData}) => {
 
   const [postInput, setPostInput] = React.useState('');
   const [tone, setTone] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
   const handlePost = async()=>{
-    
+    setLoading(true);
     if(postInput.trim() === '') {
       alert("Please enter a topic to post");
       return;
@@ -13,6 +15,7 @@ const InputField = ({setPosts,userData}) => {
     else{
       if(!userData || !userData.name) {
         alert("Please login to post");
+        setLoading(false);
         return;
       }
       const URL = "http://localhost:3000/user/GenerateData";
@@ -32,29 +35,33 @@ const InputField = ({setPosts,userData}) => {
       if(PostResponse.ok){
         console.log(postData.ans);
         setPosts(postData.ans);
+        setLoading(false);
       }
     }
   }
 
     return (
-      <div className='input-box'>
-        <div className="input-wrapper">
-            <input type='text' className='input-field' placeholder='Post anything' onChange={(e) =>{setPostInput(e.target.value)}}/>
-            <button className='input-button' onClick={handlePost}>&uarr;</button><br/>
-            <select className='input-select' onChange={ (e)=>{ setTone(e.target.value)}}>
-                <option value="">Select Tone</option>
-                <option value="Formal">Formal</option>
-                <option value="Informal">Informal</option>
-                <option value="Funny">Funny</option>
-                <option value="Inspirational">Inspirational</option>
-                <option value="Professional">Professional</option>
-                <option value="Casual">Casual</option>
-                <option value="Sarcastic">Sarcastic</option>
-                <option value="Aggressive">Aggressive</option>
-                <option value="Enthusiastic">Enthusiastic</option>
-              </select>
+      <>
+        <div className='input-box'>
+          <div className="input-wrapper">
+              <input type='text' className='input-field' placeholder='Post anything' onChange={(e) =>{setPostInput(e.target.value)}}/>
+              <button className='input-button' onClick={handlePost}>&uarr;</button><br/>
+              <select className='input-select' onChange={ (e)=>{ setTone(e.target.value)}}>
+                  <option value="">Select Tone</option>
+                  <option value="Formal">Formal</option>
+                  <option value="Informal">Informal</option>
+                  <option value="Funny">Funny</option>
+                  <option value="Inspirational">Inspirational</option>
+                  <option value="Professional">Professional</option>
+                  <option value="Casual">Casual</option>
+                  <option value="Sarcastic">Sarcastic</option>
+                  <option value="Aggressive">Aggressive</option>
+                  <option value="Enthusiastic">Enthusiastic</option>
+                </select>
+          </div>
         </div>
-    </div>
+        {loading && <Message />}
+    </>
   )
 }
 
