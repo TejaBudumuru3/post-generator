@@ -88,6 +88,7 @@ const InputField = ({setPosts,userData}) => {
                   <option value="Casual">Casual</option>
                   <option value="Sarcastic">Sarcastic</option>
                   <option value="Aggressive">Aggressive</option>
+                  <option value="sympthetical">sympthetical</option>
                   <option value="Enthusiastic">Enthusiastic</option>
                 </select>
           </div>
