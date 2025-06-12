@@ -22,10 +22,12 @@
     text-align: left;
     padding: 0 30px;
     font-size: 36px;
+
 }
 .user{
     flex: 1;
     display: flex;
+    margin-top: 2px;
     justify-content: space-evenly;
 }
 
@@ -69,17 +71,26 @@
 .profile-content li{
     color: white;
     cursor: pointer;
-    width: 100%;
+    width: auto;
     border-radius: 5px;
     padding: 5px;
-    width: 80%;
 }
 
-.profile-menu-item{
-    border: #ccc 1px solid;
-    border-radius: 5px;
-    width: fit-content;
+.input-options{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
 }
+.profile-menu-item{
+    /* border: #ccc 1px solid; */
+    border-radius: 5px;
+    width: inherit;
+     padding: 0 12px;
+}
+
+
 
 .profile-content li :hover{
     background: #4d525e;
@@ -104,47 +115,59 @@ body{
     justify-content: center;
     align-items: center;
     border: 1px solid #ccc;
-    margin-top:5% ;
+    margin-top:2% ;
     border-radius: 15px;
+    /* background-color: #282c34; */
     box-shadow: #fafafa57 0px 0px 10px 0px;
 }
 .input-select{
-    width: 500px;
+    margin: 20px;
+}
+
+.input-text-container{
+    width: 90%;
+    margin: 20px;
+ 
+}
+
+.input-option-container{
+    width: inherit;
+
 }
 .input-field{
-    width: 90%;
+    width: 100%;
     height: inherit;
     font-size: 28px;
-    padding-left: 30px;
-    margin: 0 10px;
-    margin-right: 0px;
     outline: none;
     border: none;
-    border-radius: 20px;
-    background-color:rgba(8, 8, 8, 0.89);
+    background-color: #282c34;
+    /* background-color:rgba(8, 8, 8, 0.89); */
     color: white;
 }
 
 .input-button{
     height: 50px;
     width: 50px;
-    border-radius: 25%;
+    border-radius: 50%;
     background-color: white;
     border: none;
     color: rgba(8, 8, 8, 0.89);;
     display: block;
     cursor:pointer;
     font-weight:lighter;
+    margin: 20px;
 }
 .input-wrapper{
     border: 1px solid #ccc;
     padding: 0;
     margin: 0;
     margin-bottom: 20px;
-    border-radius: 15px;
-    width: 70%;
+    border-radius: 30px;
+    width: 100%;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    background-color: #282c34;    
+    align-items: center;
 }
 
 .post-section{
@@ -153,7 +176,7 @@ body{
     padding: 30px;
     border-radius: 50px;
     height: auto;
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: center;
     /* box-shadow: #4d525e 0px 0px 16px 2px; */
 }

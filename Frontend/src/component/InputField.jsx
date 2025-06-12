@@ -74,23 +74,30 @@ const InputField = ({setPosts,userData}) => {
       <>
         <div className='input-box'>
           <div className="input-wrapper">
-              <input type='text' className='input-field' placeholder='Post anything' onChange={(e) =>{setPostInput(e.target.value)}}/>
-              <button className='input-button' onClick={handlePost}>&uarr;</button>
-            </div>
-            <div className="input-select">
-              <select className='form-select' onChange={ (e)=>{ setTone(e.target.value)}} width="100%">
-                  <option value="">Select Tone</option>
-                  <option value="Formal">Formal</option>
-                  <option value="Informal">Informal</option>
-                  <option value="Funny">Funny</option>
-                  <option value="Inspirational">Inspirational</option>
-                  <option value="Professional">Professional</option>
-                  <option value="Casual">Casual</option>
-                  <option value="Sarcastic">Sarcastic</option>
-                  <option value="Aggressive">Aggressive</option>
-                  <option value="sympthetical">sympthetical</option>
-                  <option value="Enthusiastic">Enthusiastic</option>
-                </select>
+              <div className='input-text-container'>
+                <input type='text' className='input-field' placeholder='Post anything' onChange={(e) =>{setPostInput(e.target.value)}}/>
+                {/* <hr/> */}
+              </div>
+              <div className="input-option-container">
+                <div className="input-options">
+                  <div className="input-select">
+                    <select className='form-select' onChange={ (e)=>{ setTone(e.target.value)}} width="100%">
+                      <option value="">Select Tone</option>
+                      <option value="Formal">Formal</option>
+                      <option value="Informal">Informal</option>
+                      <option value="Funny">Funny</option>
+                      <option value="Inspirational">Inspirational</option>
+                      <option value="Professional">Professional</option>
+                      <option value="Casual">Casual</option>
+                      <option value="Sarcastic">Sarcastic</option>
+                      <option value="Aggressive">Aggressive</option>
+                      <option value="sympthetical">sympthetical</option>
+                      <option value="Enthusiastic">Enthusiastic</option>
+                    </select>
+                  </div>
+                  <button className='input-button' onClick={handlePost}>&uarr;</button>
+                </div>
+              </div>
           </div>
         </div>
         {loading && <Message />}

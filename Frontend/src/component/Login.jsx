@@ -79,7 +79,6 @@ const Login = ({onClose}) => {
       setToastState("danger");
       console.log("server error",e.TypeError)
       setTimeout(() => {
-        onClose();
         setToast(false);
       }, 2000);
 
