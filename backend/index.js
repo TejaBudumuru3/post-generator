@@ -1,4 +1,4 @@
-require("dotenv").config()
+require("dotenv").config({path: './properties.env'})
 const express = require("express")
 const mongoose =require("mongoose")
 const { UserRouter} = require("./Routers/user")
@@ -32,6 +32,6 @@ async function main() {
 	}
 	catch(err)
 	{
-		console.log("unbale to connect to the database\n",err);	
+		console.log("unable to connect to the database\n",err);	
 	}}
 main();

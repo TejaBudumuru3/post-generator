@@ -32,9 +32,9 @@ const ProfileMenu = (props) => {
     <>
       <div>
           <ul className="profile-content">
-              <li><label>{mail}</label></li>
-              <li><p>edit</p></li>
-              <li onClick={logout}><p>logout</p></li>
+              <li><div className="profile-menu-item">{mail}</div></li>
+              <li><div className="profile-menu-item">edit</div></li>
+              <li onClick={logout}><div className="profile-menu-item">logout</div></li>
           </ul>
       </div>
       {loading && <Message />}

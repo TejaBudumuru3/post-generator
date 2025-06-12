@@ -24,9 +24,9 @@
     font-size: 36px;
 }
 .user{
-    flex: 0.4;
+    flex: 1;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .profile-section{
@@ -67,11 +67,18 @@
 
 }
 .profile-content li{
-    padding: 10px;
     color: white;
     cursor: pointer;
     width: 100%;
     border-radius: 5px;
+    padding: 5px;
+    width: 80%;
+}
+
+.profile-menu-item{
+    border: #ccc 1px solid;
+    border-radius: 5px;
+    width: fit-content;
 }
 
 .profile-content li :hover{
@@ -127,6 +134,7 @@ body{
     color: rgba(8, 8, 8, 0.89);;
     display: block;
     cursor:pointer;
+    font-weight:lighter;
 }
 .input-wrapper{
     border: 1px solid #ccc;
@@ -147,7 +155,7 @@ body{
     height: auto;
     margin-top: 100px;
     text-align: center;
-    box-shadow: #4d525e 0px 0px 16px 2px;
+    /* box-shadow: #4d525e 0px 0px 16px 2px; */
 }
 .post-text{
     color: white;
@@ -205,11 +213,12 @@ body{
     border: none;
 }
 
+
 .sign-up-btn{
     background-color: rgb(54, 54, 54);
     color: white;
-    width: auto;
-    padding: 0 10px;
+    width: 100px;
+    padding: 5px 10px;
     border-radius: 5px;
     border: none;
 }
@@ -217,7 +226,7 @@ body{
 .login-btn{
     background-color: rgb(54, 54, 54);
     color: white;
-    width: auto;
+    width: 100px;
     padding: 0 10px;
     border-radius: 5px;
     border: none;
