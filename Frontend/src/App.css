@@ -6,7 +6,7 @@
     /* background-color: rgb(10, 10, 10); */
 }
 .Navbar{
-    background-color: rgb(10,10,10);
+    background-color: rgb(0, 0, 0);
     color: white;
     text-align: center;
     height: 90px;
@@ -83,10 +83,10 @@
     flex-direction: column;
     align-items: center;
     padding: 30px;
-    background-color: rgb(32,32,32  );
+    background-color: rgba(8, 8, 8, 0.89);
 }
 body{
-    background-color: rgb(32,32,32  );
+    background-color:rgba(8, 8, 8);
 }
 .input-box{
     width: 70%;
@@ -114,7 +114,7 @@ body{
     outline: none;
     border: none;
     border-radius: 20px;
-    background-color: rgb(32,32,32  );
+    background-color:rgba(8, 8, 8, 0.89);
     color: white;
 }
 
@@ -124,7 +124,7 @@ body{
     border-radius: 25%;
     background-color: white;
     border: none;
-    color:  rgb(32,32,32  );;
+    color: rgba(8, 8, 8, 0.89);;
     display: block;
     cursor:pointer;
 }
@@ -186,21 +186,55 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     border: 1px solid #ccc;
     padding: 30px;
     width: 400px;
     border-radius: 20px;
     height: 500px;
+    background-color: rgb(209, 209, 209);
+    color: rgba(8, 8, 8);
 }
 .sign-form input{
     height: 50px;
+    width: 100%;
     margin: 10px 0;
     padding-left: 20px;
     font-size: 20px;
     border-radius: 10px;
     border: none;
-   
+}
 
+.sign-up-btn{
+    background-color: rgb(54, 54, 54);
+    color: white;
+    width: auto;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.login-btn{
+    background-color: rgb(54, 54, 54);
+    color: white;
+    width: auto;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.auth-section .form-wrapper .sign-form button{
+    background-color: black;
+    width: 30%;
+    border-radius: 5px;
+    color: whitesmoke;
+    border: none;
+}
+
+
+.auth-section .form-wrapper .close-btn{
+    width: 10px;
+    height: 0px;
 }
 
 .message-section{
