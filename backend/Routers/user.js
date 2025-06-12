@@ -187,7 +187,7 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
     });
   }
 
-  main().catch(error)
+  main();
 });
 
 // UserRouter.post("/getDetailsWithQuestion", usermiddleware, async function (req, res) {

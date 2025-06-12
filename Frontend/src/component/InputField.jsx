@@ -35,25 +35,38 @@ const InputField = ({setPosts,userData}) => {
         setLoading(false);
         return;
       }
-      const URL = "http://localhost:3000/user/GenerateData";
-      const PostResponse = await fetch(URL,{
-        method:"POST",
-        credentials:"include",
-        headers:{
-          "content-type":"application/json"
-        },
-        body: JSON.stringify({
-          question: postInput,
-          tone: tone,
-        })
-      });
+      try {
+        const URL = "http://localhost:3000/user/GenerateData";
+        const PostResponse = await fetch(URL,{
+          method:"POST",
+          credentials:"include",
+          headers:{
+            "content-type":"application/json"
+          },
+          body: JSON.stringify({
+            question: postInput,
+            tone: tone,
+          })
+        });
 
-      const postData = await PostResponse.json();
-      if(PostResponse.ok){
-        console.log(postData.ans);
-        setPosts(postData.ans);
+        const postData = await PostResponse.json();
+        if(PostResponse.ok){
+          console.log(postData.ans);
+          setPosts(postData.ans);
+          setLoading(false);
+          return;
+        }
+      } catch (error) {
         setLoading(false);
+        setToastMsg("Sometime went wrong");
+        setToastState("danger");
+        setToast(true);
+        setTimeout(() => {
+          setToast(false);
+        }, 2000);
+        return;
       }
+      
     }
   }
 
@@ -62,8 +75,10 @@ const InputField = ({setPosts,userData}) => {
         <div className='input-box'>
           <div className="input-wrapper">
               <input type='text' className='input-field' placeholder='Post anything' onChange={(e) =>{setPostInput(e.target.value)}}/>
-              <button className='input-button' onClick={handlePost}>&uarr;</button><br/>
-              <select className='input-select' onChange={ (e)=>{ setTone(e.target.value)}}>
+              <button className='input-button' onClick={handlePost}>&uarr;</button>
+            </div>
+            <div className="input-select">
+              <select className='form-select' onChange={ (e)=>{ setTone(e.target.value)}} width="100%">
                   <option value="">Select Tone</option>
                   <option value="Formal">Formal</option>
                   <option value="Informal">Informal</option>

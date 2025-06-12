@@ -11,6 +11,15 @@ const Login = ({onClose}) => {
 
     const loginEvent = async(e)=> {
       e.preventDefault();
+      if(email.trim() === "" || password.trim() === ""){
+        setToastMsg("Please fill in all fields.");
+        setToastState("primary");
+        setToast(true);
+        setTimeout(() => {
+          setToast(false);
+        }, 2000);
+        return;
+      }
       try
       {
         const response = await fetch(`${URL}signin`, {
@@ -34,12 +43,12 @@ const Login = ({onClose}) => {
         setToast(true);
         setTimeout(() => {
           setToast(false);
-        }, 30000000);
+        }, 3000);
 
         setTimeout(()=>{
-        onClose();
-        window.location.reload();
-        },2000    )
+          onClose();
+          window.location.reload();
+        },2000)
 
       }  
       // invalid password
@@ -66,13 +75,13 @@ const Login = ({onClose}) => {
        
     }catch(e){
       setToast(true);
-      setToastMsg(e);
+      setToastMsg("Something went wrong, please try again later.");
       setToastState("danger");
-      console.log("server error",e)
+      console.log("server error",e.TypeError)
       setTimeout(() => {
+        onClose();
         setToast(false);
       }, 2000);
-      onClose();
 
     }
   }
