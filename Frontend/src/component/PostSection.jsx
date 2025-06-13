@@ -1,7 +1,9 @@
 import React from 'react'
+import PostCarousel from './PostCarousel';
 
 
 const PostSection = ({posts}) => {
+  let TotalPosts =[];
   if(posts === undefined || posts === null || Object.keys(posts).length === 0) {
     return (
       <>
@@ -10,11 +12,16 @@ const PostSection = ({posts}) => {
     )
   }
   else{
-    console.log("posts from PostSection", posts);
+    console.log(posts)
+    TotalPosts = posts.split("~");
+    console.log(TotalPosts)
   }
   return (
     <>
-    <p className='post-text'>{posts}</p>
+    <div className="posts-corner">
+      <h3 style={{color: "white"}}>Generated posts</h3>
+      <PostCarousel posts = {TotalPosts}/>
+    </div>
     </>
   )
 }
