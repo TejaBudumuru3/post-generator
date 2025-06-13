@@ -161,7 +161,7 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
           },
         {
           role: "user",
-          content: `generate a  5 tweets without explaination on ${question} with tone ${req.body.tone || 'neutral'} for every tweet should separated by a special character "~" dont use that special character in tweets that charater is used to seperate th tweets only each tweet contains 280 words including hashtags with '#' as mandatory and emojis(if needed).`,
+          content: `generate a  5 tweets without explaination on ${question} with tone ${req.body.tone || 'neutral'} for every tweet should separated by a special character "~" dont use that special character in tweets that charater is used to seperate th tweets only each tweet contains ≤ 680 characters including hashtags with '#' as mandatory and emojis(if needed).`,
         },
       ],
       model: "compound-beta",
