@@ -9,31 +9,51 @@ const PostCarousel = ({posts}) => {
             <div className="carousel-item active">
             <div className="carousel-caption d-md-block">
                 <h5>{posts[0]}</h5>
-                <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[0])}`} target="_blank" rel="noopener noreferrer"> post</a>
+                <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[0])}`} target="_blank" rel="noopener noreferrer" 
+                   className="btn btn-primary rounded-pill px-4 py-2" 
+                   style={{ backgroundColor: '#1DA1F2', border: 'none' }}>
+                   Post on X
+                </a>
             </div>
             </div>
             <div className="carousel-item">
             <div className="carousel-caption d-block" >
                 <h5>{posts[1]}</h5>
-                <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[1])}`} target="_blank" rel="noopener noreferrer"> post</a>
+                <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[1])}`} target="_blank" rel="noopener noreferrer"
+                   className="btn btn-primary rounded-pill px-4 py-2"
+                   style={{ backgroundColor: '#1DA1F2', border: 'none' }}>
+                   Post on X
+                </a>
             </div>
             </div>
             <div className="carousel-item">
             <div className="carousel-caption d-none d-md-block">
                 <h5>{posts[2]}</h5>
-                <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[2])}`} target="_blank" rel="noopener noreferrer"> post</a>
+                <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[2])}`} target="_blank" rel="noopener noreferrer"
+                   className="btn btn-primary rounded-pill px-4 py-2"
+                   style={{ backgroundColor: '#1DA1F2', border: 'none' }}>
+                   Post on X
+                </a>
             </div>
             </div>
             <div className="carousel-item">
             <div className="carousel-caption d-none d-md-block">
                 <h5>{posts[3]}</h5>
-                <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[3])}`} target="_blank" rel="noopener noreferrer"> post</a>
+                <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[3])}`} target="_blank" rel="noopener noreferrer"
+                   className="btn btn-primary rounded-pill px-4 py-2"
+                   style={{ backgroundColor: '#1DA1F2', border: 'none' }}>
+                   Post on X
+                </a>
             </div>
             </div>
             <div className="carousel-item">
             <div className="carousel-caption d-none d-md-block">
                 <h5>{posts[4]}</h5>
-                <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[4])}`} target="_blank" rel="noopener noreferrer"> post</a>
+                <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[4])}`} target="_blank" rel="noopener noreferrer"
+                   className="btn btn-primary rounded-pill px-4 py-2"
+                   style={{ backgroundColor: '#1DA1F2', border: 'none' }}>
+                   Post on X
+                </a>
             </div>
             </div>
         </div>
