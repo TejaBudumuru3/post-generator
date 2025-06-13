@@ -9,6 +9,7 @@ const PostCarousel = ({posts}) => {
             <div className="carousel-item active">
             <div className="carousel-caption d-md-block">
                 <h5>{posts[0]}</h5>
+                <a href="https://x.com/compose/post"> post</a>
             </div>
             </div>
             <div className="carousel-item">
