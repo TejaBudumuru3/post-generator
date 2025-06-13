@@ -9,10 +9,11 @@
 .landing-section{
     position: absolute;
     top: 0;
+    margin-top: 100px;
     padding: 35px;
     text-align: center;
     width: 100vw;
-    height: 100vh;
+    height: 84vh;
     /* align-content: center; */
     padding-top: 10%;
     color: #ffffff;

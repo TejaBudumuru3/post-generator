@@ -10,9 +10,10 @@ const Home = ({userData,setUserData}) => {
     console.log("Userdata from Home",userData)
   return ( 
     <>
+      <NavBar userData={userData} setUserData={setUserData}/>
       { landingBtn ? (<LandPage setLandingBtn = {setLandingBtn}/>) : (
-        <body>
-          <NavBar userData={userData} setUserData={setUserData}/>
+        <>
+          
           <div className="main-section">
               <InputField setPosts={setPosts} userData={userData}/>
 
@@ -20,7 +21,7 @@ const Home = ({userData,setUserData}) => {
                 <PostSection posts={posts}/>
               </div>
           </div>
-        </body>
+        </>
       )
       }
     </>
