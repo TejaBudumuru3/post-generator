@@ -1,4 +1,3 @@
-import LandPage from './routes/LandingHome'
 import React ,{ useEffect,useState } from 'react';
 import './App.css'
 import Home from './routes/Home'

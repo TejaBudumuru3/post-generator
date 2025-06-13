@@ -5,6 +5,30 @@
     margin: 0;
     /* background-color: rgb(10, 10, 10); */
 }
+
+.landing-section{
+    position: absolute;
+    top: 0;
+    padding: 35px;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    /* align-content: center; */
+    padding-top: 10%;
+    color: #ffffff;
+    background-color:rgb(10, 10, 10);;
+}
+
+.landing-section button{
+    background-color: rgb(54, 54, 54);
+    color: white;
+    width: 200px;
+    height: 50px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 30px;
+    border: none;
+}
 .Navbar{
     background-color: rgb(0, 0, 0);
     color: white;
@@ -105,6 +129,8 @@
 }
 body{
     background-color:rgba(8, 8, 8);
+    transition: opacity 0.5s ease-in-out;
+
 }
 .input-box{
     width: 70%;
