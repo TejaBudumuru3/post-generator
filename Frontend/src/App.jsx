@@ -1,9 +1,9 @@
-import React ,{ useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css'
 import Home from './routes/Home'
 
 function App() {
-
   const [userData, setUserData] = React.useState({});
   useEffect(() => {
     const URL = "http://localhost:3000/user/getDetails";
@@ -26,14 +26,14 @@ function App() {
     };
 
     fetchUserData();
-    },[])
+  }, [])
     
-    console.log("Userdata from App",userData)
+  console.log("Userdata from App", userData)
 
   return (
-    <>
+    <Router>
       <Home userData={userData} setUserData={setUserData}/>
-    </>
+    </Router>
   )
 }
 

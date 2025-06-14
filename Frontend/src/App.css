@@ -116,6 +116,77 @@
 }
 
 
+/* Add these styles to your s:\Cloned Projects\Practice-projects\route practice\src\index.css file */
+
+/* Hero Section Specific Styles */
+.hero-section {
+    text-align: center;
+    padding: 4rem 1rem;
+    min-height: calc(100vh - 90px); /* Subtract navbar height */
+    margin-top: 90px; /* Add margin for navbar */
+    background-color: rgb(10, 10, 10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: white; /* Fallback color */
+    background: linear-gradient(90deg, #ff8a00, #e52e71, #6a0dad, #007cf0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    background-size: 300% 300%;
+    animation: textGradientAnimation 5s ease infinite;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: #d1d5db;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-cta-link {
+    display: inline-block;
+}
+
+.hero-cta-button {
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #ff8a00;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 138, 0, 0.4);
+}
+
+.hero-cta-button:hover {
+    background-color: #e52e71;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(229, 46, 113, 0.5);
+}
+
+@keyframes textGradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
 .profile-content li :hover{
     background: #4d525e;
