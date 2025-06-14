@@ -1,6 +1,6 @@
 # Post Generator
 
-A full-stack application for generating and managing posts, leveraging modern JavaScript technologies for both frontend and backend development.
+A full-stack web application to generate creative, AI-powered tweets based on user input. The app allows users to log in, enter a prompt, select a desired tweet tone, and receive five different tweet suggestions, which are displayed in a carousel. Only authenticated users can access the tweet generation functionality.
 
 ---
 
@@ -53,12 +53,12 @@ post-generator/
 
 ## Features
 
-- User authentication (JWT)
-- Post creation, editing, deletion
-- Modern, responsive UI
-- API endpoints for CRUD operations
-- Environment-based configuration
-- Modular and scalable structure
+- **User Authentication**: Secure login required before accessing tweet generation.
+- **AI-Powered Tweets**: Enter a prompt and receive five creative tweet suggestions.
+- **Tone Selection**: Choose the tone (e.g., formal, casual, funny, etc.) for the generated tweets.
+- **Carousel Display**: View and browse suggested tweets in a responsive carousel.
+- **Modern UI**: Built with React, Vite, and Redux for a fast, modern web experience.
+- **RESTful API Backend**: Node.js/Express backend with secure token-based authentication.
 
 ---
 
@@ -68,25 +68,34 @@ post-generator/
 - **Backend:** Node.js, Express, Mongoose
 - **Database:** MongoDB
 - **Testing/Dev Tools:** Nodemon, Dotenv, 
-- **Other:** Redux, JWT, Groq SDK, Cookie-parser
+- **Other:** Redux, JWT, Groq SDK, Cookie-parser, bcrypt, redux
 
 ---
 
-## Directory Structure
+## Project Structure
 
 ```
-backend/
-├── Routers/        # API route handlers
-├── middlewares/    # Express middlewares
-├── config.js       # Configuration variables
-├── db.js           # Database connection setup
-├── index.js        # Main server entry point
-
-Frontend/
-├── public/         # Static assets
-├── src/            # React components and logic
-├── index.html      # Main HTML file
-├── package.json    # Frontend dependencies
+post-generator/
+│
+├── Frontend/
+│   ├── public/
+│   ├── src/
+│   ├── package.json
+│   ├── vite.config.js
+│   └── ... (React app files)
+│
+├── backend/
+│   ├── Routers/
+│   ├── middlewares/
+│   ├── config.js
+│   ├── db.js
+│   ├── index.js
+│   ├── package.json
+│   └── ... (Node/Express server files)
+│
+├── .gitignore
+├── package.json
+└── README.md
 ```
 
 ---
@@ -318,6 +327,13 @@ If the token is missing or invalid, endpoints return `401 Unauthorized`.
 
 ## Contributing
 
+Contributions are welcome! Please open issues or submit pull requests.
+
+**Code Style:**  
+- Use ESLint (`npm run lint`) for consistent code formatting in the frontend.
+- Write clear commit messages.
+- Follow branch naming conventions (e.g., `feature/`, `bugfix/`).
+ **Follow the below instructions to contribute**
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature-name`)
 3. Commit your changes (`git commit -am 'Add new feature'`)
