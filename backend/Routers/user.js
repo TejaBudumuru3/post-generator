@@ -208,18 +208,6 @@ UserRouter.get("/getPosts", usermiddleware, async function (req, res) {
   main();
 });
 
-// UserRouter.post("/getDetailsWithQuestion", usermiddleware, async function (req, res) {
-//   const userId = req.user.userid;
-//   const question = req.body.question; // Get question from request body
-
-//   const data = await UserModel.findById(userId);
-
-//   res.json({
-//     data,
-//     question, // Echo back the question
-//     message: "User details fetched successfully with question",
-//   });
-// });
 
 module.exports = {
   UserRouter: UserRouter,

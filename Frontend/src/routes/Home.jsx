@@ -12,7 +12,7 @@ import ProfileWrapper from "../component/ProfileWrapper";
 const Home = () => {
 
   const userData = useSelector((state)=> state.user.data);
-  const [landingBtn , setLandingBtn] = useState(true);
+  const [landingBtn , setLandingBtn] = useState(false);
   
   
 

@@ -1,8 +1,10 @@
 import React from 'react'
 import Message from './Message';
+import {  useNavigate } from 'react-router-dom';
 
 const ProfileMenu = (props) => {
     const mail = props.mail;
+    const Navigate = useNavigate();
 
     const [loading, setLoading] = React.useState(false);
 
@@ -20,7 +22,7 @@ const ProfileMenu = (props) => {
         if(response.status === 200){
           console.log(resData.message);
           setLoading(false);
-          window.location.reload();
+          Navigate("/");
         }
       }
       catch(e){

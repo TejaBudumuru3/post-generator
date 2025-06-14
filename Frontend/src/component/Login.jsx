@@ -1,5 +1,6 @@
 import React from 'react'
 import Toast from './Toast';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({onClose}) => {
     const URL = "http://localhost:3000/user/";
@@ -8,9 +9,11 @@ const Login = ({onClose}) => {
     const [toast, setToast] = React.useState(false);
     const [toastMsg, setToastMsg] = React.useState('');
     const [toastState, setToastState] = React.useState('');
+    const navigate = useNavigate();
 
     const loginEvent = async(e)=> {
       e.preventDefault();
+      
       if(email.trim() === "" || password.trim() === ""){
         setToastMsg("Please fill in all fields.");
         setToastState("primary");
@@ -43,10 +46,12 @@ const Login = ({onClose}) => {
         setToast(true);
         setTimeout(() => {
           setToast(false);
+          
         }, 3000);
 
         setTimeout(()=>{
           onClose();
+          navigate("/home");
           window.location.reload();
         },2000)
 
