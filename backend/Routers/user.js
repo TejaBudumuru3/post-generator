@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { UserModel, histroymodel, CoursesModel } = require("../db");
+const { UserModel, PostModel } = require("../db");
 const bcrypt = require("bcrypt");
 const UserRouter = Router();
 const jwt = require("jsonwebtoken");
@@ -116,7 +116,7 @@ UserRouter.delete("/logout", usermiddleware, async function (req, res) {
 
 UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
   const { question } = req.body; // Get question from request body
-
+  const userId = req.user.userid;
   if (!question) {
     return res
       .status(400)
@@ -181,11 +181,29 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
       process.stdout.write(chunk.choices[0]?.delta?.content || '');
       ans += chunk.choices[0]?.delta?.content || '';
     }
+    const post = await PostModel.create({ 
+      question: question,
+      content: ans,
+      User: userId,
+    });
+    const user = await UserModel.findById(userId);
+    user.posts.push(post._id);
+    await user.save();
+
     res.status(200).json({
+      post: post,
       ans: ans,
       message: "Data generated successfully",
     });
   }
+UserRouter.get("/getPosts", usermiddleware, async function (req, res) {
+  const userId = req.user.userid;
+  const data = await PostModel.find({ User: userId });
+  res.status(200).json({
+    data,
+    message: "Posts fetched successfully",
+  });
+});
 
   main();
 });
