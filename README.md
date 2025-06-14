@@ -1,6 +1,6 @@
 # Post Generator
 
-A full-stack application for generating and managing posts, leveraging modern JavaScript technologies for both frontend and backend development.
+A full-stack web application to generate creative, AI-powered tweets based on user input. The app allows users to log in, enter a prompt, select a desired tweet tone, and receive five different tweet suggestions, which are displayed in a carousel. Only authenticated users can access the tweet generation functionality.
 
 ---
 
@@ -53,40 +53,49 @@ post-generator/
 
 ## Features
 
-- User authentication (JWT)
-- Post creation, editing, deletion
-- Modern, responsive UI
-- API endpoints for CRUD operations
-- Environment-based configuration
-- Modular and scalable structure
+- **User Authentication**: Secure login required before accessing tweet generation.
+- **AI-Powered Tweets**: Enter a prompt and receive five creative tweet suggestions.
+- **Tone Selection**: Choose the tone (e.g., formal, casual, funny, etc.) for the generated tweets.
+- **Carousel Display**: View and browse suggested tweets in a responsive carousel.
+- **Modern UI**: Built with React, Vite, and Redux for a fast, modern web experience.
+- **RESTful API Backend**: Node.js/Express backend with secure token-based authentication.
 
 ---
 
 ## Tech Stack
 
-- **Frontend:** React, Vite, ESLint
+- **Frontend:** React, Vite
 - **Backend:** Node.js, Express, Mongoose
 - **Database:** MongoDB
-- **Testing/Dev Tools:** Nodemon, Dotenv, ESLint
-- **Other:** Axios, JWT, Groq SDK, Passport, OAuth
+- **Testing/Dev Tools:** Nodemon, Dotenv, 
+- **Other:** Redux, JWT, Groq SDK, Cookie-parser, bcrypt, redux
 
 ---
 
-## Directory Structure
+## Project Structure
 
 ```
-backend/
-├── Routers/        # API route handlers
-├── middlewares/    # Express middlewares
-├── config.js       # Configuration variables
-├── db.js           # Database connection setup
-├── index.js        # Main server entry point
-
-Frontend/
-├── public/         # Static assets
-├── src/            # React components and logic
-├── index.html      # Main HTML file
-├── package.json    # Frontend dependencies
+post-generator/
+│
+├── Frontend/
+│   ├── public/
+│   ├── src/
+│   ├── package.json
+│   ├── vite.config.js
+│   └── ... (React app files)
+│
+├── backend/
+│   ├── Routers/
+│   ├── middlewares/
+│   ├── config.js
+│   ├── db.js
+│   ├── index.js
+│   ├── package.json
+│   └── ... (Node/Express server files)
+│
+├── .gitignore
+├── package.json
+└── README.md
 ```
 
 ---
@@ -134,10 +143,6 @@ npm install
 1. Configure your `.env` file in the `backend/` directory (see `.env.example` if available).
 2. Start the backend server:
    ```bash
-   npm run start
-   ```
-   or
-   ```bash
    nodemon backend/index.js
    ```
 
@@ -157,7 +162,7 @@ npm install
 
 **Post Generator** is a web application that allows users to:
 - Register and authenticate securely.
-- Generate multiple social media posts/tweets on a given topic in various tones using a generative AI backend (Groq SDK).
+- Generate multiple social media posts/tweets on a given topic in various tones using a generative AI.
 - View generated posts in a user-friendly, carousel-style UI.
 - Manage sessions (login/logout) with JWT authentication.
 - Interact via a responsive React frontend communicating with an Express REST API backend.
@@ -220,7 +225,7 @@ Logs out the user by clearing the JWT token cookie.
 ##### POST `/user/GenerateData`
 Generates five tweets/posts on a given topic, in a specified tone.
 
-**Authentication:** Requires JWT token cookie.
+**Authentication:** Requires JWT token cookie to access the application.
 
 **Request Body:**
 ```json
@@ -285,7 +290,7 @@ If the token is missing or invalid, endpoints return `401 Unauthorized`.
 
 ### AI Content Generation Logic
 
-- Uses the Groq SDK with custom system prompts.
+- Uses the Groq SDK with custom system and user prompts.
 - Searches web data for the latest, verified information.
 - Produces tweets that are concise, impactful, and transparent, exposing truths and promoting awareness.
 - Each tweet includes hashtags and may use emojis.
@@ -316,12 +321,19 @@ If the token is missing or invalid, endpoints return `401 Unauthorized`.
 - **Lint code:** `npm run lint` (Frontend)
 - **Build frontend:** `npm run build`
 - **Preview frontend:** `npm run preview`
-- **Testing:** (Add tests as needed)
+- **Testing:** (need to be done)
 
 ---
 
 ## Contributing
 
+Contributions are welcome! Please open issues or submit pull requests.
+
+**Code Style:**  
+- Use ESLint (`npm run lint`) for consistent code formatting in the frontend.
+- Write clear commit messages.
+- Follow branch naming conventions (e.g., `feature/`, `bugfix/`).
+ **Follow the below instructions to contribute**
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature-name`)
 3. Commit your changes (`git commit -am 'Add new feature'`)
@@ -330,15 +342,9 @@ If the token is missing or invalid, endpoints return `401 Unauthorized`.
 
 ---
 
-## License
-
-This project is licensed under the ISC License. See the [LICENSE](LICENSE) file for details.
-
----
-
 ## Authors & Acknowledgments
 
-- Developed by [TejaBudumuru3](https://github.com/TejaBudumuru3)
+- Developed by [TejaBudumuru3](https://github.com/TejaBudumuru3), [Vamsidarling](https://github.com/Vamsidarling)
 - Built with open source technologies
 
 ---
