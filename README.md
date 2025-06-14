@@ -64,11 +64,11 @@ post-generator/
 
 ## Tech Stack
 
-- **Frontend:** React, Vite, ESLint
+- **Frontend:** React, Vite
 - **Backend:** Node.js, Express, Mongoose
 - **Database:** MongoDB
-- **Testing/Dev Tools:** Nodemon, Dotenv, ESLint
-- **Other:** Axios, JWT, Groq SDK, Passport, OAuth
+- **Testing/Dev Tools:** Nodemon, Dotenv, 
+- **Other:** Redux, JWT, Groq SDK, Cookie-parser
 
 ---
 
@@ -134,10 +134,6 @@ npm install
 1. Configure your `.env` file in the `backend/` directory (see `.env.example` if available).
 2. Start the backend server:
    ```bash
-   npm run start
-   ```
-   or
-   ```bash
    nodemon backend/index.js
    ```
 
@@ -157,7 +153,7 @@ npm install
 
 **Post Generator** is a web application that allows users to:
 - Register and authenticate securely.
-- Generate multiple social media posts/tweets on a given topic in various tones using a generative AI backend (Groq SDK).
+- Generate multiple social media posts/tweets on a given topic in various tones using a generative AI.
 - View generated posts in a user-friendly, carousel-style UI.
 - Manage sessions (login/logout) with JWT authentication.
 - Interact via a responsive React frontend communicating with an Express REST API backend.
@@ -220,7 +216,7 @@ Logs out the user by clearing the JWT token cookie.
 ##### POST `/user/GenerateData`
 Generates five tweets/posts on a given topic, in a specified tone.
 
-**Authentication:** Requires JWT token cookie.
+**Authentication:** Requires JWT token cookie to access the application.
 
 **Request Body:**
 ```json
@@ -285,7 +281,7 @@ If the token is missing or invalid, endpoints return `401 Unauthorized`.
 
 ### AI Content Generation Logic
 
-- Uses the Groq SDK with custom system prompts.
+- Uses the Groq SDK with custom system and user prompts.
 - Searches web data for the latest, verified information.
 - Produces tweets that are concise, impactful, and transparent, exposing truths and promoting awareness.
 - Each tweet includes hashtags and may use emojis.
@@ -316,7 +312,7 @@ If the token is missing or invalid, endpoints return `401 Unauthorized`.
 - **Lint code:** `npm run lint` (Frontend)
 - **Build frontend:** `npm run build`
 - **Preview frontend:** `npm run preview`
-- **Testing:** (Add tests as needed)
+- **Testing:** (need to be done)
 
 ---
 
@@ -330,15 +326,9 @@ If the token is missing or invalid, endpoints return `401 Unauthorized`.
 
 ---
 
-## License
-
-This project is licensed under the ISC License. See the [LICENSE](LICENSE) file for details.
-
----
-
 ## Authors & Acknowledgments
 
-- Developed by [TejaBudumuru3](https://github.com/TejaBudumuru3)
+- Developed by [TejaBudumuru3](https://github.com/TejaBudumuru3), [Vamsidarling](https://github.com/Vamsidarling)
 - Built with open source technologies
 
 ---
