@@ -121,7 +121,7 @@
 /* Hero Section Specific Styles */
 .hero-section {
     text-align: center;
-    padding: 10px 1rem;
+    padding: 1px 1rem;
     min-height: calc(100vh - 90px); /* Subtract navbar height */
     /* margin-top: 90px; Add margin for navbar */
     background-color: rgb(10, 10, 10);
@@ -131,7 +131,7 @@
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
