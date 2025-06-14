@@ -1,6 +1,8 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-const PostCarousel = ({posts}) => {
+const PostCarousel = () => {
+    const posts = useSelector((state)=> state.posts.item)
     console.log(posts)
   return (
     <>

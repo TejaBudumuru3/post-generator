@@ -1,8 +1,13 @@
 import React from 'react'
 import Message from './Message';
 import Toast from './Toast';
+import { useSelector, useDispatch } from 'react-redux';
+import {setPost} from '../slices/postSlice.js'
 
-const InputField = ({setPosts,userData}) => {
+const InputField = () => {
+
+  const userData = useSelector((state)=>state.user.data);
+  const dispatch = useDispatch();
 
   const [postInput, setPostInput] = React.useState('');
   const [tone, setTone] = React.useState('');
@@ -51,8 +56,9 @@ const InputField = ({setPosts,userData}) => {
 
         const postData = await PostResponse.json();
         if(PostResponse.ok){
-          console.log(postData.ans);
-          setPosts(postData.ans);
+          const totalPosts = postData.ans.split("~")
+          console.log(totalPosts);
+          dispatch(setPost(totalPosts));
           setLoading(false);
           return;
         }

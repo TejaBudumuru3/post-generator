@@ -1,24 +1,36 @@
-import React ,{useState}from 'react'
+import {useState, useEffect}from 'react'
 import NavBar from '../component/Nav.jsx'
 import InputField from '../component/InputField.jsx'
 import PostSection from '../component/PostSection.jsx'
 import LandPage from '../component/LandingHome.jsx'
-const Home = ({userData,setUserData}) => {
+import { useSelector } from 'react-redux'
+import Signup from "../component/Signup.jsx";
+import ProfileWrapper from "../component/ProfileWrapper";
 
+
+
+const Home = () => {
+
+  const userData = useSelector((state)=> state.user.data);
   const [landingBtn , setLandingBtn] = useState(true);
-  const [posts, setPosts] = useState({});
-    console.log("Userdata from Home",userData)
+  
+  
+
   return ( 
     <>
-      <NavBar userData={userData} setUserData={setUserData}/>
-      { landingBtn ? (<LandPage setLandingBtn = {setLandingBtn}/>) : (
+      <NavBar >
+        <div className="user">
+                {userData ? (<ProfileWrapper user={userData}/>) : (<Signup />)}
+            </div>
+      </NavBar>
+      { landingBtn && (!userData) ? (<LandPage setLandingBtn = {setLandingBtn}/>) : (
         <>
           
           <div className="main-section">
-              <InputField setPosts={setPosts} userData={userData}/>
+              <InputField/>
 
               <div className="post-section">
-                <PostSection posts={posts}/>
+                <PostSection/>
               </div>
           </div>
         </>
