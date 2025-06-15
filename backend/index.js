@@ -16,11 +16,6 @@ app.use(express.json());
 app.use(helmet())
 
 // CORS configuration
-const allowedOrigins = [
-  'http://localhost:5174',
-  'https://vamsidarling.github.io',
-  'https://vamsidarling.github.io/Practice-projects'
-];
 
 app.use(cors({
   origin: process.env.FRONTEND_URL,
