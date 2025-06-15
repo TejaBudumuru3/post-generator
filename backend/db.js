@@ -18,7 +18,7 @@ const Post = new Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-const UserModel = mongoose.model("User", User, "User");
+  const UserModel = mongoose.model("User", User, "User");
 const PostModel = mongoose.model("Post", Post, "Post");
 
 module.exports = {
