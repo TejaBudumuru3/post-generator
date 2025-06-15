@@ -7,15 +7,10 @@ import { useSelector } from 'react-redux'
 import Signup from "../component/Signup.jsx";
 import ProfileWrapper from "../component/ProfileWrapper";
 
-
-
 const Home = () => {
-
   const userData = useSelector((state)=> state.user.data);
   const [landingBtn , setLandingBtn] = useState(true);
   
-  
-
   return ( 
     <>
       <NavBar >
@@ -23,6 +18,7 @@ const Home = () => {
                 {userData ? (<ProfileWrapper user={userData}/>) : (<Signup />)}
             </div>
       </NavBar>
+     
       { landingBtn && (!userData) ? (<LandPage setLandingBtn = {setLandingBtn}/>) : (
         <>
           
@@ -36,6 +32,7 @@ const Home = () => {
         </>
       )
       }
+      
     </>
   )
 }

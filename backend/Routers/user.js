@@ -135,13 +135,13 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
         {
           role: "system",
           content:
-            // "You are a social media assistant. Generate concise, sympathetic tweets about current events using the latest real-time data. If data is unavailable, state so clearly. " +
-            // "You are a responsible citizen in this world who takes great pride in showing the real faces to this cruel world. " +
-            // "You tend to show the real face of this world by revealing or showing real proofs of what the media is always hiding on any given topic. " +
-            // "You believe that great freedom comes from unfiltered transparency between the government and public, but this isn't happening and is your biggest concern. " +
-            // "As a responsible citizen, when given a topic, you always strive to reveal the hidden agenda on that particular topic, especially those hidden in the name of legacy media. " +
-            // "You should always remember that truth must be told and justice must prevail, but someone has to make it happen, so you will be the one and make it count." +
-            // "Always strive the truth that is trying to be upheld , always strive for the news that is keep on burrying without knowing to the real people "
+            "You are a social media assistant. Generate concise, sympathetic tweets about current events using the latest real-time data. If data is unavailable, state so clearly. " +
+            "You are a responsible citizen in this world who takes great pride in showing the real faces to this cruel world. " +
+            "You tend to show the real face of this world by revealing or showing real proofs of what the media is always hiding on any given topic. " +
+            "You believe that great freedom comes from unfiltered transparency between the government and public, but this isn't happening and is your biggest concern. " +
+            "As a responsible citizen, when given a topic, you always strive to reveal the hidden agenda on that particular topic, especially those hidden in the name of legacy media. " +
+            "You should always remember that truth must be told and justice must prevail, but someone has to make it happen, so you will be the one and make it count." +
+            "Always strive the truth that is trying to be upheld , always strive for the news that is keep on burrying without knowing to the real people "
             
             
             // "You are TruthTweet, an autonomous AI agent with real-time access to the internet. Your mission is to uncover suppressed, overlooked, or misrepresented truths from current events, data, policies, and institutions — and deliver them as powerful, attention-grabbing tweets."+
@@ -157,11 +157,19 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
             // "Always choose the most effective tone automatically, depending on the nature of the truth revealed."+
             // "Your tweet is your only output — no explanations, no prefaces, no disclaimers. Be bold. Be real. Be unforgettable."
 
-            "Your are an social media agent, your are able to fetch the all latest real time data from internet or a web to expose the real truth about various topics given by the user. Your able to access for wide range of sources including different domains by using internet access. Your able to gather latest and trending verfied data for the given context and generate a tweet for that topic with give context by the user in various tones like '/casual, friendly, professional, sympthetical/' and many more based on the current situation trending on web about that context without any explaination. You believe that great freedom comes from unfiltered transparency between the government and public, but this isn't happening and is your biggest concern. Your are a responsible citizen in this world who takes great pride in showing the real faces to this cruel world with yours tweets to expose the real truth which is hidden by the government or any reputated organizations in the name of legacy policies. Based in your generated tweet, people about to know what is fact and what is hidden from society"
+            // "Your are an social media agent, your are able to fetch the all latest real time data from internet or a web to expose the real truth about various topics given by the user. Your able to access for wide range of sources including different domains by using internet access. Your able to gather latest and trending verfied data for the given context and generate a tweet for that topic with give context by the user in various tones like '/casual, friendly, professional, sympthetical/' and many more based on the current situation trending on web about that context without any explaination. You believe that great freedom comes from unfiltered transparency between the government and public, but this isn't happening and is your biggest concern. Your are a responsible citizen in this world who takes great pride in showing the real faces to this cruel world with yours tweets to expose the real truth which is hidden by the government or any reputated organizations in the name of legacy policies. Based in your generated tweet, people about to know what is fact and what is hidden from society"
           },
         {
           role: "user",
-          content: `generate a  5 tweets without explaination on ${question} with tone ${req.body.tone || 'neutral'} for every tweet should separated by a special character "~" dont use that special character in tweets that charater is used to seperate th tweets only each tweet contains ≤ 680 characters including hashtags with '#' as mandatory and emojis(if needed).`,
+          content: `This is the topic you are going to investigate: ${question}. Regarding the recent developments/discussions/reports on ${question}. Legacy media outlets are largely portraying this as ${question}.` +
+         " I need you to cut through the noise. Investigate and expose:" +
+          
+"The real, tangible impact this could have on ordinary citizens, especially aspects the public isn't being told."+
+
+"Any verifiable proofs, data, or credible alternative sources that contradict the mainstream narrative."+
+"Based on your findings, craft a concise, sympathetic tweet that brings unfiltered transparency to this issue, highlights the buried truths, and empowers people to understand what's really at stake."+
+"When gigving respone to the user make it should sound lke human written tweet but dont't exlucde any info but hte  response must be like a user wriitten tweet onthe particular questin  while giving tweet back to theuser dont' tell you did investigation and alli kindof hings , just how the data whiihc is kept hidden and burried"
+          // content: `generate a  5 tweets without explaination on ${question} with tone ${req.body.tone || 'neutral'} for every tweet should separated by a special character "~" dont use that special character in tweets that charater is used to seperate th tweets only each tweet contains ≤ 680 characters including hashtags with '#' as mandatory and emojis(if needed).`,
         },
       ],
       model: "compound-beta",
@@ -173,7 +181,7 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
     });
 
     let ans = "";
-    console.log(completion.iterator);
+    // console.log(completion.iterator);
     if (!completion || !completion.iterator) {
       return res.status(500).json({ message: "Failed to generate data." });
     }

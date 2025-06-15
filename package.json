@@ -2,6 +2,7 @@
     "dependencies": {
         "@anthropic-ai/sdk": "^0.36.3",
         "@mistralai/mistralai": "^1.5.0",
+        "@reduxjs/toolkit": "^2.8.2",
         "apify-client": "^2.12.0",
         "axios": "^1.7.9",
         "bcrypt": "^5.1.1",
@@ -19,6 +20,7 @@
         "puppeteer-extra": "^3.3.6",
         "puppeteer-extra-plugin-stealth": "^2.11.2",
         "react": "^19.1.0",
+        "react-redux": "^9.2.0",
         "twitter-api-v2": "^1.19.1"
     },
     "name": "post-generator",

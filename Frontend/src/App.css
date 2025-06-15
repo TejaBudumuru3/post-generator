@@ -199,6 +199,83 @@
     padding: 30px;
     background-color: rgba(8, 8, 8, 0.89);
 }
+
+.app-sidebar {
+    width: 300px;
+    background-color: #1a1a1a;
+    border-right: 1px solid #333;
+    padding: 20px;
+    height: calc(100vh - 90px);
+    position: sticky;
+    top: 90px;
+    overflow-y: auto;
+}
+
+.sidebar-header {
+    margin-bottom: 20px;
+}
+
+.new-generation-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff8a00;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.new-generation-button:hover {
+    background-color: #e52e71;
+}
+
+.sidebar-history {
+    color: white;
+}
+
+.history-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #d1d5db;
+}
+
+.history-item-button {
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #282c34;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.history-item-button:hover {
+    background-color: #3a3f4b;
+}
+
+.loading-history-message,
+.error-history-message,
+.no-history-message {
+    color: #d1d5db;
+    padding: 10px;
+    text-align: center;
+}
+
+.error-history-message {
+    color: #ef4444;
+}
+
+.content-section {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
 body{
     background-color:rgba(8, 8, 8);
     transition: opacity 0.5s ease-in-out;
