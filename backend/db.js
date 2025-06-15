@@ -71,9 +71,9 @@ const Post = new Schema({
 });
 
 // Indexes for better query performance
-User.index({ email: 1 });
-Post.index({ User: 1 });
-Post.index({ createdAt: -1 });
+// User.index({ email: 1 });
+// Post.index({ User: 1 });
+// Post.index({ createdAt: -1 });
 
 const UserModel = mongoose.model("User", User, "User");
 const PostModel = mongoose.model("Post", Post, "Post");
