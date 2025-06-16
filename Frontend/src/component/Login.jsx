@@ -43,7 +43,7 @@ const Login = ({onClose}) => {
                   password
                 })
               })
-
+              
               const data = await response.json();
 
               if(response.status === 200){
