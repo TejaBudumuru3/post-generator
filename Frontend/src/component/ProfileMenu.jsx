@@ -11,25 +11,24 @@ const ProfileMenu = (props) => {
 
     const logout = async() => {
       console.log("logout called");
-      setLoading(true);
+     
+      // setLoading(true);
       const URL="http://localhost:3000/user/logout";
       try{
         const response = await fetch(URL,{
           method:"DELETE",
           credentials:"include",
         });
-
+        
         const resData = await response.json();
         if(response.status === 200){
-          Navigate("/");
           console.log(resData.message);
-          setLoading(false);
-          //window.location.reload();
-        }
-      }
+          Navigate("/")
+        }   
+      }   
       catch(e){
         console.log(e);
-      }
+      }    
     }
   
   return (
