@@ -36,7 +36,6 @@ const ProfileMenu = (props) => {
       <div>
           <ul className="profile-content">
               <li><div className="profile-menu-item">{mail}</div></li>
-              <li><div className="profile-menu-item">edit</div></li>
               <li onClick={logout}><div className="profile-menu-item">logout</div></li>
           </ul>
       </div>
