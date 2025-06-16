@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import {  useNavigate } from 'react-router-dom';
 
 const LandPage = () => {
-  const Navigate = useNavigate();
+  const Nav = useNavigate();
 
   const buttonHandler = () => {
     console.log("redirecting to home")
-    Navigate("/home");
+    // Navigate("/home");
   }
 
   return (
@@ -19,7 +19,7 @@ const LandPage = () => {
           Let our intelligent assistant be your partner in creation.
         </p>
         {/* The "Try Now" button in the hero section will always lead to Signin if the hero is shown */}
-        <button className="hero-cta-button" onClick={buttonHandler}>Try Now</button>
+        <button className="hero-cta-button" onClick={()=>{Nav("/")}}>Try Now</button>
       </div>
       {/* Optional: You could add a visual element here like an image or SVG */}
       {/* <div className="hero-visual">
