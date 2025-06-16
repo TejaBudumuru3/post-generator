@@ -21,9 +21,10 @@ const ProfileMenu = (props) => {
 
         const resData = await response.json();
         if(response.status === 200){
+          Navigate("/");
           console.log(resData.message);
           setLoading(false);
-          window.location.reload();
+          //window.location.reload();
         }
       }
       catch(e){
