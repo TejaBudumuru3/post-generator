@@ -10,10 +10,11 @@ function App() {
   const dispatch = useDispatch();
   const userData = useSelector((state)=>state.user.data);
   useEffect(() => {
-    const URL = "http://localhost:3000/user/getDetails";
+    const URL = import.meta.env.VITE_BACKEND_URL;
+    console.log(URL);
     const fetchUserData = async () => {
       try {
-        const response = await fetch(URL, {
+        const response = await fetch(`${URL}/getDetails`, {
           method: "GET",
           credentials: "include"
         });

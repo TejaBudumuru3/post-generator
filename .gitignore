@@ -13,4 +13,7 @@ frontend/package-lock.json
 backend/package.json
 backend/package-lock.json
 
+frontend/.env
+
 Document.pdf
+.gitignore
