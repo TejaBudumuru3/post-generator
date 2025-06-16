@@ -6,7 +6,7 @@
     /* background-color: rgb(10, 10, 10); */
 }
 
-.landing-section{
+/* .landing-section{
     position: absolute;
     top: 0;
     margin-top: 100px;
@@ -14,7 +14,6 @@
     text-align: center;
     width: 100vw;
     height: 84vh;
-    /* align-content: center; */
     padding-top: 10%;
     color: #ffffff;
     background-color:rgb(10, 10, 10);;
@@ -29,7 +28,7 @@
     border-radius: 5px;
     margin-top: 30px;
     border: none;
-}
+} */
 .Navbar{
     background-color: rgb(0, 0, 0);
     color: white;
@@ -48,6 +47,10 @@
     padding: 0 30px;
     font-size: 36px;
 
+}
+.title-text{
+    width: max-content;
+    cursor: pointer;
 }
 .user{
     flex: 1;
@@ -144,7 +147,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
+    /* text-fill-color: transparent; */
+    cursor: default;
     background-size: 300% 300%;
     animation: textGradientAnimation 5s ease infinite;
 }
@@ -155,6 +159,7 @@
     margin-bottom: 2.5rem;
     line-height: 1.6;
     max-width: 700px;
+    cursor: default;
     margin-left: auto;
     margin-right: auto;
 }
