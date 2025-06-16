@@ -116,6 +116,7 @@ UserRouter.delete("/logout", usermiddleware, async function (req, res) {
 
 UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
   const { question } = req.body; // Get question from request body
+  const {tone } = req.body;
   const userId = req.user.userid;
   if (!question) {
     return res
@@ -150,7 +151,8 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
             "The real, tangible impact this could have on ordinary citizens, especially aspects the public isn't being told." +
             "Any verifiable proofs, data, or credible alternative sources that contradict the mainstream narrative." +
             "Based on your findings, craft a concise, sympathetic tweet that brings unfiltered transparency to this issue, highlights the buried truths, and empowers people to understand what's really at stake." +
-            "When giving response to the user make it should sound like human written tweet but don't exclude any info but the response must be like a user written tweet on the particular question while giving tweet back to the user don't tell you did investigation and all kind of things, just how the data which is kept hidden and buried"
+            "When giving response to the user make it should sound like human written tweet but don't exclude any info but the response must be like a user written tweet on the particular question while giving tweet back to the user don't tell you did investigation and all kind of things, just how the data which is kept hidden and buried."+
+            ` Based on the above instructions generate 5 humanized tweets by seperating each with this special character '~' with respective to ${tone}.`
           }
         ],
         temperature: 0.7,

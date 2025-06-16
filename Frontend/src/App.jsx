@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router,Routes } from 'react-router-dom';
 import './App.css'
 import Home from './routes/Home'
 import { useDispatch,useSelector } from 'react-redux';
 import { setUser } from './slices/userSlice';
+import LandingPage from './routes/LandingPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -35,7 +36,11 @@ function App() {
 
   return (
     <Router>
-      <Home/>
+    <Routes>
+      <Route path='/' element={<LandingPage/>}/>
+
+      <Route path='/home' element={<Home/>}/>
+    </Routes>
     </Router>
   )
 }

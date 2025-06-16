@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import Login from './Login';
+import {  useNavigate } from 'react-router-dom';
 
-const LandPage = ({setLandingBtn}) => {
-  const [showLogin, setShowLogin] = useState(false);
+const LandPage = () => {
+  const Navigate = useNavigate();
 
   const buttonHandler = () => {
-    setLandingBtn(false);
+    console.log("redirecting to home")
+    Navigate("/home");
   }
 
   return (
@@ -18,9 +19,8 @@ const LandPage = ({setLandingBtn}) => {
           Let our intelligent assistant be your partner in creation.
         </p>
         {/* The "Try Now" button in the hero section will always lead to Signin if the hero is shown */}
-        <button className="hero-cta-button" onClick={() => setShowLogin(true)}>Try Now</button>
+        <button className="hero-cta-button" onClick={buttonHandler}>Try Now</button>
       </div>
-      {showLogin && <Login onClose={() => setShowLogin(false)} />}
       {/* Optional: You could add a visual element here like an image or SVG */}
       {/* <div className="hero-visual">
         <img src="/path-to-your-hero-image.svg" alt="AI assistant illustration" />

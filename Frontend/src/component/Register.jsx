@@ -18,64 +18,83 @@ const Register = ({ onClose }) => {
 
   const registerEvent = async(e) => {
     e.preventDefault(); 
-    if(password === confirmPassword){
-      try {
-        const response  =await fetch(`${URL}signup`, {
-          method:"POST",
-          body:JSON.stringify({
-            email : email,
-            password: password,
-            name: name,
-            fname: fname,
-            lname:lname
-          }),
-          headers:{
-            "content-type":"application/json"
-          }
-        })
 
-        const data = await response.json();
-        if(response.ok){
-          console.log(data);
-          console.log("res: ",response)
-          setToastMsg(data.message || "Registration successful! Please log in.");
-          setToastState("success");
-          setToast(true);
-          setTimeout(() => {
-            onClose(); 
-            setToast(false);
-          }, 3000);
-          
-        }
-        else {
-          console.log("Registration failed:", data.message);
-          setToastMsg(data.message);
+    if(password.length<8){
+      setToastMsg("Password must contains 8 characters");
           setToastState("danger");
           setToast(true);
           setTimeout(() => {
             setToast(false);
+          }, 3000);
+    }
+    else if(!(email.match(/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/))){
+      setToastMsg("Enter valid email id");
+          setToastState("danger");
+          setToast(true);
+          setTimeout(() => {
+            setToast(false);
+          }, 3000);
+    }
+    else{
+      if((password === confirmPassword)){
+        try {
+          const response  =await fetch(`${URL}signup`, {
+            method:"POST",
+            body:JSON.stringify({
+              email : email,
+              password: password,
+              name: name,
+              fname: fname,
+              lname:lname
+            }),
+            headers:{
+              "content-type":"application/json"
+            }
+          })
+
+          const data = await response.json();
+          if(response.ok){
+            console.log(data);
+            console.log("res: ",response)
+            setToastMsg(data.message || "Registration successful! Please log in.");
+            setToastState("success");
+            setToast(true);
+            setTimeout(() => {
+              onClose(); 
+              setToast(false);
+            }, 3000);
+            
+          }
+          else {
+            console.log("Registration failed:", data.message);
+            setToastMsg(data.message);
+            setToastState("danger");
+            setToast(true);
+            setTimeout(() => {
+              setToast(false);
+            }, 2000);
+            return;
+          }
+        } catch (error) {
+          console.log("Error during registration:", error);
+          setToastMsg("An error occurred during registration. Please try again.");
+          setToastState("danger");
+          setToast(true);
+          setTimeout(() => {
+            onClose();
+            setToast(false);
           }, 2000);
-          return;
         }
-      } catch (error) {
-        console.log("Error during registration:", error);
-        setToastMsg("An error occurred during registration. Please try again.");
+
+      }
+      else{
+        setToastMsg("Passwords do not match");
         setToastState("danger");
         setToast(true);
         setTimeout(() => {
-          onClose();
           setToast(false);
         }, 2000);
       }
-
-    }
-    else{
-      setToastMsg("Passwords do not match");
-      setToastState("danger");
-      setToast(true);
-      setTimeout(() => {
-        setToast(false);
-      }, 2000);
     }
   };
 

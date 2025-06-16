@@ -1,8 +1,11 @@
+
 import React from 'react'
 import Message from './Message';
+import {  useNavigate } from 'react-router-dom';
 
 const ProfileMenu = (props) => {
     const mail = props.mail;
+    const Navigate = useNavigate();
 
     const [loading, setLoading] = React.useState(false);
 
@@ -33,6 +36,7 @@ const ProfileMenu = (props) => {
       <div>
           <ul className="profile-content">
               <li><div className="profile-menu-item">{mail}</div></li>
+              <li><div className="profile-menu-item">edit</div></li>
               <li onClick={logout}><div className="profile-menu-item">logout</div></li>
           </ul>
       </div>

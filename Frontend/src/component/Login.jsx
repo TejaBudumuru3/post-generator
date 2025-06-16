@@ -20,69 +20,82 @@ const Login = ({onClose}) => {
         }, 2000);
         return;
       }
-      try
-      {
-        const response = await fetch(`${URL}signin`, {
-        method:"POST",
-        credentials:"include",
-        headers:{
-          "content-type":"application/json"
-        },
-        body: JSON.stringify({
-          email,
-          password
-        })
-      })
-
-       const data = await response.json();
-
-      if(response.status === 200){
-        console.log("logged in");
-        setToastMsg("Login successful!");
-        setToastState("success");
-        setToast(true);
-        setTimeout(() => {
-          setToast(false);
-        }, 3000);
-
-        setTimeout(()=>{
-          onClose();
-          window.location.reload();
-        },2000)
-
-      }  
-      // invalid password
-      if(response.status === 401){
-          setToast(true);
-          setToastMsg(data.message);
+      else{
+        if(!(email.match(/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/))){
+          setToastMsg("Enter valid email id");
           setToastState("danger");
+          setToast(true);
           setTimeout(() => {
-          setToast(false);
+            setToast(false);
           }, 3000);
-          return;
         }
-      // invalid email  
-      if(response.status === 404){
-        console.log("Login failed:", data.message);
-        setToast(true);
-        setToastMsg(data.message);
-        setToastState("danger");
-        setTimeout(() => {
-          setToast(false);
-        }, 3000);
-        return;
-      }
-       
-    }catch(e){
-      setToast(true);
-      setToastMsg("Something went wrong, please try again later.");
-      setToastState("danger");
-      console.log("server error",e.TypeError)
-      setTimeout(() => {
-        setToast(false);
-      }, 2000);
+        else{
+              try
+              {
+                const response = await fetch(`${URL}signin`, {
+                method:"POST",
+                credentials:"include",
+                headers:{
+                  "content-type":"application/json"
+                },
+                body: JSON.stringify({
+                  email,
+                  password
+                })
+              })
 
-    }
+              const data = await response.json();
+
+              if(response.status === 200){
+                console.log("logged in");
+                setToastMsg("Login successful!");
+                setToastState("success");
+                setToast(true);
+                setTimeout(() => {
+                  setToast(false);
+                }, 3000);
+
+                setTimeout(()=>{
+                  onClose();
+                  window.location.reload();
+                },2000)
+
+              }  
+              // invalid password
+              if(response.status === 401){
+                  setToast(true);
+                  setToastMsg(data.message);
+                  setToastState("danger");
+                  setTimeout(() => {
+                  setToast(false);
+                  }, 3000);
+                  return;
+                }
+              // invalid email  
+              if(response.status === 404){
+                console.log("Login failed:", data.message);
+                setToast(true);
+                setToastMsg(data.message);
+                setToastState("danger");
+                setTimeout(() => {
+                  setToast(false);
+                }, 3000);
+                return;
+              }
+       
+              }catch(e){
+                setToast(true);
+                setToastMsg("Something went wrong, please try again later.");
+                setToastState("danger");
+                console.log("server error",e.TypeError)
+                setTimeout(() => {
+                  setToast(false);
+                }, 2000);
+
+              }
+            }
+          }
+    
   }
     
 

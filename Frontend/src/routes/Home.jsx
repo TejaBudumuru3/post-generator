@@ -9,7 +9,6 @@ import ProfileWrapper from "../component/ProfileWrapper";
 
 const Home = () => {
   const userData = useSelector((state)=> state.user.data);
-  const [landingBtn , setLandingBtn] = useState(true);
   
   return ( 
     <>
@@ -19,7 +18,6 @@ const Home = () => {
             </div>
       </NavBar>
      
-      { landingBtn && (!userData) ? (<LandPage setLandingBtn = {setLandingBtn}/>) : (
         <>
           
           <div className="main-section">
@@ -30,9 +28,6 @@ const Home = () => {
               </div>
           </div>
         </>
-      )
-      }
-      
     </>
   )
 }
