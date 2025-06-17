@@ -489,3 +489,164 @@ body{
     right: 20px;
     top: 20px;
 }
+
+
+/* --- Responsive Styles: Copy below this line and paste at the END of App.css --- */
+
+@media (max-width: 900px) {
+  .Navbar {
+    height: 60px;
+    font-size: 16px;
+    border-radius: 0 0 10px 10px;
+  }
+  .title {
+    font-size: 22px;
+    padding: 0 10px;
+  }
+  .profile-section, .profile-name {
+    font-size: 18px;
+  }
+  .profile-content {
+    padding: 10px;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .Navbar {
+    height: 48px;
+    font-size: 13px;
+    border-radius: 0 0 7px 7px;
+    flex-direction: column;
+    padding: 0 4px;
+  }
+  .title {
+    font-size: 16px;
+    padding: 0 2px;
+  }
+  .profile-section, .profile-name {
+    font-size: 14px;
+  }
+  .profile-content {
+    padding: 6px;
+    margin-top: 4px;
+  }
+  .user {
+    margin-top: 0;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .profile-logo {
+    width: 32px;
+    height: 32px;
+  }
+  .input-options {
+    flex-direction: column;
+    padding: 0;
+    gap: 4px;
+  }
+  .input-select select {
+    width: 100%;
+  }
+  .sidebar-header, .sidebar-history, .app-sidebar {
+    padding: 4px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* Generic rules for all small screens */
+@media (max-width: 500px) {
+  .app-sidebar {
+    width: 100vw !important;
+    min-width: unset !important;
+    max-width: unset !important;
+    padding: 4px !important;
+  }
+  .sidebar-header button, .input-button {
+    width: 100%;
+    min-width: 32px;
+    font-size: 15px;
+    padding: 6px;
+  }
+  .input-box, .input-field {
+    width: 98vw !important;
+    min-width: unset !important;
+    max-width: unset !important;
+    font-size: 15px;
+  }
+  .history-title {
+    font-size: 15px;
+  }
+}
+
+/* Make tables and carousels scrollable on mobile */
+@media (max-width: 600px) {
+  table, .carousel {
+    display: block;
+    width: 100vw !important;
+    overflow-x: auto;
+  }
+}
+
+/* Responsive styles for Message component */
+@media (max-width: 600px) {
+  .message-section {
+    padding: 8vw 2vw;
+    min-height: 160px;
+  }
+  .message-container {
+    padding: 16px 8px;
+    width: 95vw;
+    max-width: 98vw;
+    min-width: unset;
+    border-radius: 12px;
+    background: #222;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  .message-container h2 {
+    font-size: 1.1rem;
+  }
+  .message-text {
+    font-size: 1rem;
+    word-break: break-word;
+    margin-top: 8px;
+  }
+  .spinner-border {
+    width: 32px !important;
+    height: 32px !important;
+    margin: 0 auto;
+    display: block;
+  }
+}
+@media (max-width: 400px) {
+  .message-container {
+    padding: 10px 2px;
+    border-radius: 8px;
+  }
+  .message-text,
+  .message-container h2 {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-wrapper, .sign-form {
+    width: 98vw !important;
+    min-width: unset;
+    padding: 10px 2vw;
+  }
+  .sign-form input, .sign-form button {
+    width: 100%;
+    font-size: 1rem;
+  }
+  .sign-form h2 {
+    font-size: 1.1rem;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
