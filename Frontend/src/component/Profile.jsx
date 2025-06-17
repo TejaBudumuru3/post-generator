@@ -1,7 +1,6 @@
 
 const Profile = (props) => {
     const user = props.user;
-    console.log(user);
     
   return (
     <>

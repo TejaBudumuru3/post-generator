@@ -13,7 +13,6 @@ const Toast = ({state,message})=>{
         }
     }, []);
 
-    console.log("Toast called with state and message:", state," ", message);
     return (<>
     <div ref={toastRef} className={`toast custom-toast align-items-center text-bg-${state} border-0 margin-top-0`} role="alert" aria-live="assertive" aria-atomic="true" >
         <div className="d-flex">

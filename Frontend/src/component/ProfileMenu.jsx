@@ -1,4 +1,4 @@
-import { useSelector,useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {  useNavigate } from 'react-router-dom';
 import {setUser } from '../slices/userSlice';
 
@@ -6,11 +6,9 @@ const ProfileMenu = (props) => {
     const mail = props.mail;
     const Navigate = useNavigate();
     const dispatch = useDispatch();
-    const user = useSelector((state)=> {return state.data});
 
 
     const logout = async() => {
-      console.log("logout called");
      
       // setLoading(true);
       const URL=import.meta.env.VITE_BACKEND_URL;
@@ -20,12 +18,9 @@ const ProfileMenu = (props) => {
           credentials:"include",
         });
         
-        const resData = await response.json();
        
         if(response.status === 200){
-          console.log(resData.message);
           dispatch(setUser(null));
-          console.log("logout-- user", user);
           Navigate("/")
         }   
       }   

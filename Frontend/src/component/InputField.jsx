@@ -57,7 +57,6 @@ const InputField = () => {
         const postData = await PostResponse.json();
         if(PostResponse.ok){
           const totalPosts = postData.ans.split("~")
-          console.log(totalPosts);
           dispatch(setPost(totalPosts));
           setLoading(false);
           return;

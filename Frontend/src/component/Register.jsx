@@ -54,8 +54,6 @@ const Register = ({ onClose }) => {
 
           const data = await response.json();
           if(response.ok){
-            console.log(data);
-            console.log("res: ",response)
             setToastMsg(data.message || "Registration successful! Please log in.");
             setToastState("success");
             setToast(true);
@@ -66,7 +64,6 @@ const Register = ({ onClose }) => {
             
           }
           else {
-            console.log("Registration failed:", data.message);
             setToastMsg(data.message);
             setToastState("danger");
             setToast(true);

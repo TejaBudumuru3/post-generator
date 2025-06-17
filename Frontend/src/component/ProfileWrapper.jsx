@@ -3,8 +3,7 @@ import Profile from './Profile.jsx'
 import ProfileMenu from './ProfileMenu.jsx';
 
 const ProfileWrapper = (props) => {
-    const {email,fname,lname,name} = props.user;
-    console.log("ProfileWrapper props: ", email, fname, lname, name);
+    const {email,fname} = props.user;
     const [showMenu, setShowMenu] = React.useState(false);
   return (
     <>

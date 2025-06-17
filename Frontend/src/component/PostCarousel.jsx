@@ -1,9 +1,7 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 
 const PostCarousel = () => {
     const posts = useSelector((state)=> state.posts.item)
-    console.log(posts)
   return (
     <>
     <div id="carouselExampleCaptions" className="carousel slide">
