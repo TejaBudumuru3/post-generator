@@ -7,6 +7,7 @@ import ProfileWrapper from "../component/ProfileWrapper";
 
 const Home = () => {
   const userData = useSelector((state)=> state.user.data);
+  console.log("userdaa from HOME",userData);
   
   return ( 
     <>

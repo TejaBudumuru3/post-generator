@@ -1,5 +1,7 @@
 import React from 'react'
 import Toast from './Toast';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../slices/userSlice';
 
 const Login = ({onClose}) => {
     const URL = import.meta.env.VITE_BACKEND_URL;
@@ -8,6 +10,7 @@ const Login = ({onClose}) => {
     const [toast, setToast] = React.useState(false);
     const [toastMsg, setToastMsg] = React.useState('');
     const [toastState, setToastState] = React.useState('');
+    const dispatch = useDispatch();
 
     const loginEvent = async(e)=> {
       e.preventDefault();
@@ -55,9 +58,32 @@ const Login = ({onClose}) => {
                   setToast(false);
                 }, 3000);
 
+                try {
+                  const response = await fetch(`${URL}/getDetails`, {
+                    method: "GET",
+                    credentials: "include"
+                  });
+                  const data = await response.json();
+                  if (response.ok) {
+                    console.log("User data fetched successfully:", data.data);
+                    dispatch(setUser(data.data))
+                  } else {
+                    console.error("Error fetching user data:", data.message);
+                  }
+                } catch (error) {
+                  setToast(true);
+                    setToastMsg("Something went wrong, please try again later.");
+                    setToastState("danger");
+                    console.log("server error",e.TypeError)
+                    setTimeout(() => {
+                      setToast(false);
+                    }, 2000);
+                    return;
+                }
+
                 setTimeout(()=>{
                   onClose();
-                  window.location.reload();
+                  // window.location.reload();
                 },2000)
 
               }  
