@@ -106,7 +106,11 @@ UserRouter.get("/getDetails", usermiddleware, async function (req, res) {
 
 
 UserRouter.delete("/logout", usermiddleware, async function (req, res) {
-  res.clearCookie("token");
+  res.clearCookie("token" ,{
+    httpOnly: true,
+    sameSite: "none",
+    secure:true
+  });
   res.status(200).json({
     message: "Logout successful",
   });
