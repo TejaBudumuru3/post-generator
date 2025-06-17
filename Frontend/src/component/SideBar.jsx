@@ -12,6 +12,7 @@ const user = useSelector((state) => {
   const [historyItems, setHistoryItems] = useState([]);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
   const [historyError, setHistoryError] = useState('');
+  const URL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     if (user) {
@@ -20,7 +21,7 @@ const user = useSelector((state) => {
         setHistoryError('');
         try {
           // Replace with your actual backend endpoint for fetching history
-          const response = await axios.get('http://localhost:3000/user/getPosts', { 
+          const response = await axios.get(`${URL}/getPosts`, { 
             withCredentials: true, // Important if your backend uses cookies/sessions for auth
           });
           // Assuming the backend returns an object with a 'data' array like your example

@@ -1,21 +1,18 @@
 
-import React from 'react'
-import Message from './Message';
 import {  useNavigate } from 'react-router-dom';
 
 const ProfileMenu = (props) => {
     const mail = props.mail;
     const Navigate = useNavigate();
 
-    const [loading, setLoading] = React.useState(false);
 
     const logout = async() => {
       console.log("logout called");
      
       // setLoading(true);
-      const URL="http://localhost:3000/user/logout";
+      const URL=import.meta.env.VITE_BACKEND_URL;
       try{
-        const response = await fetch(URL,{
+        const response = await fetch(`${URL}/logout`,{
           method:"DELETE",
           credentials:"include",
         });
@@ -42,7 +39,6 @@ const ProfileMenu = (props) => {
               <li onClick={logout}><div className="profile-menu-item">logout</div></li>
           </ul>
       </div>
-      {loading && <Message />}
     </>
   )
 }

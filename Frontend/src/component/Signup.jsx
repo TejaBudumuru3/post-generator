@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Register from "./register";
+import Register from "./Register";
 import Login from "./Login";
 
 

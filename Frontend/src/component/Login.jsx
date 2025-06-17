@@ -2,7 +2,7 @@ import React from 'react'
 import Toast from './Toast';
 
 const Login = ({onClose}) => {
-    const URL = "http://localhost:3000/user/";
+    const URL = import.meta.env.VITE_BACKEND_URL;
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [toast, setToast] = React.useState(false);
@@ -32,7 +32,7 @@ const Login = ({onClose}) => {
         else{
               try
               {
-                const response = await fetch(`${URL}signin`, {
+                const response = await fetch(`${URL}/signin`, {
                 method:"POST",
                 credentials:"include",
                 headers:{

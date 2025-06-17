@@ -1,8 +1,6 @@
-import {useState, useEffect}from 'react'
 import NavBar from '../component/Nav.jsx'
 import InputField from '../component/InputField.jsx'
 import PostSection from '../component/PostSection.jsx'
-import LandPage from '../component/LandingHome.jsx'
 import { useSelector } from 'react-redux'
 import Signup from "../component/Signup.jsx";
 import ProfileWrapper from "../component/ProfileWrapper";

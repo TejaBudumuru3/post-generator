@@ -13,11 +13,7 @@ const PostSection = () => {
       </>
     )
   }
-  // else{
-  //   console.log(posts)
-  //   TotalPosts = posts.split("~");
-  //   console.log(TotalPosts)
-  // }
+ 
   return (
     <>
     <div className="posts-corner">

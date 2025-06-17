@@ -1,4 +1,3 @@
-import React from 'react'
 
 const Profile = (props) => {
     const user = props.user;

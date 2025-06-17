@@ -41,8 +41,8 @@ const InputField = () => {
         return;
       }
       try {
-        const URL = "http://localhost:3000/user/GenerateData";
-        const PostResponse = await fetch(URL,{
+        const URL = import.meta.env.VITE_BACKEND_URL;
+        const PostResponse = await fetch(`${URL}/GenerateData`,{
           method:"POST",
           credentials:"include",
           headers:{

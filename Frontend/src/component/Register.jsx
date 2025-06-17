@@ -4,7 +4,7 @@ import Toast from './Toast';
 
 const Register = ({ onClose }) => {
 
-  const URL = "http://localhost:3000/user/";
+  const URL = import.meta.env.VITE_BACKEND_URL;
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -38,7 +38,7 @@ const Register = ({ onClose }) => {
     else{
       if((password === confirmPassword)){
         try {
-          const response  =await fetch(`${URL}signup`, {
+          const response  =await fetch(`${URL}/signup`, {
             method:"POST",
             body:JSON.stringify({
               email : email,
