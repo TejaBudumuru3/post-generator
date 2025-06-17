@@ -7,31 +7,31 @@ import { setUser } from './slices/userSlice';
 import LandingPage from './routes/LandingPage';
 
 function App() {
-  // const dispatch = useDispatch();
-  // const userData = useSelector((state)=>state.user.data);
-  // useEffect(() => {
-  //   const URL = import.meta.env.VITE_BACKEND_URL;
-  //   console.log(URL);
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const response = await fetch(`${URL}/getDetails`, {
-  //         method: "GET",
-  //         credentials: "include"
-  //       });
-  //       const data = await response.json();
-  //       if (response.ok) {
-  //         console.log("User data fetched successfully:", data.data);
-  //         dispatch(setUser(data.data))
-  //       } else {
-  //         console.error("Error fetching user data:", data.message);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error in fetchUserData:", error);
-  //     }
-  //   };
+  const dispatch = useDispatch();
+  const userData = useSelector((state)=>state.user.data);
+  useEffect(() => {
+    const URL = import.meta.env.VITE_BACKEND_URL;
+    console.log(URL);
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(`${URL}/getDetails`, {
+          method: "GET",
+          credentials: "include"
+        });
+        const data = await response.json();
+        if (response.ok) {
+          console.log("User data fetched successfully:", data.data);
+          dispatch(setUser(data.data))
+        } else {
+          console.error("Error fetching user data:", data.message);
+        }
+      } catch (error) {
+        console.error("Error in fetchUserData:", error);
+      }
+    };
 
-  //   fetchUserData();
-  // }, [dispatch])
+    fetchUserData();
+  }, [dispatch])
     
   // console.log("Userdata from App", userData)
 
