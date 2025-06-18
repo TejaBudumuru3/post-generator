@@ -27,7 +27,7 @@ const PostCarousel = () => {
             </div>
             </div>
             <div className="carousel-item">
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption ">
                 <h5>{posts[2]}</h5>
                 <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[2])}`} target="_blank" rel="noopener noreferrer"
                    className="btn btn-primary rounded-pill px-4 py-2"
@@ -37,7 +37,7 @@ const PostCarousel = () => {
             </div>
             </div>
             <div className="carousel-item">
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption ">
                 <h5>{posts[3]}</h5>
                 <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[3])}`} target="_blank" rel="noopener noreferrer"
                    className="btn btn-primary rounded-pill px-4 py-2"
@@ -47,7 +47,7 @@ const PostCarousel = () => {
             </div>
             </div>
             <div className="carousel-item">
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption ">
                 <h5>{posts[4]}</h5>
                 <a href={`https://x.com/compose/post?text=${encodeURIComponent(posts[4])}`} target="_blank" rel="noopener noreferrer"
                    className="btn btn-primary rounded-pill px-4 py-2"
