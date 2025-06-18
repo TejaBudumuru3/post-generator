@@ -6,7 +6,7 @@ const NavBar = ({children})=>{
 
     return( 
         <>
-        <nav className="Navbar" style={{display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 20px", backgroundColor: "rgb(10,10,10"}}>
+        <nav className="Navbar">
             <div className="title">
                 <h1 className="title-text" onClick={()=>{Nav("/")}}>Post Generator</h1>
             </div>
