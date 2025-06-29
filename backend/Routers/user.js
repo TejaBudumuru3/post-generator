@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { UserModel, PostModel } = require("../db");
+const { UserModel, PostModel } = require("../models/db");
 const bcrypt = require("bcrypt");
 const UserRouter = Router();
 const jwt = require("jsonwebtoken");
@@ -7,8 +7,12 @@ const { JWT_SECRET } = require("../config");
 const express = require("express");
 const { usermiddleware } = require("../middlewares/userAuth");
 const { Groq } = require("groq-sdk");
+const Linkedin  = require("./Linkedin")
+const axios = require("axios")
 // const usermiddleware = require(__dirname+"S:\WEB\Practice projects\Course sellling app\middlewares\userAuth.js")
 UserRouter.use(express.json());
+
+UserRouter.use("/v2", Linkedin);
 
 UserRouter.post("/signup", async function (req, res) {
   try {
@@ -76,14 +80,14 @@ UserRouter.post("/signin", async function (req, res) {
 
     res.cookie("token",token,{
       httpOnly:true,
-      sameSite:"none",
-      secure:true,
+      sameSite:"lax",
+      secure:false,
       maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
     
     res.status(200).json({
       message: "Login success, Welcome!",
-      token,
+      token: token,
     });
 
    
@@ -94,9 +98,39 @@ UserRouter.post("/signin", async function (req, res) {
     });
   }
 });
+
+
 UserRouter.get("/getDetails", usermiddleware, async function (req, res) {
-  const uderId = req.user.userid;
-  const data = await UserModel.findById(uderId);
+  const userId = req.user.userid;
+  let data = null;
+  try{
+    data = await UserModel.findById(userId);
+  }catch(e){
+    console.log("No records from db",e)
+  }
+  if((data === null) && userId){
+    try{
+      const linkedinRes = await axios.get('https://api.linkedin.com/v2/userinfo', {
+        headers: { Authorization: `Bearer ${userId}` }
+      });
+
+      console.log("--------------------------------data from linkedin",linkedinRes.data,"----------------------------------")
+      data = linkedinRes.data;
+      // try {
+        
+      //   const user = await UserModel.create({
+      //     name: data.name,
+      //     email:data.email,
+
+      //   });
+
+      // } catch (error) {
+        
+      // }
+    }catch(e){
+      console.log(e)
+    }
+  }
   res.status(200).json({
     data,
     message: "User details fetched success",
@@ -121,7 +155,7 @@ UserRouter.delete("/logout", usermiddleware, async function (req, res) {
 UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
   const { question } = req.body; // Get question from request body
   const {tone } = req.body;
-  const userId = req.user.userid;
+  // const userId = req.user.userid;
   if (!question) {
     return res
       .status(400)
@@ -166,7 +200,7 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
           },
         {
           role: "user",
-          content: `generate a 5 tweets without explaination on ${question} with tone ${req.body.tone || 'neutral'} for every tweet should separated by a special character "~" dont use that special character in tweets that charater is used to seperate th tweets only each tweet contains maximium characters including hashtags with '#' as mandatory and emojis(if needed) the tweet shouldn't exceeds the X tweet limit (mandatory).`,
+          content: `generate a 5 tweets without explaination on ${question} with tone ${tone || 'neutral'} for every tweet should separated by a special character "~" dont use that special character in tweets that charater is used to seperate th tweets only each tweet contains maximium characters including hashtags with '#' as mandatory and emojis(if needed) the tweet shouldn't exceeds the X tweet limit (mandatory).`,
         },
         ],
         temperature: 0.7,
@@ -185,18 +219,18 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
         throw new Error("Empty response from Groq API");
       }
 
-      const post = await PostModel.create({ 
-        question: question,
-        content: ans,
-        User: userId,
-      });
+      // const post = await PostModel.create({ 
+      //   question: question,
+      //   content: ans,
+      //   User: userId,
+      // });
 
-      const user = await UserModel.findById(userId);
-      user.posts.push(post._id);
-      await user.save();
+      // const user = await UserModel.findById(userId);
+      // user.posts.push(post._id);
+      // await user.save();
 
       return res.status(200).json({
-        post: post,
+        //post: post,
         ans: ans,
         message: "Data generated successfully",
       });

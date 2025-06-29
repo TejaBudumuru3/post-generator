@@ -17,3 +17,5 @@ frontend/.env
 
 Document.pdf
 .gitignore
+
+.history

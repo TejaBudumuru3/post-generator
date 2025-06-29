@@ -98,6 +98,25 @@ const Login = ({onClose}) => {
           }
     
   }
+
+    const linkedinLogin = async(e)=>{
+      e.preventDefault();
+      try {
+        const URL = `${import.meta.env.VITE_LINKEDIN_URL}auth/linkedin`
+        console.log(URL)
+        // window.location.href = 'http://localhost:3000/user/v2/auth/linkedin';
+
+        window.location.href = URL
+      } catch (error) {
+        setToast(true);
+        setToastMsg("Something went wrong, please try again later.");
+        setToastState("danger");
+        console.log("server error",e)
+        setTimeout(() => {
+          setToast(false);
+        }, 2000);
+      }
+    }
     
 
 
@@ -112,6 +131,7 @@ const Login = ({onClose}) => {
               <input type="password" placeholder='Enter you password'  onChange={(e)=> setPassword(e.target.value)} required/>
               <button type="submit" onClick={loginEvent}> Login </button>
           </form>
+          <button onClick={linkedinLogin}> Login with linkedin</button>
           </div>
       </div>
       {toast && <Toast message={toastMsg} state={toastState} style={{marginTop: "10px", position: "fixed", top: "10px",textAlign:"center"}}/>}

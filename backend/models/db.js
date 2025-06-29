@@ -7,6 +7,10 @@ const User = new Schema({
   email: { type: String, unique: true },
   password: String,
   fname: String,
+  isVerified: {
+        type: Boolean,
+        default: false
+    },
   lname: String,
   posts: [{ type: ObjectId, ref: 'Post' }]  // Reference to posts
 });
