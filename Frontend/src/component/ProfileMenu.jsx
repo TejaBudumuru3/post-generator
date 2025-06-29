@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 import {  useNavigate } from 'react-router-dom';
-import {setUser } from '../slices/userSlice';
+import { clearUser } from '../slices/userSlice';
+import { clearLinkedinPost } from '../slices/linkedinSlice';
+import { clearPost } from '../slices/postSlice';
 
 const ProfileMenu = (props) => {
     const mail = props.mail;
@@ -20,7 +22,11 @@ const ProfileMenu = (props) => {
         
        
         if(response.status === 200){
-          dispatch(setUser(null));
+          dispatch(clearUser());
+          // window.location.reload()
+          dispatch(clearLinkedinPost())
+          dispatch(clearPost())
+          
           Navigate("/")
         }   
       }   
