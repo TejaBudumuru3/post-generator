@@ -138,7 +138,7 @@ const Login = ({onClose}) => {
             <div className='main-form-linked-btn'>
                 
                 <button onClick={linkedinLogin}> 
-                  <img src='../public/linkedin.png' width={"30px"}/>
+                  <img src='/linkedin.png' width={"30px"}/>
                   Login with linkedin
                   </button>
             </div>

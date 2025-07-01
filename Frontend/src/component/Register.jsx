@@ -138,7 +138,7 @@ const Register = ({ onClose }) => {
               
               <div className='main-form-linked-btn'>
                   <button onClick={linkedinLogin}> 
-                    <img src='../public/linkedin.png' className='main-form-linked-img' width={"30px"}/>
+                    <img src='/linkedin.png' className='main-form-linked-img' width={"30px"}/>
                     Login with linkedin
                     </button>
               </div>
