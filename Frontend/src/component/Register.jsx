@@ -95,21 +95,53 @@ const Register = ({ onClose }) => {
     }
   };
 
+   const linkedinLogin = async(e)=>{
+      e.preventDefault();
+      try {
+        const URL = `${import.meta.env.VITE_LINKEDIN_URL}auth/linkedin`
+        console.log(URL)
+        // window.location.href = 'http://localhost:3000/user/v2/auth/linkedin';
+
+        window.location.href = URL
+      } catch (error) {
+        setToast(true);
+        setToastMsg("Something went wrong, please try again later.");
+        setToastState("danger");
+        console.log("server error",e)
+        setTimeout(() => {
+          setToast(false);
+        }, 2000);
+      }
+    }
+
   return (
     <>
      
         <div className='auth-section'>
-          <div className="form-wrapper">
-            <button className='close-btn' onClick={onClose}>X</button>
-            <form className='sign-form' onSubmit={registerEvent}>
+          <div className="form-logo">
+            {/* <button className='close-btn' onClick={onClose}>X</button> */}
+            <form className='sign-form' onSubmit={registerEvent} >
               <h2>Sign Up</h2>
-              <input type="text" placeholder="Enter your name" value={name} required onChange={(e) => setName(e.target.value)} />
-              <input type="email" placeholder="example@gmail.com" value={email} required onChange={(e) => setEmail(e.target.value)} />
-              <input type="text" placeholder="Enter your First name" value={fname} required onChange={(e) => setFname(e.target.value)} />
-              <input type="text" placeholder="Enter your Last name" value={lname} required onChange={(e) => setLname(e.target.value)} />
-              <input type="password" placeholder="Enter your password" value={password} required onChange={(e) => setPassword(e.target.value)} />
-              <input type="password" placeholder="Confirm your password" value={confirmPassword} required onChange={(e) => setConfirmPassword(e.target.value)} />
-              <button type="submit">Register</button>
+              <div className='main-form' >
+                <label style={{textAlign:"left", width:"100%"}}>Email</label>
+                <input type="text" placeholder="Enter your name" value={name} required onChange={(e) => setName(e.target.value)} />
+                <label style={{textAlign:"left", width:"100%"}}>Email</label>
+                <input type="email" placeholder="example@gmail.com" value={email} required onChange={(e) => setEmail(e.target.value)} />
+                <label style={{textAlign:"left", width:"100%"}}>Email</label>
+                <input type="password" placeholder="Enter your password" value={password} required onChange={(e) => setPassword(e.target.value)} />
+                <label style={{textAlign:"left", width:"100%"}}>Email</label>
+                <input type="password" placeholder="Confirm your password" value={confirmPassword} required onChange={(e) => setConfirmPassword(e.target.value)} />
+                <div style={{marginTop:"30px"}}> <button type="submit">Register</button> </div>
+              </div>
+
+              <div>- or -</div>
+              
+              <div className='main-form-linked-btn'>
+                  <button onClick={linkedinLogin}> 
+                    <img src='../public/linkedin.png' width={"30px"}/>
+                    Login with linkedin
+                    </button>
+              </div>
             </form>
           </div>
         </div>

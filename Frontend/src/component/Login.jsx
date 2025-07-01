@@ -123,15 +123,26 @@ const Login = ({onClose}) => {
   return (
     <>
       <div className='auth-section'>
-          <div className="form-wrapper">
-          <button className='close-btn' onClick={onClose}>X</button>
+          <div className="form-logo">
+            {/* <img src="../public/AppLogo.png" srcset="logo-ainfinity@2x.png 2x, logo-ainfinity@3x.png 3x"/> */}
           <form className='sign-form'>
               <h2>Login</h2>
+            <div className='main-form'>
+              <label style={{textAlign:"left", width:"100%"}}>Email</label>
               <input type="email" placeholder='example@gmail.com' onChange={(e)=> setEmail(e.target.value)} required/>
+              <label style={{textAlign:"left", width:"100%"}}>Password</label>
               <input type="password" placeholder='Enter you password'  onChange={(e)=> setPassword(e.target.value)} required/>
-              <button type="submit" onClick={loginEvent}> Login </button>
+              <div style={{marginTop:"30px"}}> <button type="submit" onClick={loginEvent}> Login </button> </div>
+            </div>
+            <div>- or -</div>
+            <div className='main-form-linked-btn'>
+                
+                <button onClick={linkedinLogin}> 
+                  <img src='../public/linkedin.png' width={"30px"}/>
+                  Login with linkedin
+                  </button>
+            </div>
           </form>
-          <button onClick={linkedinLogin}> Login with linkedin</button>
           </div>
       </div>
       {toast && <Toast message={toastMsg} state={toastState} style={{marginTop: "10px", position: "fixed", top: "10px",textAlign:"center"}}/>}
