@@ -456,6 +456,11 @@ body{
   display: flex;
   flex-direction: column;
 }
+
+.main-form-linked-img{
+  background-color: url("../public/linkedin.png");
+  width: 30px;
+}
 .main-form-linked-btn button{
     display: flex;
     width: 100%;

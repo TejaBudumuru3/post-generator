@@ -133,12 +133,12 @@ const Register = ({ onClose }) => {
                 <input type="password" placeholder="Confirm your password" value={confirmPassword} required onChange={(e) => setConfirmPassword(e.target.value)} />
                 <div style={{marginTop:"30px"}}> <button type="submit">Register</button> </div>
               </div>
-
+              <br/>
               <div>- or -</div>
               
               <div className='main-form-linked-btn'>
                   <button onClick={linkedinLogin}> 
-                    <img src='../public/linkedin.png' width={"30px"}/>
+                    <img src='../public/linkedin.png' className='main-form-linked-img' width={"30px"}/>
                     Login with linkedin
                     </button>
               </div>
