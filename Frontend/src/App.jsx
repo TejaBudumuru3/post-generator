@@ -5,6 +5,8 @@ import Home from './routes/Home'
 import { useDispatch,useSelector } from 'react-redux';
 import { setUser } from './slices/userSlice';
 import LandingPage from './routes/LandingPage';
+import Login from './component/Login';
+import Register from './component/Register';
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +35,8 @@ function App() {
     <Router>
     <Routes>
       <Route path='/' element={<LandingPage/>}/>
-
+      <Route path="/login" element={<Login/>}/>
+      <Route path='/register' element={<Register/>}/>
       <Route path='/home' element={<Home/>}/>
     </Routes>
     </Router>

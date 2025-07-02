@@ -125,25 +125,26 @@ const Login = ({onClose}) => {
       <div className='auth-section'>
           <div className="form-logo">
             {/* <img src="../public/AppLogo.png" srcset="logo-ainfinity@2x.png 2x, logo-ainfinity@3x.png 3x"/> */}
-          <form className='sign-form'>
-              <h2>Login</h2>
-            <div className='main-form'>
-              <label style={{textAlign:"left", width:"100%"}}>Email</label>
+          </div>
+          <div className='right-panel'>
+            <div className='form-card'>
+              <h2 style={{color: "#f3f6fd"}}>Login</h2>
+              <div style={{color: "#8b97b3", marginBottom: "1em"}}>Join the infinite future</div>
+
               <input type="email" placeholder='example@gmail.com' onChange={(e)=> setEmail(e.target.value)} required/>
-              <label style={{textAlign:"left", width:"100%"}}>Password</label>
               <input type="password" placeholder='Enter you password'  onChange={(e)=> setPassword(e.target.value)} required/>
-              <div style={{marginTop:"30px"}}> <button type="submit" onClick={loginEvent}> Login </button> </div>
-            </div>
-            <div>- or -</div>
-            <div className='main-form-linked-btn'>
-                
-                <button onClick={linkedinLogin}> 
-                  <img src='/linkedin.png' width={"30px"}/>
+              <button type="submit" onClick={loginEvent}> Login </button>
+
+              <div className="or-divider">- OR -</div>
+              <button onClick={linkedinLogin} style={{background: "#232949", color: "#15e0ff"}}> 
+                  <img src='/linkedin.png' width={"30px"} style={{display: "inline-block",paddingRight:"10px"}}/>
                   Login with linkedin
                   </button>
+              <p className="or-divider">New user, <a href='/register'>Register</a></p>
             </div>
-          </form>
+
           </div>
+          
       </div>
       {toast && <Toast message={toastMsg} state={toastState} style={{marginTop: "10px", position: "fixed", top: "10px",textAlign:"center"}}/>}
     </>
