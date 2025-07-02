@@ -10,8 +10,8 @@ const Signup = () => {
   const Navigator = useNavigate();
   return (
       <>
-        <button className="sign-up-btn" onClick={()=> Navigator("/register")}><strong>Signup</strong></button>
-        <button className="login-btn" onClick={()=> Navigator("/login")}><strong>Login</strong></button>
+        {/* <button className="sign-up-btn" onClick={()=> Navigator("/register")}><strong>Signup</strong></button> */}
+        <button className="login-btn" onClick={()=> Navigator("/login")}><strong>Get started</strong></button>
         {/* {signup && <Register onClose={()=> setSignup(false)}/>}
         {login && <Login onClose={()=> setLogin(false)}/>} */}
       </>

@@ -18,7 +18,17 @@ const Register = ({ onClose }) => {
 
   const registerEvent = async(e) => {
     e.preventDefault(); 
-
+    if(!email || !password || !name || !confirmPassword){
+      setToastMsg("Fill the details");
+          setToastState("primary");
+          setToast(true);
+          setTimeout(() => {
+            setToast(false);
+          }, 3000);
+          return
+    }
+    setFname(name.split(" ")[0])
+    setLname(name.split(" ")[1])
     if(password.length<8){
       setToastMsg("Password must contains 8 characters");
           setToastState("danger");

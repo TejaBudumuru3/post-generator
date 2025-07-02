@@ -44,6 +44,11 @@ const LandPage = () => {
           This is wouldbe in the second lin e This is would be in teh third line"/> */}
       </div>
        </div>
+
+       <div className="footer">
+        <p>© 2025 AInfinity. All rights reserved.</p>
+        <p>code at github</p>
+       </div>
     </>
   );
 };
