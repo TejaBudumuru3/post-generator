@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap");
 
-*{
-    font-family: "Geist", sans-serif;
-    margin: 0;
-    /* background-color: rgb(10, 10, 10); */
+* {
+  font-family: "Geist", sans-serif;
+  margin: 0;
+  /* background-color: rgb(10, 10, 10); */
 }
 
 /* .landing-section{
@@ -29,304 +29,349 @@
     margin-top: 30px;
     border: none;
 } */
-.Navbar{
-    color: white;
-    text-align: center;
-    height: 90px;
-    overflow: visible;
-    border-radius: 0 0 20px 20px;
-    position: sticky;
-    top: 0;
-    box-shadow: white 0px 0px 1px 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100vw;
-    padding: 10px 20px;
-    background-color: rgb(10, 10, 10);
-    flex-direction: row;
+.Navbar {
+  color: white;
+  text-align: center;
+  height: 90px;
+  overflow: visible;
+  border-radius: 0 0 20px 20px;
+  position: sticky;
+  top: 0;
+  box-shadow: white 0px 0px 1px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  padding: 10px 20px;
+  background-color: rgb(10, 10, 10);
+  flex-direction: row;
 }
 
-.title{
-    flex: 4;
-    text-align: left;
-    padding: 0 30px;
-    font-size: 36px;
-
+.title {
+  flex: 4;
+  text-align: left;
+  padding: 0 30px;
+  font-size: 36px;
 }
-.title-text{
-    width: max-content;
-    cursor: pointer;
+.title-text {
+  width: max-content;
+  cursor: pointer;
 }
-.user{
-    flex: 1;
-    display: flex;
-    margin-top: 2px;
-    justify-content: space-evenly;
-}
-
-.profile-section{
-    cursor: pointer;
-    text-align: -webkit-center;
-}
-.profile-section:hover .profile-logo{
-    display: block;
-    border: 5px solid #ccc;
-    transition: all 0.66s ease-in-out;
-}
-.profile-logo{
-    width: 40px;
-    height: 40px;
-    border: black 1px solid;
-    border-radius: 50%;
-}
-.profile-wrapper{
-    display: inline-block;
-    position: relative;
-    z-index: 10;
+.user {
+  flex: 1;
+  display: flex;
+  margin-top: 2px;
+  justify-content: space-evenly;
 }
 
-.profile-name{
-    display: flow;
-    font-size: 30px;
-    cursor: pointer;
+.profile-section {
+  cursor: pointer;
+  text-align: -webkit-center;
 }
-.profile-content{
-    right: 1px;
-    position: absolute;
-    background: #282c34;
-    padding: 20px;
-    margin-top: 14px;
-    border-radius: 10px;
-    align-items: center;
-    list-style: none;
-
+.profile-section:hover .profile-logo {
+  display: block;
+  border: 5px solid #ccc;
+  transition: all 0.66s ease-in-out;
 }
-.profile-content li{
-    color: white;
-    cursor: pointer;
-    width: auto;
-    border-radius: 5px;
-    padding: 5px;
+.profile-logo {
+  width: 40px;
+  height: 40px;
+  border: black 1px solid;
+  border-radius: 50%;
+}
+.profile-wrapper {
+  display: inline-block;
+  position: relative;
+  z-index: 10;
 }
 
-.input-options{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
+.profile-name {
+  display: flow;
+  font-size: 30px;
+  cursor: pointer;
 }
-.profile-menu-item{
-    /* border: #ccc 1px solid; */
-    border-radius: 5px;
-    width: inherit;
-     padding: 0 12px;
+.profile-content {
+  right: 1px;
+  position: absolute;
+  background: #282c34;
+  padding: 20px;
+  margin-top: 14px;
+  border-radius: 10px;
+  align-items: center;
+  list-style: none;
+}
+.profile-content li {
+  color: white;
+  cursor: pointer;
+  width: auto;
+  border-radius: 5px;
+  padding: 5px;
 }
 
+.input-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+.profile-menu-item {
+  /* border: #ccc 1px solid; */
+  border-radius: 5px;
+  width: inherit;
+  padding: 0 12px;
+}
 
 /* Add these styles to your s:\Cloned Projects\Practice-projects\route practice\src\index.css file */
 
 /* Hero Section Specific Styles */
 .hero-section {
-    text-align: center;
-    padding: 1px 1rem;
-    min-height: calc(100vh - 90px); /* Subtract navbar height */
-    /* margin-top: 90px; Add margin for navbar */
-    background-color: rgb(10, 10, 10);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  text-align: center;
+  padding: 1px 1rem;
+  min-height: calc(100vh - 90px); /* Subtract navbar height */
+  /* margin-top: 90px; Add margin for navbar */
+  /* The linear-gradient adds a dark overlay so the text is readable. */
+  /* The path '/Icons.png' points to your image in the /public folder. */
+  background-image: linear-gradient(
+      rgba(10, 10, 10, 0.7),
+      rgba(10, 10, 10, 0.7)
+    ),
+    url("./Icons.png");
+  background-size: cover;
+  background-position: 8svw center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-content {
-    max-width: 900px;
-    margin: 0 auto;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .hero-title {
-    font-size: 3.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: white; /* Fallback color */
-    background: linear-gradient(90deg, #ff8a00, #e52e71, #6a0dad, #007cf0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    /* text-fill-color: transparent; */
-    cursor: default;
-    background-size: 300% 300%;
-    animation: textGradientAnimation 5s ease infinite;
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: white; /* Fallback color */
+  background: linear-gradient(90deg, #ff8a00, #e52e71, #6a0dad, #007cf0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* text-fill-color: transparent; */
+  cursor: default;
+  background-size: 300% 300%;
+  animation: textGradientAnimation 5s ease infinite;
 }
 
 .hero-subtitle {
-    font-size: 1.4rem;
-    color: #d1d5db;
-    margin-bottom: 2.5rem;
-    line-height: 1.6;
-    max-width: 700px;
-    cursor: default;
-    margin-left: auto;
-    margin-right: auto;
+  font-size: 1.4rem;
+  color: #d1d5db;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 700px;
+  cursor: default;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-cta-link {
-    display: inline-block;
+  display: inline-block;
 }
 
 .hero-cta-button {
-    padding: 0.9rem 2rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    background-color: #ff8a00;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 138, 0, 0.4);
+  padding: 0.9rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: #ff8a00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 138, 0, 0.4);
 }
+/* .Card-Section{
 
-.hero-cta-button:hover {
-    background-color: #e52e71;
+
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 6px 20px rgba(229, 46, 113, 0.5);
 }
+.Section{
+  padding: 9pc; */
+
+.Card-Section {
+  width: 320px; /* Increased width to make it rectangular */
+  height: 250px; /* Kept height the same */
+  padding: 20px; /* Space inside the card for your text */
+  background-color: #282c34; /* A dark background that fits your theme */
+  color: white; /* Ensures text is readable */
+  border-radius: 15px; /* Gives the card rounded corners */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Adds depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.Card-Section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 252, 248, 0.2); /* A subtle glow effect on hover */
+}
+.hero-cta-button:hover {
+  background-color: #e52e71;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(229, 46, 113, 0.5);
+}
 
 @keyframes textGradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.profile-content li :hover{
-    background: #4d525e;
+.profile-content li :hover {
+  background: #4d525e;
+}
+.card-section {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap to the next line */
+  justify-content: center; /* This will center the cards horizontally */
+  gap: 80px 96px; /* Increased vertical gap (first value) */
+  padding: 80px 0; /* Remove side padding for better centering */
+  max-width: 1400px; /* Slightly wider for more breathing room */
+  margin: 100px auto; /* More vertical margin and centers the section */
 }
 
-.main-section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    background-color: rgba(8, 8, 8, 0.89);
+.main-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-color: rgba(8, 8, 8, 0.89);
 }
 
 .app-sidebar {
-    width: 300px;
-    background-color: #1a1a1a;
-    border-right: 1px solid #333;
-    padding: 20px;
-    height: calc(100vh - 90px);
-    position: sticky;
-    top: 90px;
-    overflow-y: auto;
+  width: 300px;
+  background-color: #1a1a1a;
+  border-right: 1px solid #333;
+  padding: 20px;
+  height: calc(100vh - 90px);
+  position: sticky;
+  top: 90px;
+  overflow-y: auto;
 }
 
 .sidebar-header {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .new-generation-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #ff8a00;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+  width: 100%;
+  padding: 12px;
+  background-color: #ff8a00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .new-generation-button:hover {
-    background-color: #e52e71;
+  background-color: #e52e71;
 }
 
 .sidebar-history {
-    color: white;
+  color: white;
 }
 
 .history-title {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: #d1d5db;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #d1d5db;
 }
 
 .history-item-button {
-    width: 100%;
-    text-align: left;
-    padding: 10px;
-    margin: 5px 0;
-    background-color: #282c34;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #282c34;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .history-item-button:hover {
-    background-color: #3a3f4b;
+  background-color: #3a3f4b;
 }
 
 .loading-history-message,
 .error-history-message,
 .no-history-message {
-    color: #d1d5db;
-    padding: 10px;
-    text-align: center;
+  color: #d1d5db;
+  padding: 10px;
+  text-align: center;
 }
 
 .error-history-message {
-    color: #ef4444;
+  color: #ef4444;
 }
 
 .content-section {
-    flex: 1;
-    padding: 30px;
-    overflow-y: auto;
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
 }
 
-body{
-    background-color:rgba(8, 8, 8);
-    transition: opacity 0.5s ease-in-out;
-
+body {
+  background-color: rgba(8, 8, 8);
+  transition: opacity 0.5s ease-in-out;
 }
-.input-box{
-    width: 70%;
-    padding: 30px;
-    height:auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top:2% ;
-    border-radius: 15px;
-    /* background-color: #282c34; */
+.input-box {
+  width: 70%;
+  padding: 30px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+  border-radius: 15px;
+  /* background-color: #282c34; */
 }
-.input-select{
-    margin: 20px;
-}
-
-.input-text-container{
-    width: 90%;
-    margin: 20px;
- 
+.input-select {
+  margin: 20px;
 }
 
-.input-option-container{
-    width: inherit;
-
+.input-text-container {
+  width: 90%;
+  margin: 20px;
 }
-.input-field{
-    width: 100%;
-    height: inherit;
-    font-size: 28px;
-    outline: none;
-    border: none;
-    background-color: #282c34;
-    /* background-color:rgba(8, 8, 8, 0.89); */
-    color: white;
+
+.input-option-container {
+  width: inherit;
+}
+.input-field {
+  width: 100%;
+  height: inherit;
+  font-size: 28px;
+  outline: none;
+  border: none;
+  background-color: #282c34;
+  /* background-color:rgba(8, 8, 8, 0.89); */
+  color: white;
 }
 
 .carousel-caption {
@@ -334,69 +379,70 @@ body{
   border-radius: 8px;
   padding: 1rem;
 }
-.carousel-item{
-    height: 15rem;
+.carousel-item {
+  height: 15rem;
 }
 
-.input-button{
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color: white;
-    border: none;
-    color: rgba(8, 8, 8, 0.89);;
-    display: block;
-    cursor:pointer;
-    font-weight:lighter;
-    margin: 20px;
+.input-button {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: white;
+  border: none;
+  color: rgba(8, 8, 8, 0.89);
+  display: block;
+  cursor: pointer;
+  font-weight: lighter;
+  margin: 20px;
 }
-.input-wrapper{
-    border: 1px solid #ccc;
-    padding: 0;
-    margin: 0;
-    margin-bottom: 20px;
-    border-radius: 30px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: #282c34;    
-    align-items: center;
-}
-
-.post-section{
-    border: 1px solid #ccc;
-    width: 70%;
-    padding: 30px;
-    border-radius: 50px;
-    height: auto;
-    margin-top: 50px;
-    text-align: center;
-    /* box-shadow: #4d525e 0px 0px 16px 2px; */
-}
-.post-text{
-    color: white;
-}
-.auth-section{
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background: rgba(0, 0, 0, 0.925); */
-    top:0;
+.input-wrapper {
+  border: 1px solid #ccc;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #282c34;
+  align-items: center;
 }
 
-.form-logo{
-    background-image: url("../public/applogo1.png");
-    height: 100vh;
-    width: 80vw;
-    position: fixed;
-    left: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+.post-section {
+  border: 1px solid #ccc;
+  width: 70%;
+  padding: 30px;
+  border-radius: 50px;
+  height: auto;
+  margin-top: 50px;
+  text-align: center;
+  /* box-shadow: #4d525e 0px 0px 16px 2px; */
+}
+.post-text {
+  color: white;
+}
+.auth-section {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: rgba(0, 0, 0, 0.925); */
+  top: 0;
+}
+
+.form-logo {
+  background-image: url("../public/applogo1.png");
+  height: 100vh;
+  width: 50vw;
+  background-size: vw;
+  position: fixed;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* .close-btn{
@@ -410,156 +456,154 @@ body{
     cursor: pointer;
     border-radius: 50%;
 } */
-.sign-form{
-    display: flex;
-    position: fixed;
-    right: 0;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: -4px 0 16px 0 #00fcf8bb;
-    padding: 30px;
-    width: 30vw;
-    border-radius: 20px;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    height: 100vh;
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
+.sign-form {
+  display: flex;
+  position: fixed;
+  right: 0;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: -4px 0 16px 0 #00fcf8bb;
+  padding: 30px;
+  width: 50vw;
+  border-radius: 20px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
-.sign-form input{
-    height: 50px;
-    width: 100%;
-    margin: 10px 0;
-    padding-left: 20px;
-    font-size: 20px;
-    border-radius: 10px;
-    border: none;
+.sign-form input {
+  height: 50px;
+  width: 100%;
+  margin: 10px 0;
+  padding-left: 20px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
 }
-.sign-form h2{
+.sign-form h2 {
   font-size: 3rem;
 }
-.main-form{
+.main-form {
   display: flex;
   flex-direction: column;
   height: 50%;
   justify-content: center;
 }
-.main-form button{
-    width: 50%;
-    padding: 10px;
-    align-items: center;
-    border-radius: 30px;
+.main-form button {
+  width: 50%;
+  padding: 10px;
+  align-items: center;
+  border-radius: 30px;
 }
-.main-form-linked-btn{
+.main-form-linked-btn {
   height: 10%;
   display: flex;
   flex-direction: column;
 }
 
-.main-form-linked-img{
+.main-form-linked-img {
   background-color: url("../public/linkedin.png");
   width: 30px;
 }
-.main-form-linked-btn button{
-    display: flex;
-    width: 100%;
-    padding: 10px;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-content: flex-start;
-    align-items: center;
-    border-radius: 30px;
+.main-form-linked-btn button {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-content: flex-start;
+  align-items: center;
+  border-radius: 30px;
 }
-.main-form-linked-btn img{
+.main-form-linked-btn img {
   margin-left: 30px;
 }
-.sign-up-btn{
-    background-color: rgb(54, 54, 54);
-    color: white;
-    width: 100px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
+.sign-up-btn {
+  background-color: rgb(54, 54, 54);
+  color: white;
+  width: 100px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
 }
 
-.login-btn{
-    background-color: rgb(54, 54, 54);
-    color: white;
-    width: 100px;
-    padding: 0 10px;
-    border-radius: 5px;
-    border: none;
+.login-btn {
+  background-color: rgb(54, 54, 54);
+  color: white;
+  width: 100px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: none;
 }
 
-.auth-section .form-wrapper .sign-form button{
-    background-color: black;
-    width: 30%;
-    border-radius: 5px;
-    color: whitesmoke;
-    border: none;
+.auth-section .form-wrapper .sign-form button {
+  background-color: black;
+  width: 30%;
+  border-radius: 5px;
+  color: whitesmoke;
+  border: none;
 }
 
-
-.auth-section .form-wrapper .close-btn{
-    width: 10px;
-    height: 0px;
+.auth-section .form-wrapper .close-btn {
+  width: 10px;
+  height: 0px;
 }
 
-.message-section{
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    left: 0;
-    display: flex;
-    top: 0;
-    justify-content: center;
-    align-items: center;
-    background: rgb(5, 5, 5);
+.message-section {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  display: flex;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  background: rgb(5, 5, 5);
 }
 
-.message-container{
-    position: relative;
-    border: 1px solid #ccc;
-    background-color: #ccc;
-    width: 25%;
-    height: 50%;
-    border-radius: 30px;
-    text-align: center;
-    align-content: center;
+.message-container {
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #ccc;
+  width: 25%;
+  height: 50%;
+  border-radius: 30px;
+  text-align: center;
+  align-content: center;
 }
-.spinner-border{
-    width: 3rem; 
-    height: 3rem;
-    text-align: center  ;
-}
-
-.custom-toast{
-    position: fixed;
-    right: 20px;
-    top: 20px;
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
 }
 
+.custom-toast {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+}
 
 /* --- Responsive Styles: Copy below this line and paste at the END of App.css --- */
 
 @media (max-width: 600px) {
+  #root {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
 
-    #root{
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-     }
-  
-  .profile-section, .profile-name {
+  .profile-section,
+  .profile-name {
     font-size: 18px;
   }
   .profile-content {
     padding: 10px;
     margin-top: 8px;
   }
-  .input-wrapper{
+  .input-wrapper {
     border: 1px solid #ccc;
     padding: 0;
     margin: 0;
@@ -571,8 +615,8 @@ body{
     flex-direction: column;
     background-color: #282c34;
     align-items: center;
-}
-.post-section{
+  }
+  .post-section {
     border: 1px solid #ccc;
     width: 90%;
     padding: 30px;
@@ -580,12 +624,10 @@ body{
     height: auto;
     margin-top: 50px;
     text-align: center;
-}
-.carousel-item{
+  }
+  .carousel-item {
     height: 30rem;
-}
-
-
+  }
 }
 
 /* @media (max-width: 600px) {
@@ -669,8 +711,7 @@ body{
 } */
 
 @media (max-width: 600px) {
-
-    .Navbar {
+  .Navbar {
     height: 100px;
     font-size: 16px;
     border-radius: 0 0 10px 10px;
@@ -683,22 +724,24 @@ body{
     padding: 0 10px;
     text-align: -webkit-center;
   }
-  .form-wrapper, .sign-form {
+  .form-wrapper,
+  .sign-form {
     width: auto !important;
     min-width: unset;
     padding: 10px 2vw;
   }
-  .user{
+  .user {
     display: flex;
     margin-top: 2px;
     justify-content: space-between;
   }
-  .sign-form input, .sign-form button {
+  .sign-form input,
+  .sign-form button {
     width: 100%;
     font-size: 1rem;
   }
   .sign-form h2 {
-    font-size:large;
+    font-size: large;
   }
   .message-section {
     padding: 8vw 2vw;
