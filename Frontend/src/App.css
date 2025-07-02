@@ -3,7 +3,15 @@
 * {
   font-family: "Geist", sans-serif;
   margin: 0;
+  box-sizing: border-box;
   /* background-color: rgb(10, 10, 10); */
+}
+
+html,
+body {
+  /* This prevents horizontal scrollbars and ensures the body fills the viewport width */
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* .landing-section{
@@ -139,13 +147,16 @@
       rgba(10, 10, 10, 0.7),
       rgba(10, 10, 10, 0.7)
     ),
-    url("./Icons.png");
+    url("Rohith.png");
   background-size: cover;
-  background-position: 8svw center;
+  background-position: 60% center; /* Slightly shift image to the right, but keep it visually centered */
   background-repeat: no-repeat;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* Remove padding-left for perfect centering */
 }
 
 .hero-content {
