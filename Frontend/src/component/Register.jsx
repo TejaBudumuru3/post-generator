@@ -120,31 +120,29 @@ const Register = ({ onClose }) => {
         <div className='auth-section'>
           <div className="form-logo">
             {/* <button className='close-btn' onClick={onClose}>X</button> */}
-            <form className='sign-form' onSubmit={registerEvent} >
-              <h2>Sign Up</h2>
-              <div className='main-form' >
-                <label style={{textAlign:"left", width:"100%"}}>Email</label>
+            </div>
+            <div className='right-panel' >
+              <div className='form-card' >
+                <h2 style={{color: "#f3f6fd"}}>Sign Up</h2>
+
                 <input type="text" placeholder="Enter your name" value={name} required onChange={(e) => setName(e.target.value)} />
-                <label style={{textAlign:"left", width:"100%"}}>Email</label>
                 <input type="email" placeholder="example@gmail.com" value={email} required onChange={(e) => setEmail(e.target.value)} />
-                <label style={{textAlign:"left", width:"100%"}}>Email</label>
                 <input type="password" placeholder="Enter your password" value={password} required onChange={(e) => setPassword(e.target.value)} />
-                <label style={{textAlign:"left", width:"100%"}}>Email</label>
                 <input type="password" placeholder="Confirm your password" value={confirmPassword} required onChange={(e) => setConfirmPassword(e.target.value)} />
-                <div style={{marginTop:"30px"}}> <button type="submit">Register</button> </div>
-              </div>
-              <br/>
-              <div>- or -</div>
+                <button type="submit" onClick={registerEvent}>Register</button>
               
-              <div className='main-form-linked-btn'>
-                  <button onClick={linkedinLogin}> 
-                    <img src='/linkedin.png' className='main-form-linked-img' width={"30px"}/>
-                    Login with linkedin
-                    </button>
+                <div className="or-divider">- OR -</div>
+              <button onClick={linkedinLogin} style={{background: "#232949", color: "#15e0ff"}}> 
+                  <img src='/linkedin.png' width={"30px"} style={{display: "inline-block",paddingRight:"10px"}}/>
+                  Login with linkedin
+                  </button>
+              <p className="or-divider">Already have an account, <a href='/login'>Login</a></p>
               </div>
-            </form>
+              
+              
+
+            </div>
           </div>
-        </div>
       {toast && <Toast state={toastState} message={toastMsg} />}
     </>
   );

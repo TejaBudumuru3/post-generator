@@ -505,8 +505,8 @@ body {
 .form-logo {
   background-image: url("../public/applogo1.png");
   height: 100vh;
-  width: 50vw;
-  background-size: vw;
+  width: 60vw;
+  background-size: 100vw;
   position: fixed;
   left: 0;
   background-size: cover;
@@ -554,7 +554,7 @@ body {
 .sign-form h2 {
   font-size: 3rem;
 }
-.main-form {
+/* .main-form {
   display: flex;
   flex-direction: column;
   height: 50%;
@@ -588,7 +588,7 @@ body {
 }
 .main-form-linked-btn img {
   margin-left: 30px;
-}
+} */
 .sign-up-btn {
   background-color: rgb(54, 54, 54);
   color: white;

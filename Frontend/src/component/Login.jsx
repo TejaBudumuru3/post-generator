@@ -137,10 +137,10 @@ const Login = ({onClose}) => {
 
               <div className="or-divider">- OR -</div>
               <button onClick={linkedinLogin} style={{background: "#232949", color: "#15e0ff"}}> 
-                  <img src='/linkedin.png' width={"30px"}/>
+                  <img src='/linkedin.png' width={"30px"} style={{display: "inline-block",paddingRight:"10px"}}/>
                   Login with linkedin
                   </button>
-
+              <p className="or-divider">New user, <a href='/register'>Register</a></p>
             </div>
 
           </div>
