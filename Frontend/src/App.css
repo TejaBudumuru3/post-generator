@@ -67,6 +67,7 @@ body {
 .title-text {
   width: max-content;
   cursor: pointer;
+  padding: 20px;
 }
 .user {
   flex: 1;
@@ -501,6 +502,26 @@ body {
   color: #8992ad;
   margin: 5px 0;
 }
+.applogo {
+    display: flex;
+    width: auto;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+}
+.applogo img{
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  background-color: white;
+  border: none;
+  /* color: rgba(8, 8, 8, 0.89); */
+  display: block;
+  cursor: pointer;
+  font-weight: lighter;
+  margin-left: 20px;
+}
+
 
 .form-logo {
   background-image: url("../public/applogo1.png");

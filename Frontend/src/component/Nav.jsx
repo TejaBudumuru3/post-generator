@@ -17,7 +17,10 @@ const NavBar = ({children})=>{
         <>
         <nav className="Navbar">
             <div className="title">
-                <h1 className="title-text" onClick={titleHandler}>Post Generator</h1>
+                <div className="applogo">
+                    <img src="/AppLogo.png"/>
+                    <h1 className="title-text" onClick={titleHandler}>AInfinity</h1>
+                </div>
             </div>
             {children}
         </nav> 
