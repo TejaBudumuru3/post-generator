@@ -30,6 +30,9 @@ const LandPage = () => {
         <img src="/path-to-your-hero-image.svg" alt="AI assistant illustration" />
       </div> */}
       </section>
+      <div className="container">
+
+     
       <div className="card-section">
         <Card text="Helo wrold this is th bet we can do for you is that okkk ??
           This is wouldbe in the second lin e This is would be in teh third line"/>
@@ -40,6 +43,7 @@ const LandPage = () => {
         {/* <Card  text="Helo wrold this is th bet we can do for you is that okkk ??
           This is wouldbe in the second lin e This is would be in teh third line"/> */}
       </div>
+       </div>
     </>
   );
 };
