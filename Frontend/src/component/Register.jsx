@@ -149,7 +149,7 @@ const Register = ({ onClose }) => {
                   <img src='/linkedin.png' width={"30px"} style={{display: "inline-block",paddingRight:"10px"}}/>
                   Login with linkedin
                   </button>
-              <p className="or-divider" style={{display:"inline-flex",width: "100%",justifyContent: "center"}}>Already have an account? <p onClick={()=>Navigate("/login")}><strong style={{paddingLeft:"5px"}}>Login</strong></p></p>
+              <p className="or-divider" style={{display:"inline-flex",width: "100%",justifyContent: "center", cursor:"default"}}>Already have an account? <p onClick={()=>Navigate("/login")}><strong style={{paddingLeft:"5px", cursor:"pointer"}}>Login</strong></p></p>
               </div>
               
               

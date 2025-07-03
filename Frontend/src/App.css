@@ -80,7 +80,7 @@ body {
 
 .profile-name {
   display: flow;
-  font-size: 30px;
+  font-size: 20px;
   cursor: pointer;
 }
 .profile-content {
@@ -267,7 +267,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 30px;
-  background-color: rgba(8, 8, 8, 0.89);
+  background-color: linear-gradient(90deg,black,#030122);
 }
 
 .app-sidebar {
