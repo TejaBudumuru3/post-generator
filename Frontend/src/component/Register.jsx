@@ -1,10 +1,12 @@
 import React from 'react';
 import Toast from './Toast';
+import { useNavigate } from 'react-router-dom';
 
 
 const Register = ({ onClose }) => {
 
   const URL = import.meta.env.VITE_BACKEND_URL;
+  const Navigate = useNavigate();
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -71,6 +73,7 @@ const Register = ({ onClose }) => {
               onClose(); 
               setToast(false);
             }, 3000);
+            Navigate("/");
             
           }
           else {
