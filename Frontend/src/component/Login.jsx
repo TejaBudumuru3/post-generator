@@ -57,7 +57,7 @@ const Login = ({onClose}) => {
 
                 setTimeout(()=>{
                   // onClose();
-                  window.location.reload();
+                  // window.location.reload();
                   Navigate("/");
                 },2000)
 
