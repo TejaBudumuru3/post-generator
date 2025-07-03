@@ -140,7 +140,7 @@ const Login = ({onClose}) => {
                   <img src='/linkedin.png' width={"30px"} style={{display: "inline-block",paddingRight:"10px"}}/>
                   Login with linkedin
                   </button>
-              <p className="or-divider">New user, <a href='/register'>Register</a></p>
+              <p className="or-divider" style={{display:"inline-flex",width: "100%",justifyContent: "center"}}>New User? <p onClick={()=>Navigate("/register")}><strong style={{paddingLeft:"5px"}}>Register</strong></p></p>
             </div>
 
           </div>
