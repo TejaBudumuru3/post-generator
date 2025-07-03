@@ -19,7 +19,7 @@ const NavBar = ({children})=>{
             <div className="title">
                 <div className="applogo">
                     <img src="/AppLogo.png"/>
-                    <h1 className="title-text" onClick={titleHandler}>AInfinity</h1>
+                    <h1 className="title-text" onClick={()=>titleHandler}>AInfinity</h1>
                 </div>
             </div>
             {children}
