@@ -131,7 +131,7 @@ color: rgb(0, 0, 0);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 0px 100px 0px #02011c;
+  box-shadow: inset 1px 11px 5px 5px #02011c;
 
 }  /* Remove padding-left for perfect centering */
 
