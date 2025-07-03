@@ -612,12 +612,25 @@ color: rgb(0, 0, 0);
 }
 
 .login-btn {
-  background-color: rgb(54, 54, 54);
-  color: white;
-  width: 100px;
-  padding: 0 10px;
-  border-radius: 5px;
-  border: none;
+  background: linear-gradient(90deg, #15e0ff 40%, #a259f7);
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    /* background-color: #ff8a00; */
+    color: rgb(0, 0, 0);
+    border: none;
+    height: 50px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, 0.3s ease;
+    box-shadow: 0 4px 15px #02011c;
+  /* box-shadow: inset 0px 100px 17px #02011c */
+}
+ 
+.login-btn:hover{
+  background-color: rgba(70, 58, 233, 0.5);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(70, 58, 233, 0.5);
 }
 
 .auth-section .form-wrapper .sign-form button {
@@ -711,86 +724,6 @@ color: rgb(0, 0, 0);
     height: 30rem;
   }
 }
-
-/* @media (max-width: 600px) {
-  .Navbar {
-    height: 80px;
-    font-size: 13px;
-    border-radius: 0 0 7px 7px;
-    flex-direction: column;
-    padding: 0 4px;
-  }
-  .input-field{
-    width: 100%;
-  }
-  .title {
-    font-size: 16px;
-    padding: 0 2px;
-  }
-  .profile-section, .profile-name {
-    font-size: 14px;
-  }
-  .profile-content {
-    padding: 6px;
-    margin-top: 4px;
-  }
-  .user {
-    margin-top: -5px;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-  }
-  .profile-logo {
-    width: 32px;
-    height: 32px;
-  }
-  .input-options {
-    flex-direction: column;
-    padding: 0;
-    gap: 4px;
-  }
-  .input-select select {
-    width: 100%;
-  }
-  .sidebar-header, .sidebar-history, .app-sidebar {
-    padding: 4px !important;
-    font-size: 13px !important;
-  }
-} */
-
-/* Generic rules for all small screens */
-/* @media (max-width: 500px) {
-  .app-sidebar {
-    width: 100vw !important;
-    min-width: unset !important;
-    max-width: unset !important;
-    padding: 4px !important;
-  }
-  .sidebar-header button, .input-button {
-    width: 100%;
-    min-width: 32px;
-    font-size: 15px;
-    padding: 6px;
-  }
-  .input-box, .input-field {
-    width: 98vw !important;
-    min-width: unset !important;
-    max-width: unset !important;
-    font-size: 15px;
-  }
-  .history-title {
-    font-size: 15px;
-  }
-} */
-
-/* Make tables and carousels scrollable on mobile */
-/* @media (max-width: 600px) {
-  table, .carousel {
-    display: block;
-    width: 100vw !important;
-    overflow-x: auto;
-  }
-} */
 
 @media (max-width: 600px) {
   .Navbar {
