@@ -8,40 +8,15 @@
   /* background-color: rgb(10, 10, 10); */
 }
 
-#root{
-  width: 100vw;
-}
+
 body {
   background: linear-gradient(90deg,black,#030122);
-
+  /* background-color: rgba(8, 8, 8); */
+  transition: opacity 0.5s ease-in-out;
   /* This prevents horizontal scrollbars and ensures the body fills the viewport width */
-  width: 100vw;
   /* overflow-x: hidden; */
 }
 
-/* .landing-section{
-    position: absolute;
-    top: 0;
-    margin-top: 100px;
-    padding: 35px;
-    text-align: center;
-    width: 100vw;
-    height: 84vh;
-    padding-top: 10%;
-    color: #ffffff;
-    background-color:rgb(10, 10, 10);;
-}
-
-.landing-section button{
-    background-color: rgb(54, 54, 54);
-    color: white;
-    width: 200px;
-    height: 50px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-top: 30px;
-    border: none;
-} */
 .Navbar {
 color: rgb(0, 0, 0);
     text-align: center;
@@ -56,9 +31,9 @@ color: rgb(0, 0, 0);
     background: rgba(255, 255, 255, 0.60);
     backdrop-filter: blur(10px);
     align-items: center;
-    width: calc(100vw - 30px);
+    width: calc(100vw - 100px);
     padding: 10px 20px;
-    /* background-color: rgb(255, 255, 255); */
+    justify-self: center;
     flex-direction: row;
 }
 
@@ -138,22 +113,21 @@ color: rgb(0, 0, 0);
   padding: 0 12px;
 }
 
-/* Add these styles to your s:\Cloned Projects\Practice-projects\route practice\src\index.css file */
 
 /* Hero Section Specific Styles */
 .hero-section {
   text-align: center;
   padding: 1px 1rem;
-  min-height: calc(100vh - 0px); /* Subtract navbar height */
+  min-height: calc(100vh); 
   /* margin-top: 90px; Add margin for navbar */
   /* The linear-gradient adds a dark overlay so the text is readable. */
   /* The path '/Icons.png' points to your image in the /public folder. */
   background-image: 
-    url("/background.png");
+    url("/theme.png");
   background-size: cover;
   background-position: 60% center; /* Slightly shift image to the right, but keep it visually centered */
   background-repeat: no-repeat;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -370,10 +344,8 @@ color: rgb(0, 0, 0);
   overflow-y: auto;
 }
 
-body {
-  background-color: rgba(8, 8, 8);
-  transition: opacity 0.5s ease-in-out;
-}
+
+
 .input-box {
   width: 70%;
   padding: 30px;
