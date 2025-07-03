@@ -73,7 +73,7 @@ const Register = ({ onClose }) => {
               onClose(); 
               setToast(false);
             }, 3000);
-            Navigate("/");
+            Navigate("/login");
             
           }
           else {
