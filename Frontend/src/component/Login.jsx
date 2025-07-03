@@ -1,7 +1,6 @@
 import React from 'react'
 import Toast from './Toast';
-import { useDispatch } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
 const Login = ({onClose}) => {
     const URL = import.meta.env.VITE_BACKEND_URL;
     const [email, setEmail] = React.useState("");
@@ -9,7 +8,7 @@ const Login = ({onClose}) => {
     const [toast, setToast] = React.useState(false);
     const [toastMsg, setToastMsg] = React.useState('');
     const [toastState, setToastState] = React.useState('');
-    const dispatch = useDispatch();
+    const Navigate = useNavigate();
 
     const loginEvent = async(e)=> {
       e.preventDefault();
@@ -58,7 +57,7 @@ const Login = ({onClose}) => {
 
                 setTimeout(()=>{
                   onClose();
-                  window.location.href("/home");
+                  Navigate("/home");
                 },2000)
 
               }  
