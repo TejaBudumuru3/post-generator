@@ -58,7 +58,7 @@ const Login = ({onClose}) => {
 
                 setTimeout(()=>{
                   onClose();
-                  window.location.reload();
+                  window.location.href("/home");
                 },2000)
 
               }  
