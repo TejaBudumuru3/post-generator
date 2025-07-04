@@ -58,7 +58,7 @@ const Login = ({onClose}) => {
 
                 setTimeout(()=>{
                   // onClose();
-                  window.location.href("/");
+                  window.location.href="/";
                   // Navigate("/");
                 },2000)
 
