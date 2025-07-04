@@ -336,7 +336,8 @@ Linkedin.post("/generate-post", usermiddleware , async (req, res) => {
           // Respond with both text and image (as data URL)
           return res.status(200).json({
             postText: responseText,
-            imageDataUrl: `data:${imageMimeType};base64,${imageBase64}`
+            imageDataUrl: `data:${imageMimeType};base64,${imageBase64}`,
+            image:true
           });
 
           }

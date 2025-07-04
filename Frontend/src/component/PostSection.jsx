@@ -8,7 +8,12 @@ const PostSection = () => {
   const linkedinPost = useSelector((state)=>state.linkedinPost)
   const img = useSelector((state)=>state.imgAvail)
   const imageUrl = useSelector((state)=>state.image)
-  if(posts) {
+  // if((posts === null || posts === undefined) && (linkedinPost === "" || linkedinPost === null)){
+  //  
+  // }
+  // console.log( Object.keys(posts).length)
+  if(Object.keys(posts).length > 0) {
+    console.log(posts)
     return (
       <>
     <div className="posts-corner">
@@ -22,7 +27,7 @@ const PostSection = () => {
     return (
       <>
         <p className='post-text'>{linkedinPost}</p>
-        {img && (<img src={imageUrl} alt='generated image'/>)}
+        {img && (<img src={imageUrl} alt='generated image' style={{width:"200px", placeSelf:"center"}}/>)}
         
       </>
     )

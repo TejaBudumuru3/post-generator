@@ -14,7 +14,7 @@ const Toast = ({state,message})=>{
     }, []);
 
     return (<>
-    <div ref={toastRef} className={`toast custom-toast align-items-center text-bg-${state} border-0 margin-top-0`} role="alert" aria-live="assertive" aria-atomic="true" >
+    <div ref={toastRef} className={`toast custom-toast align-items-center text-bg-${state} border-0 margin-top-0`} role="alert" aria-live="assertive" aria-atomic="true" style={{zIndex:90}} >
         <div className="d-flex">
             <div className="toast-body">
             {message}

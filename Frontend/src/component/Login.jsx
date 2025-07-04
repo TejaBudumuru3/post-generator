@@ -33,6 +33,7 @@ const Login = ({onClose}) => {
         else{
               try
               {
+                console.log(URL)
                 const response = await fetch(`${URL}/signin`, {
                 method:"POST",
                 credentials:"include",
