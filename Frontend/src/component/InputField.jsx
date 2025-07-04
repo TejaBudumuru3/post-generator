@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {  setPost, clearPost } from '../slices/postSlice.js'
 import { setLinkedinPost, clearLinkedinPost } from '../slices/linkedinSlice.js';
 import { setImage } from '../slices/imageSlice.js';
+import { clearImgAvail, setImgAvail } from '../slices/imageAvailSlice.js';
 
 const InputField = () => {
 
@@ -99,10 +100,13 @@ const InputField = () => {
           if(PostResponse.ok){
             const totalPost = postData.postText
             const imageURL = postData.imageDataUrl
+            const imgAvail = postData.image
             console.log(totalPost)
             console.log(imageURL)
+            dispatch(clearImgAvail())
             dispatch(clearPost())
             dispatch(setLinkedinPost(totalPost));
+            dispatch(setImgAvail(imgAvail))
             dispatch(setImage(imageURL))
             setLoading(false);
             return;

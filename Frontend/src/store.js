@@ -3,6 +3,7 @@ import userReducer from './slices/userSlice';
 import postReducer from './slices/postSlice';
 import linkedinPostReducer  from './slices/linkedinSlice';
 import imageReducer from "./slices/imageSlice";
+import imgAvailReducer from "./slices/imageAvailSlice"
 
 
 const store = configureStore({
@@ -10,7 +11,8 @@ const store = configureStore({
         user: userReducer,
         posts : postReducer,
         linkedinPost : linkedinPostReducer,
-        image : imageReducer
+        image : imageReducer,
+        imgAvail : imgAvailReducer
 
     }
 });
