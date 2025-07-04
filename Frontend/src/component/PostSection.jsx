@@ -6,14 +6,13 @@ const PostSection = () => {
 
   const posts = useSelector((state)=>state.posts.item)
   const linkedinPost = useSelector((state)=>state.linkedinPost)
-  console.log(linkedinPost," from postsection linkedin post")
 
   const imageUrl = useSelector((state)=>state.image)
-  console.log(imageUrl," from postsection linkedin post URL")
   if((posts === undefined || posts === null || Object.keys(posts).length === 0) && (linkedinPost === null || linkedinPost === "")) {
     return (
       <>
-        <p className='post-text'>No posts available</p>
+        {/* <p className='post-text'></p> */}
+        
       </>
     )
   }

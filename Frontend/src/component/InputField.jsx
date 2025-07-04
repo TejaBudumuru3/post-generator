@@ -121,7 +121,7 @@ const InputField = () => {
               <div className="input-option-container">
                 <div className="input-options">
                   <div className="input-select">
-                    <select className='form-select' onChange={ (e)=>{ setTone(e.target.value)}} width="100%">
+                    <select className='form-select' onChange={ (e)=>{ setTone(e.target.value)}} style={{width:"auto"}}>
                       <option value="">Select Tone</option>
                       <option value="Formal">Formal</option>
                       <option value="Informal">Informal</option>
@@ -134,26 +134,59 @@ const InputField = () => {
                       <option value="sympthetical">sympthetical</option>
                       <option value="Enthusiastic">Enthusiastic</option>
                     </select>
-                  </div>
-                  <button className='input-button' onClick={handlePost}>&uarr;</button>
-                </div>
-              </div>
 
-              {/* <div className="platform-selection">
-                <></>
-              </div> */}
+                      <div className="platform-selection" style={{ display: "flex", alignItems: "center" }}>
+                        <label className={`radio-btn-label ${platform === "X" ? "selected" : ""}`}>
+                          <input
+                            type="radio"
+                            name="platform"
+                            value="X"
+                            checked={platform === "X"}
+                            onChange={() => setPlatform("X")}
+                          />
+                          <img src="/x.png" alt="X" />
+                        </label>
+                        <label className={`radio-btn-label ${platform === "linkedin" ? "selected" : ""}`}>
+                          <input
+                            type="radio"
+                            name="platform"
+                            value="linkedin"
+                            checked={platform === "linkedin"}
+                            onChange={() => setPlatform("linkedin")}
+                          />
+                          <img src="/linkedin.png" alt="LinkedIn" />
+                        </label>
 
-              <div className="input-option-container">
-                <div className="input-options">
-                  <div className="input-select">
-                    <select className='form-select' onChange={ (e)=>{ setPlatform(e.target.value)}} width="100%">
-                      <option value="">Select Platform</option>
-                      <option value="X">X (twitter)</option>
-                      <option value="linkedin">Linkedin</option>
-                    </select>
+                        <div className="toggle-title">
+                          <label className="switch" style={{ display: "flex", marginRight: "10px" }}>
+                            <input type="checkbox" id="toggleSwitch" />
+                            <span className="slider"></span>
+                          </label>
+                          <p style={{ color: "whitesmoke", paddingRight: "1px", display: "contents" }}>Image generation</p>
+                        </div>
+                    </div>
+
+                    {/* <div className="platform-selection" style={{display: "flex",alignItems:"center"}}>
+                      <button className='X-btn' onClick={()=>setPlatform("X")} 
+                      style={{
+                              
+                              pointerEvents: platform === "linkedin" ? "none" : "auto",
+                              opacity: platform === "linkedin" ? 0.5 : 1,
+                              marginRight: "10px"
+                            }}><img src='/x.png'/></button>
+                      <button className='Linkedin-btn' onClick={()=>setPlatform("linkedin")}><img src='/linkedin.png'/></button>
+                      <div className="toggle-title">
+                        <label class="switch" style={{display:"flex",marginRight:"10px"}}>
+                          <input type="checkbox" id="toggleSwitch"/>
+                          <span class="slider"></span>
+                        </label>
+                        <p style={{color:"whitesmoke",paddingRight:"1px",display:"contents"}}>Image generation</p>
+                      </div>
+                    </div> */}
                   </div>
-                </div>
+                  <button className='input-button' onClick={()=>handlePost}>&uarr;</button>
               </div>
+            </div>
           </div>
         </div>
         {loading && <Message />}
