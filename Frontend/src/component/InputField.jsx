@@ -32,6 +32,16 @@ const InputField = () => {
       return;
     }
     else{
+      if(!platform) {
+      setLoading(false);
+      setToastMsg("Please select the platform");
+      setToastState("primary");
+      setToast(true);
+      setTimeout(() => {
+        setToast(false);
+      }, 2000);
+      return;
+      }
       if(!userData || !userData.name) {
         setLoading(false);
         setToastMsg("Please login to post");
@@ -152,7 +162,7 @@ const InputField = () => {
                             name="platform"
                             value="linkedin"
                             checked={platform === "linkedin"}
-                            onChange={() => setPlatform("linkedin")}
+                            onChange={() => setPlatform("linkedin") }
                           />
                           <img src="/linkedin.png" alt="LinkedIn" />
                         </label>
@@ -184,7 +194,7 @@ const InputField = () => {
                       </div>
                     </div> */}
                   </div>
-                  <button className='input-button' onClick={()=>handlePost}>&uarr;</button>
+                  <button className='input-button' onClick={()=>handlePost()}>&uarr;</button>
               </div>
             </div>
           </div>
