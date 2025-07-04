@@ -835,11 +835,11 @@ img {
   display: none;
 }
 
-.radio-btn-label img {
-  /* height: 32px;
+/* .radio-btn-label img {
+  height: 32px;
   width: 32px; */
-  /* display: block; */
-}
+  /* display: block;
+} */
 
 .switch {
   position: relative;

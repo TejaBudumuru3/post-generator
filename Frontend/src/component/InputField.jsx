@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Message from './Message';
 import Toast from './Toast';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,7 +10,7 @@ const InputField = () => {
 
   const userData = useSelector((state)=>state.user.data);
   const dispatch = useDispatch();
-
+  const [generateImage, setGenerateImage] = useState(false)
   const [postInput, setPostInput] = React.useState('');
   const [tone, setTone] = React.useState('');
   const [platform,setPlatform] = React.useState("");
@@ -80,6 +80,7 @@ const InputField = () => {
         }
         else if(platform === "linkedin"){
           console.log("linked triggered")
+          console.log(generateImage,"Image generation")
           const URL = import.meta.env.VITE_LINKEDIN_URL;
           const PostResponse = await fetch(`${URL}generate-post`,{
             method:"POST",
@@ -90,6 +91,7 @@ const InputField = () => {
             body: JSON.stringify({
               question: postInput,
               tone: tone,
+              generateImage: generateImage
             })
           });
 
@@ -132,7 +134,7 @@ const InputField = () => {
                 <div className="input-options">
                   <div className="input-select">
                     <select className='form-select' onChange={ (e)=>{ setTone(e.target.value)}} style={{width:"auto"}}>
-                      <option value="">Select Tone</option>
+                      <option value="">Tone</option>
                       <option value="Formal">Formal</option>
                       <option value="Informal">Informal</option>
                       <option value="Funny">Funny</option>
@@ -167,13 +169,17 @@ const InputField = () => {
                           <img src="/linkedin.png" alt="LinkedIn" />
                         </label>
 
-                        <div className="toggle-title">
+                        {platform==="linkedin" && (<div className="toggle-title">
                           <label className="switch" style={{ display: "flex", marginRight: "10px" }}>
-                            <input type="checkbox" id="toggleSwitch" />
+                            <input type="checkbox" id="toggleSwitch" checked={generateImage} onChange={(e)=>setGenerateImage(e.target.checked)} />
                             <span className="slider"></span>
                           </label>
-                          <p style={{ color: "whitesmoke", paddingRight: "1px", display: "contents" }}>Image generation</p>
-                        </div>
+                          <p style={{ color: "whitesmoke", paddingRight: "1px", display:"contents" }}>
+                            <svg style={{width:"40px",height:"40px"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                              <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
+                            </svg>
+                          </p>
+                        </div>)}
                     </div>
 
                     {/* <div className="platform-selection" style={{display: "flex",alignItems:"center"}}>
