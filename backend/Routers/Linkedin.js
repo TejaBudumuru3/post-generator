@@ -256,7 +256,7 @@ Linkedin.post("/verify-otp", async (req, res) => {
 Linkedin.post("/generate-post", usermiddleware , async (req, res) => {
   const GEMINI_API_KEY = process.env.GEMINI_API;
   const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
-  const { question, tone } = req.body;
+  const { question, tone, generateImage } = req.body;
 
   function extractJsonFromMarkdown(text) {
     return text
@@ -307,7 +307,9 @@ Linkedin.post("/generate-post", usermiddleware , async (req, res) => {
       const parseJson = JSON.parse(jsonResponse)
       responseText  = parseJson.fullPost;
       console.log(responseText, "this is the response from the parseJson")
-      try{
+      if(generateImage)
+      {
+        try{
         // Prompt Gemini to generate an image based on the topic
           const imageResponse = await ai.models.generateContent({
             model: "gemini-2.0-flash-preview-image-generation",
@@ -338,9 +340,17 @@ Linkedin.post("/generate-post", usermiddleware , async (req, res) => {
           });
 
           }
-      catch (err) {
-      console.error(err);
-      res.status(500).json({ error: "Failed to generate image" });
+        catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to generate image" });
+        }
+      }
+      else{
+        return res.status(200).json({
+            postText: responseText,
+            imageDataUrl: `image generation false`,
+            image:false
+          });
       }
     } catch (parseError) {
       // If JSON parsing fails, return a formatted structure
