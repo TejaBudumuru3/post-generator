@@ -7,7 +7,10 @@ const LandPage = () => {
   return (
     <>
       <section className="hero-section ">
-        <div className="hero-content">
+        <video autoPlay muted loop style={{width:"inherit"}} >
+          <source src="/infy12.mp4" type="video/mp4"/> 
+        </video>
+        <div className="hero-content" style={{position:"absolute"}}>
           <h1 className="hero-title">Meet Your AI Content Co-pilot</h1>
           <p className="hero-subtitle">
             Unlock your creative potential with our AI-powered content
