@@ -40,6 +40,7 @@ const ProfileMenu = (props) => {
       <div>
           <ul className="profile-content">
               <li><div className="profile-menu-item">{mail}</div></li>
+              <li onClick={()=>Navigate("/verify-email")}><div className="profile-menu-item">verify email</div></li>
               <li onClick={logout}><div className="profile-menu-item">logout</div></li>
           </ul>
       </div>

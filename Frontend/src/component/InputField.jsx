@@ -6,9 +6,10 @@ import {  setPost, clearPost } from '../slices/postSlice.js'
 import { setLinkedinPost, clearLinkedinPost } from '../slices/linkedinSlice.js';
 import { setImage } from '../slices/imageSlice.js';
 import { clearImgAvail, setImgAvail } from '../slices/imageAvailSlice.js';
+import { useNavigate } from 'react-router-dom';
 
 const InputField = () => {
-
+  const navigator = useNavigate();
   const userData = useSelector((state)=>state.user.data);
   const dispatch = useDispatch();
   const [generateImage, setGenerateImage] = useState(false)
@@ -50,6 +51,7 @@ const InputField = () => {
         setToast(true);
         setTimeout(() => {
           setToast(false);
+          navigator("/login")
         }, 2000);
         setLoading(false);
         return;

@@ -10,7 +10,7 @@
 
 
 body {
-  background: linear-gradient(180deg,black,#030122);
+  background: linear-gradient(90deg,black,#030122);
   /* background-color: rgba(8, 8, 8); */
   transition: opacity 0.5s ease-in-out;
   /* This prevents horizontal scrollbars and ensures the body fills the viewport width */
@@ -90,6 +90,7 @@ body {
   position: absolute;
   background: #282c34;
   padding: 20px;
+  border: #ccc 1px solid;
   margin-top: 14px;
   border-radius: 10px;
   align-items: center;
@@ -101,6 +102,11 @@ body {
   width: auto;
   border-radius: 5px;
   padding: 5px;
+}
+
+.main-container{
+  background: linear-gradient(180deg,black,#030122);
+  position: absolute;
 }
 
 .input-options {

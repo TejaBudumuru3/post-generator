@@ -211,11 +211,11 @@ Linkedin.post("/send-otp", async (req, res) => {
 
       await sendEmail(
         email,
-        "Your OTP for LinkedIn Post Generation",
+        "OTP from Post AInfinity",
         `Your OTP is ${otp}. It is valid for 5 minutes.`
       )
       // For testing purposes only - remove this in production
-      res.status(200).json({ message: "OTP sent successfully", otp: otp });
+      res.status(200).json({ message: `OTP sent ${email}`});
     }
   } catch (e) {
     console.error("Error sending OTP:", e);

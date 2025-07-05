@@ -7,6 +7,7 @@ import { setUser } from './slices/userSlice';
 import LandingPage from './routes/LandingPage';
 import Login from './component/Login';
 import Register from './component/Register';
+import VerifyEmail from './routes/VerifyEmail';
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function App() {
       <Route path="/login" element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/home' element={<Home/>}/>
+      <Route path="/verify-email" element={<VerifyEmail/>}/>
     </Routes>
     </Router>
   )

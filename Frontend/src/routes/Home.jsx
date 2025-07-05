@@ -24,21 +24,21 @@ const Home = () => {
   //   console.log(loadPost)
   return ( 
     <>
-      <NavBar >
-        <div className="user">
-                {userData ? (<ProfileWrapper user={userData}/>) : (<Signup />)}
-            </div>
-      </NavBar>
+      
+        <NavBar >
+          <div className="user">
+                  {userData ? (<ProfileWrapper user={userData}/>) : (<Signup />)}
+              </div>
+        </NavBar>
 
-      <div className="main-section">
-          <InputField/>
-        {/* {loadPost && */}
-          <div className="post-section">
-            <PostSection/>
-          </div>
-        
-      </div>
-        
+        <div className="main-section">
+            <InputField/>
+          {/* {loadPost && */}
+            <div className="post-section">
+              <PostSection/>
+            </div>       
+        </div>
+       
     </>
   )
 }
