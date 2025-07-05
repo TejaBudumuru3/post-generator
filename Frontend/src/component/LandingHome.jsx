@@ -11,12 +11,11 @@ const LandPage = () => {
           <source src="/infy12.mp4" type="video/mp4"/> 
         </video>
         <div className="hero-content" style={{position:"absolute"}}>
-          <h1 className="hero-title">Meet Your AI Content Co-pilot</h1>
+          <h1 className="hero-title">Drop a word, ripple infinity</h1>
           <p className="hero-subtitle">
-            Unlock your creative potential with our AI-powered content
-            generation platform. Effortlessly craft compelling tweets,
-            brainstorm innovative ideas, and produce engaging text for any
-            purpose. Let our intelligent assistant be your partner in creation.
+            AInfinity is where AI-powered creativity meets boundless possibility. 
+            Effortlessly generate, transform, and share compelling content with the help of advanced artificial intelligence. 
+            Every word you create sends ripples of inspiration across an infinite landscape—empowering you to connect, express, and innovate without limits.
           </p>
           {/* The "Try Now" button in the hero section will always lead to Signin if the hero is shown */}
           <button
