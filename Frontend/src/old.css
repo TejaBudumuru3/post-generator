@@ -1,16 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap");
-
-* {
-  font-family: "Geist", sans-serif;
-  margin: 0;
-  box-sizing: border-box;
-  
-  /* background-color: rgb(10, 10, 10); */
-}
-
-
 body {
-  /* background: linear-gradient(90deg,black,#030122); */
+  background: linear-gradient(90deg,black,#030122);
   /* background-color: rgba(8, 8, 8); */
   transition: opacity 0.5s ease-in-out;
   /* This prevents horizontal scrollbars and ensures the body fills the viewport width */
@@ -21,7 +10,7 @@ body {
     color: #E2E8F0; /* Softer white for text */
     text-align: center;
     height: 80px; /* Reduced height for a sleeker look */
-    margin: 0px auto 0; /*Increased top margin for better spacing */
+    margin: 20px auto 0; /* Increased top margin for better spacing */
     border-radius: 16px; /* Subtler corner radius */
     position: sticky;
     top: 20px; /* Match top margin */
@@ -144,7 +133,8 @@ body {
   /* margin-top: 90px; Add margin for navbar */
   /* The linear-gradient adds a dark overlay so the text is readable. */
   /* The path '/Icons.png' points to your image in the /public folder. */
-
+  background-image: 
+    url("/infy12.mp4");
   background-size: cover;
   background-position: 60% center; /* Slightly shift image to the right, but keep it visually centered */
   background-repeat: no-repeat;

@@ -72,8 +72,8 @@ const Register = ({ onClose }) => {
             setTimeout(() => {
               onClose(); 
               setToast(false);
+              Navigate("/login");
             }, 3000);
-            Navigate("/login");
             
           }
           else {

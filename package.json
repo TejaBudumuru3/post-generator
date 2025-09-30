@@ -21,6 +21,7 @@
         "puppeteer-extra-plugin-stealth": "^2.11.2",
         "react": "^19.1.0",
         "react-redux": "^9.2.0",
+        "tailwindcss": "^4.1.13",
         "twitter-api-v2": "^1.19.1"
     },
     "name": "post-generator",
