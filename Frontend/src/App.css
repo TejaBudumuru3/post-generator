@@ -1,13 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap");
-
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 * {
   font-family: "Geist", sans-serif;
   margin: 0;
   box-sizing: border-box;
-  
+
   /* background-color: rgb(10, 10, 10); */
 }
-
 
 body {
   /* background: linear-gradient(90deg,black,#030122); */
@@ -18,27 +20,27 @@ body {
 }
 
 .Navbar {
-    color: #E2E8F0; /* Softer white for text */
-    text-align: center;
-    height: 80px; /* Reduced height for a sleeker look */
-    margin: 0px auto 0; /*Increased top margin for better spacing */
-    border-radius: 16px; /* Subtler corner radius */
-    position: sticky;
-    top: 20px; /* Match top margin */
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3); /* A cleaner, more defined shadow */
-    display: flex;
-    z-index: 1;
+  color: #e2e8f0; /* Softer white for text */
+  text-align: center;
+  height: 80px; /* Reduced height for a sleeker look */
+  margin: 0px auto 0; /*Increased top margin for better spacing */
+  border-radius: 16px; /* Subtler corner radius */
+  position: sticky;
+  top: 20px; /* Match top margin */
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3); /* A cleaner, more defined shadow */
+  display: flex;
+  z-index: 1;
 
-    justify-content: space-between;
-    background: rgba(30, 35, 50, 0.8); /* More opaque to make it stand out */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.12); /* A fine border for definition */
-    align-items: center;
-    width: calc(100% - 60px); /* Reduced width */
-    max-width: 1320px;
-    padding: 0 30px; /* Adjusted padding for new dimensions */
-    flex-direction: row;
+  justify-content: space-between;
+  background: rgba(30, 35, 50, 0.8); /* More opaque to make it stand out */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12); /* A fine border for definition */
+  align-items: center;
+  width: calc(100% - 60px); /* Reduced width */
+  max-width: 1320px;
+  padding: 0 30px; /* Adjusted padding for new dimensions */
+  flex-direction: row;
 }
 
 .title {
@@ -104,7 +106,7 @@ body {
   padding: 5px;
 }
 
-.main-container{
+.main-container {
   /* background: linear-gradient(180deg,black,#030122);
   position: absolute;
 */
@@ -112,13 +114,17 @@ body {
 
   /* --- The Magic Part --- */
   background-image:
-    /* Draw the vertical lines */
-    linear-gradient(to right, rgb(255, 255, 255,0.1) 1px, transparent 1px),
+    
+    /* Draw the vertical lines */ linear-gradient(
+      to right,
+      rgb(146, 146, 146, 0.1) 1px,
+      transparent 1px
+    ),
     /* Draw the horizontal lines */
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      linear-gradient(to bottom, rgba(146, 146, 255, 0.1) 1px, transparent 1px);
 
   /* Define the size of each grid cell */
-  background-size: 50px 50px;
+  background-size: 25px 25px;
 }
 
 .input-options {
@@ -135,12 +141,11 @@ body {
   padding: 0 12px;
 }
 
-
 /* Hero Section Specific Styles */
 .hero-section {
   text-align: center;
   /* padding: 1px 1rem; */
-  min-height: calc(100vh); 
+  min-height: calc(100vh);
   /* margin-top: 90px; Add margin for navbar */
   /* The linear-gradient adds a dark overlay so the text is readable. */
   /* The path '/Icons.png' points to your image in the /public folder. */
@@ -153,9 +158,7 @@ body {
   align-items: center;
   justify-content: center;
   /* box-shadow: inset 1px 11px 5px 5px #02011c; */
-
-}  /* Remove padding-left for perfect centering */
-
+} /* Remove padding-left for perfect centering */
 
 .hero-content {
   max-width: 900px;
@@ -217,7 +220,12 @@ body {
   width: 320px; /* Increased width to make it rectangular */
   height: 250px; /* Kept height the same */
   padding: 20px; /* Space inside the card for your text */
-  background-color: rgba(255, 255, 255, 0.60); /* A dark background that fits your theme */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ); /* A dark background that fits your theme */
   color: #282c34; /* Ensures text is readable */
   border-radius: 15px; /* Gives the card rounded corners */
   display: flex;
@@ -231,10 +239,10 @@ body {
 }
 /* .container{
   /* background-color: rgb(8, 4, 42); */
-  /* background-blend-mode: color-dodge; */
-  /* background:linear-gradient(90deg, rgba(66, 26, 197, 0.7),rgba(19, 30, 74, 0.7)) */
- 
- /* background-image: linear-gradient(
+/* background-blend-mode: color-dodge; */
+/* background:linear-gradient(90deg, rgba(66, 26, 197, 0.7),rgba(19, 30, 74, 0.7)) */
+
+/* background-image: linear-gradient(
       rgba(22, 0, 222, 0.7),
       rgba(144, 13, 115, 0.7) 
     ), 
@@ -248,7 +256,7 @@ body {
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 6px 20px rgba(229, 46, 113, 0.5);
 }
-.footer{
+.footer {
   display: inline-flex;
   width: 100%;
   justify-content: space-between;
@@ -365,8 +373,6 @@ body {
   overflow-y: auto;
 }
 
-
-
 .input-box {
   width: 70%;
   padding: 30px;
@@ -464,7 +470,7 @@ body {
   top: 0;
 }
 
-.right-panel{
+.right-panel {
   flex: 1;
   display: flex;
   align-items: center;
@@ -475,12 +481,11 @@ body {
   right: 0;
   border: solid #000610;
   background-color: #000610;
-
 }
 .form-card {
   background: rgba(24, 28, 43, 0.85);
   border-radius: 18px;
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 2.5rem 2rem;
@@ -519,13 +524,13 @@ body {
   margin: 5px 0;
 }
 .applogo {
-    display: flex;
-    width: auto;
-    align-content: center;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  width: auto;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
 }
-.applogo img{
+.applogo img {
   height: 70px;
   width: 70px;
   border-radius: 50%;
@@ -537,7 +542,6 @@ body {
   font-weight: lighter;
   margin-left: 20px;
 }
-
 
 .form-logo {
   background-image: url("../public/applogo1.png");
@@ -637,21 +641,21 @@ body {
 
 .login-btn {
   background: linear-gradient(90deg, #15e0ff 40%, #a259f7);
-    padding: 0.9rem 2rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    /* background-color: #ff8a00; */
-    color: rgb(0, 0, 0);
-    border: none;
-    height: 50px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.3s ease, 0.3s ease;
-    box-shadow: 0 4px 15px #02011c;
+  padding: 0.9rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  /* background-color: #ff8a00; */
+  color: rgb(0, 0, 0);
+  border: none;
+  height: 50px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, 0.3s ease;
+  box-shadow: 0 4px 15px #02011c;
   /* box-shadow: inset 0px 100px 17px #02011c */
 }
- 
-.login-btn:hover{
+
+.login-btn:hover {
   background-color: rgba(70, 58, 233, 0.5);
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 6px 20px rgba(70, 58, 233, 0.5);
@@ -817,7 +821,6 @@ img {
   display: block;
 }
 
-
 /* .X-btn,.Linkedin-btn{
   height: 50px;
   width: 50px;
@@ -841,7 +844,7 @@ img {
   padding: 5px;
   transition: border-color 0.2s, box-shadow 0.2s;
   background: #fff;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
 }
 
 .radio-btn-label.selected {
@@ -857,7 +860,7 @@ img {
 /* .radio-btn-label img {
   height: 32px;
   width: 32px; */
-  /* display: block;
+/* display: block;
 } */
 
 .switch {
@@ -876,31 +879,36 @@ img {
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #ccc;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 34px;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px; width: 26px;
-  left: 4px; bottom: 4px;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
   background-color: white;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 50%;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-.toggle-title{
+.toggle-title {
   width: max-content;
   display: flex;
   align-items: center;
