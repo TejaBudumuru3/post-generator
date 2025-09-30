@@ -19,3 +19,4 @@ Document.pdf
 .gitignore
 
 .history
+node_modules
