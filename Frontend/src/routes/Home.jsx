@@ -33,6 +33,8 @@ const Home = () => {
               </div>
         </NavBar>
 
+        
+
         <div className="main-section">
             <InputField/>
           {/* {loadPost && */}
