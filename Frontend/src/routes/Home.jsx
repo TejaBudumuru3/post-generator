@@ -25,6 +25,7 @@ const Home = () => {
   return ( 
     <>
       
+      
         <NavBar >
           <div className="user">
                   {userData ? (<ProfileWrapper user={userData}/>) : (<Signup />)}
@@ -32,6 +33,8 @@ const Home = () => {
 
               </div>
         </NavBar>
+
+        
 
         <div className="main-section">
             <InputField/>
