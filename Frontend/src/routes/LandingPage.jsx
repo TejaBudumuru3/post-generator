@@ -5,6 +5,8 @@ import Signup from "../component/Signup.jsx";
 import ProfileWrapper from "../component/ProfileWrapper";
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import Home from './Home.jsx';
+import Hero from '../component/Hero-section.jsx';
 
 
 const LandingPage = () => {
@@ -25,7 +27,8 @@ const LandingPage = () => {
                 {userData ? (<ProfileWrapper user={userData}/>) : (<Signup />)}
             </div>
       </NavBar> */}
-    <LandPage/>
+      <Hero/>
+    {/* <LandPage/> */}
     </div>
     </>
   )
