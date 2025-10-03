@@ -25,6 +25,7 @@ const Home = () => {
   return ( 
     <>
       
+      
         <NavBar >
           <div className="user">
                   {userData ? (<ProfileWrapper user={userData}/>) : (<Signup />)}
