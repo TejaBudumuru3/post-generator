@@ -29,7 +29,7 @@ const Home = () => {
           <div className="user">
                   {userData ? (<ProfileWrapper user={userData}/>) : (<Signup />)}
 
-                  
+
               </div>
         </NavBar>
 
@@ -44,5 +44,7 @@ const Home = () => {
     </>
   )
 }
+
+
 
 export default Home
