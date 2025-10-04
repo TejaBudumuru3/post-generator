@@ -132,7 +132,7 @@ const Register = ({ onClose }) => {
      
         <div className='flex bg-[#000610] justify-center'>
           <div className="flex-0 md:flex-6">
-              <img src="../public/applogo1.png" alt="logo" className="md:w-[60vw] md:h-screen md:bg-[100vw] "/>
+              <img src="applogo1.png" alt="logo" className="md:w-[60vw] md:h-screen md:bg-[100vw] "/>
             </div>
             {/* Register form */}
             <div className='md:h-screen md:flex-4 flex h-screen items-center justify-center w-9/10 md:w-8/10' >
