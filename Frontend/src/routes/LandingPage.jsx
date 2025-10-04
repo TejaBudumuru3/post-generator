@@ -29,7 +29,7 @@ const LandingPage = () => {
                 {userData ? (<ProfileWrapper user={userData}/>) : (<Signup />)}
             </div>
       </NavBar> */}
-      {/* <Hero/> */}
+      <Hero/>
       <Features/>
       <About/>
     {/* <LandPage/> */}
