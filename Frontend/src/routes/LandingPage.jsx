@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import Home from './Home.jsx';
 import Hero from '../component/Hero-section.jsx';
+import Features from '../component/Features.jsx';
+import About from '../component/About.jsx';
 
 
 const LandingPage = () => {
@@ -27,7 +29,9 @@ const LandingPage = () => {
                 {userData ? (<ProfileWrapper user={userData}/>) : (<Signup />)}
             </div>
       </NavBar> */}
-      <Hero/>
+      {/* <Hero/> */}
+      <Features/>
+      <About/>
     {/* <LandPage/> */}
     </div>
     </>

@@ -130,26 +130,33 @@ const Register = ({ onClose }) => {
   return (
     <>
      
-        <div className='auth-section'>
-          <div className="form-logo">
-            {/* <button className='close-btn' onClick={onClose}>X</button> */}
+        <div className='flex bg-[#000610] justify-center'>
+          <div className="flex-0 md:flex-6">
+              <img src="../public/appLogo1.png" alt="logo" className="md:w-[60vw] md:h-screen md:bg-[100vw] "/>
             </div>
-            <div className='right-panel' >
-              <div className='form-card' >
-                <h2 style={{color: "#f3f6fd"}}>Sign Up</h2>
+            {/* Register form */}
+            <div className='md:h-screen md:flex-4 flex h-screen items-center justify-center w-9/10 md:w-8/10' >
+              <div className='w-9/10 md:w-9/10 lg:w-7/10 md:h-9/10 shadow-[0_8px_32px_0_#000002e] rounded-2xl p-8 h-9/10 bg-[#181c2bd9] blackdrop-blur-lg' >
+                <p  className='text-[#f3f6fd] text-4xl font-bold'>Sign Up</p>
 
-                <input type="text" placeholder="Enter your name" value={name} required onChange={(e) => setName(e.target.value)} />
-                <input type="email" placeholder="example@gmail.com" value={email} required onChange={(e) => setEmail(e.target.value)} />
-                <input type="password" placeholder="Enter your password" value={password} required onChange={(e) => setPassword(e.target.value)} />
-                <input type="password" placeholder="Confirm your password" value={confirmPassword} required onChange={(e) => setConfirmPassword(e.target.value)} />
-                <button type="submit" onClick={registerEvent}>Register</button>
+                <input type="text" placeholder="Enter your name" value={name} required onChange={(e) => setName(e.target.value)} 
+                  className='bg-[#24283af2] border-[#374151] outline-none rounded p-1 text-white w-full px-2'/>
+                <input type="email" placeholder="example@gmail.com" value={email} required onChange={(e) => setEmail(e.target.value)}
+                  className='bg-[#24283af2] border-[#374151] outline-none rounded p-1 text-white w-full mt-3 px-2'/>
+                <input type="password" placeholder="Enter your password" value={password} required onChange={(e) => setPassword(e.target.value)} 
+                  className='bg-[#24283af2] border-[#374151] outline-none rounded p-1 text-white w-full mt-3 px-2'/>
+                <input type="password" placeholder="Confirm your password" value={confirmPassword} required onChange={(e) => setConfirmPassword(e.target.value)} 
+                  className='bg-[#24283af2] border-[#374151] outline-none rounded p-1 text-white w-full mt-3 px-2'/>
+                <button type="submit" onClick={registerEvent} 
+                  className='bg-gradient-to-r from-[#15e0ff] from-40% to-[#a259f7] to-100% rounded text-white font-bold p-1 w-full mt-3'>Register</button>
               
-                <div className="or-divider">- OR -</div>
-              <button onClick={linkedinLogin} style={{background: "#232949", color: "#15e0ff"}}> 
-                  <img src='/linkedin.png' width={"30px"} style={{display: "inline-block",paddingRight:"10px"}}/>
+                <div className="text-[#8b97b3] text-center p-3">- OR -</div>
+              <button onClick={linkedinLogin}
+                className='w-full rounded bg-[#232949] text-[#15e0ff] p-2 '>  
+                  <img src='/linkedin.png' className='w-8 inline-block pr-2'/>
                   Login with linkedin
                   </button>
-              <p className="or-divider" style={{display:"inline-flex",width: "100%",justifyContent: "center", cursor:"default"}}>Already have an account? <p onClick={()=>Navigate("/login")}><strong style={{paddingLeft:"5px", cursor:"pointer"}}>Login</strong></p></p>
+              <p className="text-white text-center p-2 inline-block w-full justify-center cursor-default" >Already have an account? <p onClick={()=>Navigate("/login")}><strong className='pl-2 cursor-pointer'>Login</strong></p></p>
               </div>
               
               

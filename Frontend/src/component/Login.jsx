@@ -123,31 +123,36 @@ const Login = ({onClose}) => {
 
   return (
     <>
-      <div className='auth-section'>
-          <div className="form-logo">
-            {/* <img src="../public/AppLogo.png" srcset="logo-ainfinity@2x.png 2x, logo-ainfinity@3x.png 3x"/> */}
+      <div className='flex bg-[#000610] justify-center'>
+          <div className="flex-0 md:flex-6 ">
+            <img src="../public/appLogo1.png" alt="logo" className="md:w-[60vw] md:h-screen md:bg-[100vw] "/>
           </div>
-          <div className='right-panel'>
-            <div className='form-card'>
-              <h2 style={{color: "#f3f6fd"}}>Login</h2>
+          {/* login card */}
+          <div className=' md:h-screen md:flex-4 flex h-screen items-center justify-center w-9/10 md:w-8/10'>
+            <div className='w-9/10 md:w-9/10 lg:w-7/10 md:h-8/10 shadow-[0_8px_32px_0_#000002e] rounded-2xl p-8 h-8/10 bg-[#181c2bd9] blackdrop-blur-lg'>
+              <p className='text-[#f3f6fd] text-4xl font-bold'>Login</p>
               <div style={{color: "#8b97b3", marginBottom: "1em"}}>Join the infinite future</div>
 
-              <input type="email" placeholder='example@gmail.com' onChange={(e)=> setEmail(e.target.value)} required/>
-              <input type="password" placeholder='Enter you password'  onChange={(e)=> setPassword(e.target.value)} required/>
-              <button type="submit" onClick={loginEvent}> Login </button>
+              <input type="email" placeholder='example@gmail.com' onChange={(e)=> setEmail(e.target.value)} required
+                className='bg-[#24283af2] border-[#374151] outline-none rounded p-1 text-white w-full px-2'/>
+              <input type="password" placeholder='Enter you password'  onChange={(e)=> setPassword(e.target.value)} required
+                className='bg-[#24283af2] border-[#374151] outline-none rounded p-1 text-white w-full mt-3 px-2'/>
+              <button type="submit" onClick={loginEvent}
+                className='bg-gradient-to-r from-[#15e0ff] from-40% to-[#a259f7] to-100% rounded text-white font-bold p-1 w-full mt-3'> Login </button>
 
-              <div className="or-divider">- OR -</div>
-              <button onClick={linkedinLogin} style={{background: "#232949", color: "#15e0ff"}}> 
-                  <img src='/linkedin.png' width={"30px"} style={{display: "inline-block",paddingRight:"10px"}}/>
+              <div className="text-[#8b97b3] text-center p-3">- OR -</div>
+              <button onClick={linkedinLogin}
+                className='w-full rounded bg-[#232949] text-[#15e0ff] p-2 '> 
+                  <img src='/linkedin.png' className='w-8 inline-block pr-2'/>
                   Login with linkedin
                   </button>
-              <p className="or-divider" style={{display:"inline-flex",width: "100%",justifyContent: "center", cursor:"default"}}>New User? <p onClick={()=>Navigate("/register")}><strong style={{paddingLeft:"5px", cursor:"pointer"}}>Register</strong></p></p>
+              <p className="text-white text-center p-2 inline-flex w-full justify-center cursor-default">New User? <p onClick={()=>Navigate("/register")}><strong className='pl-2 cursor-pointer'>Register</strong></p></p>
             </div>
 
           </div>
           
       </div>
-      {toast && <Toast message={toastMsg} state={toastState} style={{marginTop: "10px", position: "fixed", top: "10px",textAlign:"center"}}/>}
+      {toast && <Toast message={toastMsg} state={toastState} />}
     </>
   )
 }

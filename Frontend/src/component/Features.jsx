@@ -14,7 +14,7 @@ const Background=()=>{
         setDots(newDots)
     },[])
     return(
-        <div className=" top-0 left-0 w-full h-full z-100 overflow-hidden">
+        <div className="fixed top-0 left-0 w-full h-full z-100 overflow-hidden">
         {dots.map((dot, i) => (
         <div
           key={i}
