@@ -23,7 +23,7 @@ const LandingPage = () => {
 
   return (
     <>
-    <div className='main-container'>
+    <div className='flex flex-col'>
     {/* <NavBar >
         <div className="user">
                 {userData ? (<ProfileWrapper user={userData}/>) : (<Signup />)}
