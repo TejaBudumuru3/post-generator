@@ -12,6 +12,10 @@ const Hero = () => {
       <div className=" h-16 lg:h-32 flex px-3 md:px-5 md:gap-5 md:justify-normal items-center justify-between  w-full">
         <button className="p-2 bg-[#36b6ea] h-10 rounded text-white transition duration-700 ease-in-out hover:scale-110">
           Join Community
+
+
+
+          
         </button>
         <button className="p-2 border border-[#36b6ea] h-10 rounded text-white transition duration-700 ease-in-out hover:scale-110">
           get started
