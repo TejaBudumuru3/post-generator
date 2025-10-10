@@ -16,6 +16,9 @@ const Hero = () => {
 
 
           
+
+
+          
         </button>
         <button className="p-2 border border-[#36b6ea] h-10 rounded text-white transition duration-700 ease-in-out hover:scale-110">
           get started
