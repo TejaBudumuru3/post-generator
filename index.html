@@ -1,0 +1,128 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1">Increment</button>
+    <button id="btn2"> Decrement</button>
+    <button id="btn3">Reset</button>
+    <p id="Value"></p>
+  </body>
+  <script>
+    let count = 0;
+    function Increment() {
+      count = count + 1
+      console.log("Value incremnted");
+      render();
+    }
+    function Decrement(){
+        count = count -1;
+        console.log("Value Devemented");
+        render();
+    }
+    function Reset () {
+        count = 0;
+        render();
+    }
+    function render() {
+      const Value  = document.getElementById("Value");
+      Value.innerHTML= count
+    
+    }
+    btn1.addEventListener("click" , ()=>{
+        Increment()
+    })
+    btn2.addEventListener("click" , ()=>{
+        Decrement()
+    })
+    btn3.addEventListener("click" , ()=>{
+        Reset();
+    })
+    render()
+  </script>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input Mirror</title>
+  </head>
+  <body>
+    <input id="textInput" type="text" placeholder="Type something..." />
+    <p id="mirror"></p>
+  </body>
+  <script>
+    // YOUR CODE HERE
+    // Use the same pattern:
+    // 1. State
+    // 2. Render function
+    // 3. Update function
+    // 4. Initialize
+    // 5. User action (input event)
+    let text = "Hello";
+    function render() {
+      const Update = document.getElementById("mirror");
+      Update.innerHTML = text;
+    }
+    function UpdateValue(Value) {
+      text = Value;
+    //   console.log("Text chaged", Value);
+      render();
+    }
+    const textValue = document.getElementById("textInput");
+    textValue.addEventListener("input", (event) => {
+    UpdateValue(event.target.value)
+    //   const Value = textValue.value;
+
+    // //   console.log(Value);
+    // //   const NewText = InputEvent.value;
+    //   UpdateValue(Value);
+    });
+    render();
+  </script>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+  </head>
+  <body>
+    <input id="todoInput" type="text" placeholder="New todo..." />
+    <button id="addBtn">Add</button>
+    <ul id="todoList">
+    </ul>
+  </body>
+  <script>
+    let todos = [];
+    const button = document.getElementById("addBtn");
+    button.addEventListener("click", () => {
+      const inputText = document.getElementById("todoInput");
+
+      todo = inputText.value;
+      console.log("THe value of tod is ", todo);
+      addTodo(todo);
+    });
+    function addTodo(todo) {
+
+      
+      todos.push(todo);
+      render();
+    }
+    function render() {
+      const Todolist = document.getElementById("todoList");
+      Todolist.innerHTML = "";
+      todos.forEach((e) => {
+        const todo = document.createElement("li");
+        todo.innerHTML = e;
+        Todolist.appendChild(todo);
+      });
+    }
+    render();
+  </script>
+</html>
