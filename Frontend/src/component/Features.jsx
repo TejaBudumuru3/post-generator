@@ -1,48 +1,48 @@
-const Background=()=>{
-    const [dots, setDots] = useState([]);
+// const Background=()=>{
+//     const [dots, setDots] = useState([]);
 
-    useEffect(()=>{
-        const newDots = Array.from({length:30}).map(()=>({
-            top:`${Math.random() *100}%`,
-            left:`${Math.random() *100}%`,
+//     useEffect(()=>{
+//         const newDots = Array.from({length:30}).map(()=>({
+//             top:`${Math.random() *100}%`,
+//             left:`${Math.random() *100}%`,
 
-            size:'5px',
+//             size:'5px',
 
-            animationDuration: `${Math.random() * 5 + 5}s`,
-            animationDelay: `${Math.random() * 5}s`,
-        }))
-        setDots(newDots)
-    },[])
-    return(
-        <div className="fixed top-0 left-0 w-full h-full z-100 overflow-hidden">
-        {dots.map((dot, i) => (
-        <div
-          key={i}
-          className="absolute bg-[#36b6ea] rounded-full animate-fadeInOut animate-ping "
-          style={{
-            top: dot.top,
-            left: dot.left,
-            width: dot.size,
-            height: dot.size,
-            animationDuration: dot.animationDuration,
-            animationDelay: dot.animationDelay,
-            animationIterationCount: 'infinite',
-          }}
-        />
-        ))}
-        <style>{`
-        @keyframes fadeInOut {
-          0%, 100% { opacity: 0; }
-          50% { opacity: 0.8; }
-        }
-        .animate-fadeInOut {
-          animation-name: fadeInOut;
-        }
-      `}</style>
-        </div>
+//             animationDuration: `${Math.random() * 5 + 5}s`,
+//             animationDelay: `${Math.random() * 5}s`,
+//         }))
+//         setDots(newDots)
+//     },[])
+//     return(
+//         <div className="fixed top-0 left-0 w-full h-full z-10 overflow-hidden">
+//         {dots.map((dot, i) => (
+//         <div
+//           key={i}
+//           className="absolute bg-[#36b6ea] rounded-full animate-fadeInOut animate-ping "
+//           style={{
+//             top: dot.top,
+//             left: dot.left,
+//             width: dot.size,
+//             height: dot.size,
+//             animationDuration: dot.animationDuration,
+//             animationDelay: dot.animationDelay,
+//             animationIterationCount: 'infinite',
+//           }}
+//         />
+//         ))}
+//         <style>{`
+//         @keyframes fadeInOut {
+//           0%, 100% { opacity: 0; }
+//           50% { opacity: 0.8; }
+//         }
+//         .animate-fadeInOut {
+//           animation-name: fadeInOut;
+//         }
+//       `}</style>
+//         </div>
         
-    )
-}
+//     )
+// }
 
 import React, { Children, useEffect, useRef, useState } from 'react';
 
@@ -76,7 +76,7 @@ const AnimateSection = ({children})=>{
   return(
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${isInView ? 'opacity-100 translate-y-0 scale-90' : 'opacity-0 translate-y-10 scale-80'}`} >
+      className={`transition-all duration-700 z-20 ease-in-out ${isInView ? 'opacity-100 translate-y-0 scale-90' : 'opacity-0 translate-y-10 scale-80'}`} >
         {children}
     </div>
   )
@@ -105,8 +105,8 @@ const Features = () => {
       </div> */}
 
       
-      <Background/>
-      <div className='w-full min-h-screen flex flex-col gap-4 bg-black p-4 md:p-8'>
+      {/* <Background/> */}
+      <div className='w-full min-h-screen flex flex-col gap-4 bg-transparent p-4 md:p-8'>
         
         <p className='text-3xl md:text-4xl lg:text-5xl text-white font-bold text-center'>KEY FEATURES</p>
 
@@ -115,7 +115,7 @@ const Features = () => {
           <AnimateSection>
           <div className='border-1 border-y-[#36b6ea] border-x-[#36b6ea]/50 shadow-white/10 shadow-2xl backdrop-grayscale rounded-4xl hover:scale-110 hover:duration-700 cursor-default p-15 flex-col flex lg:flex-row lg:items-center gap-5 bg-gray-900'>
 
-            <div className='text-white'>
+            <div className='text-white '>
               {/* Responsive Text: Larger on bigger screens */}
               <p className='text-2xl md:text-3xl lg:text-4xl font-bold text-center'>AI-Powered Content</p>
               <p className='mt-4 text-gray-300 text-sm md:text-base text-white/60'>

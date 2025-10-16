@@ -9,6 +9,7 @@ import Home from './Home.jsx';
 import Hero from '../component/Hero-section.jsx';
 import Features from '../component/Features.jsx';
 import About from '../component/About.jsx';
+import { Background } from '../component/Background.jsx';
 
 
 const LandingPage = () => {
@@ -23,13 +24,14 @@ const LandingPage = () => {
 
   return (
     <>
-    <div className='flex flex-col'>
+    <div className='flex flex-col w-full'>
     {/* <NavBar >
         <div className="user">
                 {userData ? (<ProfileWrapper user={userData}/>) : (<Signup />)}
             </div>
       </NavBar> */}
       <Hero/>
+      <Background/>
       <Features/>
       <About/>
     {/* <LandPage/> */}
