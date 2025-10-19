@@ -1,10 +1,7 @@
-import { useState } from "react";
 import InputBox from "../components/InputBox";
-import Posts from "../components/Posts";
 
 const Home = () => {
-  const [activeTab, setActiveTab] = useState("X");
-  const tabs = ["X", "Linkedin", "Image base"];
+
 
   return (
     <>
@@ -17,7 +14,7 @@ const Home = () => {
                        shadow-[0_0_15px_0px_#00e5ff] p-5 bg-[#323232]/50 backdrop-blur-sm border border-[#00e5ff]/20">
         
         {/* Tab container with a subtle gold glow */}
-        <div className="grid grid-cols-3 w-full gap-1 text-center rounded-full font-bold text-lg justify-between py-1 sm:px-1 bg-white/10">
+        {/* <div className="grid grid-cols-3 w-full gap-1 text-center rounded-full font-bold text-lg justify-between py-1 sm:px-1 bg-white/10">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -31,21 +28,12 @@ const Home = () => {
               {tab}
             </button>
           ))}
-        </div>
+        </div> */}
         <div className="w-full">
             <InputBox />
         </div>
       </div>
-        <div className='text-white text-bold text-2xl place-self-center sm:w-3/5 w-[90%] '>
-          <div className="place-self-center p-6">
-                <p>Generated Posts</p>
-                <hr className="w-[100%] mt-5 text-center"></hr>
-            </div>
-            <div className="flex gap-2 flex-col">
-              <Posts/>
-              <Posts/>
-            </div>
-        </div>
+        
     </div>
     </>
   );

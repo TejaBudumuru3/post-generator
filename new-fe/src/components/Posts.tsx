@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-const Posts = ({tone = "casual", platform = "linkedin", posts = ["Labore, perspiciatis ea! Optio nesciunt, ratione quia dolore, sequi excepturi vel, quam officiis aspernatur iure cupiditate ullam fugiat! Quasi voluptatem iusto minima", "Labore, perspiciatis ea! Optio nesciunt, ratione quia dolore, sequi excepturi vel, quam officiis aspernatur iure cupiditate ullam fugiat! Quasi voluptatem iusto minima", "Labore, perspiciatis ea! Optio nesciunt, ratione quia dolore, sequi excepturi vel, quam officiis aspernatur iure cupiditate ullam fugiat! Quasi voluptatem iusto minima","4","5"]}) => {
+const Posts = ({tone = "casual", img=null, post="", platform = "image based", posts = ["Labore, perspiciatis ea! Optio nesciunt, ratione quia dolore, sequi excepturi vel, quam officiis aspernatur iure cupiditate ullam fugiat! Quasi voluptatem iusto minima", "Labore, perspiciatis ea! Optio nesciunt, ratione quia dolore, sequi excepturi vel, quam officiis aspernatur iure cupiditate ullam fugiat! Quasi voluptatem iusto minima", "Labore, perspiciatis ea! Optio nesciunt, ratione quia dolore, sequi excepturi vel, quam officiis aspernatur iure cupiditate ullam fugiat! Quasi voluptatem iusto minima","4","5"]}) => {
     const [activePost, setActivePost] = useState(0)
     const minDistance = 50
     const [touchStart, setTouchStart] = useState<number | null>(null)
@@ -14,6 +14,16 @@ const Posts = ({tone = "casual", platform = "linkedin", posts = ["Labore, perspi
 
     const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) =>{
         setTouchEnd(e.targetTouches[0].clientX)
+    }
+
+    const handleDownload = () =>{
+        if(!img) return
+        const link = document.createElement("a");
+        link.href = (img)
+        link.download = `ainifinty-download-${Date.now()}`
+        document.body.appendChild(link); // Required for Firefox
+        link.click();
+        document.body.removeChild(link)
     }
 
     const handleTouchEnd = ()=>{
@@ -50,14 +60,20 @@ const Posts = ({tone = "casual", platform = "linkedin", posts = ["Labore, perspi
                         <p>| {tone}</p>
                     </div>
                     {(platform !== "X") &&
-                    <button className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50">Post on Linkedin</button>
+
+                    (
+                        platform.includes("image") ? 
+                        (<button className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50" onClick={handleDownload}>Download image</button>)
+                        : (<a href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(encodeURIComponent(post))}`} target="_blank" className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50">Post on Linkedin</a>)
+                    )  
                     }
+
                 </div>
                 <div className="p-6 shadow-[0_0px_5px_1px_inset_#00e5ff] border border-[#00e5ff]/20 rounded-lg">
                 {platform === "X" ? (
                     <div id="indicators-carousel" className="relative w-full" data-carousel="static">
                         {/* <!-- Car ousel wrapper --> */}
-                        <div className="relative h-56 overflow-hidden rounded-lg h-120 md:h-72" 
+                        <div className="relative overflow-hidden rounded-lg min-h-150 md:min-h-100" 
                             onTouchStart={handleTouchStart}
                             onTouchEnd={handleTouchEnd}
                             onTouchMove={handleTouchMove}>
@@ -89,7 +105,7 @@ const Posts = ({tone = "casual", platform = "linkedin", posts = ["Labore, perspi
                         <button type="button" onClick={ToPrev} className="hidden lg:block absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
                             <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
                                 <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                                    <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
                                 </svg>
                                 <span className="sr-only">Previous</span>
                             </span>
@@ -97,21 +113,22 @@ const Posts = ({tone = "casual", platform = "linkedin", posts = ["Labore, perspi
                         <button type="button" onClick={ToNext} className="hidden lg:block absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
                             <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
                                 <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                    <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                                 </svg>
                                 <span className="sr-only">Next</span>
                             </span>
                         </button>
                     </div>
                 ) : (
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Labore, perspiciatis ea! Optio nesciunt, ratione quia dolore, sequi excepturi vel, quam officiis aspernatur iure cupiditate ullam fugiat! Quasi voluptatem iusto minima.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id veritatis deleniti repellat magnam tempora maxime fugiat consequuntur aut odit, magni et sed iste voluptatibus, sint commodi tempore! Possimus, numquam unde?
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem temporibus illum impedit distinctio ad quam aspernatur pariatur incidunt sint iusto, dignissimos nobis, atque in natus adipisci omnis. Sit, consequatur ab?
-                    </p>
-                )}
+                    (platform === "Linkedin") ? (
+                    <p>{post}</p>
+                    ) : (
+                        <div className="place-self-center">
+                            <img src={img ? img : "https://pbs.twimg.com/media/G3hr0RUWwAAXa6v?format=jpg&name=medium"} alt="generated post" className="h-120"/>
+                        </div>
+                    )
                     
-                    
+                )} 
                 </div>
 
             
