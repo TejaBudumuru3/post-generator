@@ -34,26 +34,26 @@ function NavBar() {
     }, []);
     return (
 
-        <nav className="sticky   top-2 flex justify-between border border-white rounded-2xl p-4 items-center m-8 mx-32 text-white" >
-            <div className="flex justify-center font-bold">
+        <nav className="sticky   top-2 flex justify-between    rounded-2xl p-4 items-center m-4 mx-32 text-white z-1000 bg-blue  " >
+            <div className="flex justify-center font-extrabold ">
                 {/* <img
                     src="https://via.placeholder.com/150x50/4F46E5/ffffff?text=Logo"
                     alt="Logo"
                     className="h-10 w-auto object-contain"
                 /> */}
-                GenPost
+                PostGen
             </div>
             <div className="">
-                <ul className="flex felx-col  gap-10">
-                    <li>
+                <ul className="flex felx-col  gap-10 font-bold ">
+                    <li >
                         Home
 
                     </li>
                     <li>
-                        Image
+                        Features
                     </li>
                     <li>
-                        About us
+                        About Us
 
                     </li>
                 </ul>
@@ -62,7 +62,7 @@ function NavBar() {
                 {!token ? (
                     <button onClick={() => {
                         navigate("/Login")
-                    }} className="hover:text-white  cursor-pointer border  border-b-indigo-200 p-2 rounded-2xl">
+                    }} className="hover:text-white  cursor-pointer border  border-b-indigo-200 p-2 rounded-2xl font-bold">
                         Get started
                     </button>
                 ) : (
