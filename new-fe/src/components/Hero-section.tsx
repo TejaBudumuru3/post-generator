@@ -135,7 +135,7 @@ const Hero: React.FC = () => {
                 }
             `}</style>
             
-            <section className="h-screen w-full overflow-hidden flex justify-center items-center text-center font-['Exo_2'] text-white relative overflow-hidden">
+            <section className="h-screen relative w-full overflow-hidden flex justify-center items-center text-center font-['Exo_2'] text-white relative overflow-hidden">
                 {/* This div is the container for the canvas. It fills the parent section. */}
                 <div ref={mountRef} className="absolute top-0 left-0 w-full h-full z-[1]" />
                 

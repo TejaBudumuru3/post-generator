@@ -6,7 +6,7 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 
 
 export const Background = ({enableMouseMove = false, display = "fixed"})=>{
-    const mountRef = useRef(null);
+    const mountRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const scene = new THREE.Scene();

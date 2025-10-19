@@ -1,11 +1,12 @@
 import About from '../components/About'
-import { Background } from '../components/Background'
 import Features from '../components/Features'
 import Hero from '../components/Hero-section'
+import NavBar from '../components/NavBar'
 const LandingPage = () => {
   return (
-    <div className='flex flex-col'>
-        <Background/>
+    <div className='flex flex-col w-full'>
+        
+        <NavBar/>
         <Hero/>
         <Features/>
         <About/>

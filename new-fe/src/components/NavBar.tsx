@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { BACKEND_URL } from "../config";
-
-function navBar() {
+// import { BACKEND_URL } from "../config";
+const BACKEND_URL = "https://post-generator-2nqq.onrender.com"   
+function NavBar() {
     const [token, settoken] = useState<CookieListItem | string | null>(null);
     const [Loading, setLoading] = useState(false)
     useEffect(() => {
@@ -34,10 +34,10 @@ function navBar() {
     return (
 
 
-        <nav className=" realtive flex justify-between border border-b-black rounded-2xl p-4 items-cente m-8  mx-32">
+        <nav className="border border-white z-200 flex justify-between top-8 sticky rounded-2xl p-4 items-cente   mx-32">
             <div className="flex justify-center">
                 <img
-                    src="https://via.placeholder.com/150x50/4F46E5/ffffff?text=Logo"
+                    src="/AppLogo.png"
                     alt="Logo"
                     className="h-10 w-auto object-contain"
                 />
@@ -73,4 +73,4 @@ function navBar() {
         </nav>
     )
 }
-export default navBar
+export default NavBar
