@@ -34,70 +34,60 @@ function NavBar() {
     }, []);
     return (
 
-        <nav className="sticky   top-2 flex justify-between    rounded-2xl p-4 items-center m-4 mx-32 text-white z-1000 bg-blue  " >
+        <nav className="sticky top-2 flex justify-between rounded-2xl p-4 items-center m-4 mx-32 text-white z-1000 bg-blue bg-blend-saturation backdrop-blur">
             <div className="flex justify-center font-extrabold ">
-                {/* <img
-                    src="https://via.placeholder.com/150x50/4F46E5/ffffff?text=Logo"
-                    alt="Logo"
-                    className="h-10 w-auto object-contain"
-                /> */}
-                PostGen
+            PostGen
             </div>
             <div className="">
-                <ul className="flex felx-col  gap-10 font-bold ">
-                    <li >
-                        Home
-
-                    </li>
-                    <li>
-                        Features
-                    </li>
-                    <li>
-                        About Us
-
-                    </li>
-                </ul>
+            <ul className="flex felx-col gap-10 font-bold ">
+                <li>
+                Home
+                </li>
+                <li>
+                Features
+                </li>
+                <li>
+                About Us
+                </li>
+            </ul>
             </div>
             <div>
-                {!token ? (
-                    <button onClick={() => {
-                        navigate("/Login")
-                    }} className="hover:text-white  cursor-pointer border  border-b-indigo-200 p-2 rounded-2xl font-bold">
-                        Get started
+            {!token ? (
+                <button onClick={() => {
+                navigate("/Login")
+                }} className="hover:text-white cursor-pointer border border-b-indigo-200 p-2 rounded-2xl font-bold">
+                Get started
+                </button>
+            ) : (
+                <div className="border border-amber-50 px-4 rounded-xl">
+                <div className="relative group inline-block">
+                    <button
+                    type="button"
+                    className="px-3 py-2 rounded-lg hover:bg-white/10"
+                    >
+                    Profile
                     </button>
-                ) : (
-                    <div className="border border-amber-50 px-4 rounded-xl">
-                        <div className="relative group inline-block">
-                            <button
-                                type="button"
-                                className="px-3 py-2 rounded-lg hover:bg-white/10"
-                            >
-                                Profile
-                            </button>
 
-                            <div className="absolute right-0 top-full w-44 rounded-xl border border-white/20 bg-gray-900/90 backdrop-blur shadow-lg hidden group-hover:block group-focus-within:block z-50">
-                                <ul className="py-2 text-sm">
-                                    <li>
-                                        <button
-                                            className="w-full text-left px-4 py-2 hover:bg-white/10 text-red-300"
-                                            onMouseDown={async () => {
-                                                try {
-                                                    await cookieStore.delete("token");
-                                                } catch { }
-                                                navigate("/Login");
-                                            }}
-                                        >
-                                            Logout
-                                        </button>
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                        </div>
+                    <div className="absolute right-0 top-full w-44 rounded-xl border border-white/20 bg-gray-900/90 backdrop-blur shadow-lg hidden group-hover:block group-focus-within:block z-50">
+                    <ul className="py-2 text-sm">
+                        <li>
+                        <button
+                            className="w-full text-left px-4 py-2 hover:bg-white/10 text-red-300"
+                            onMouseDown={async () => {
+                            try {
+                                await cookieStore.delete("token");
+                            } catch { }
+                            navigate("/Login");
+                            }}
+                        >
+                            Logout
+                        </button>
+                        </li>
+                    </ul>
                     </div>
-                )}
-
+                </div>
+                </div>
+            )}
             </div>
         </nav>
     )
