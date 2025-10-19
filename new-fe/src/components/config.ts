@@ -1,0 +1,1 @@
+export const  BACKEND_URL = "https://post-generator-2nqq.onrender.com"
