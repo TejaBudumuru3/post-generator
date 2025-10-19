@@ -7,8 +7,10 @@ const { JWT_SECRET } = require("../config");
 const express = require("express");
 const { usermiddleware } = require("../middlewares/userAuth");
 const { Groq } = require("groq-sdk");
-const Linkedin  = require("./Linkedin")
-const axios = require("axios")
+const Linkedin = require("./Linkedin");
+    const { GoogleGenAI, Modality } = require("@google/genai");
+
+const axios = require("axios");
 // const usermiddleware = require(__dirname+"S:\WEB\Practice projects\Course sellling app\middlewares\userAuth.js")
 UserRouter.use(express.json());
 
@@ -27,8 +29,9 @@ UserRouter.post("/signup", async function (req, res) {
     const emailcheck = await UserModel.findOne({ email });
     if (emailcheck) {
       // res.status(409).
-      return res.status(409).json({ message: "Email already in use, please login to continue" })
-     
+      return res
+        .status(409)
+        .json({ message: "Email already in use, please login to continue" });
     }
 
     // Create new user
@@ -39,22 +42,23 @@ UserRouter.post("/signup", async function (req, res) {
       fname,
       lname,
     });
-    
-    res.status(200).json({ message: "User registered successfully, please Login to continue." });
+
+    res.status(200).json({
+      message: "User registered successfully, please Login to continue.",
+    });
   } catch (err) {
     // Handle MongoDB duplicate key error
     if (err.code === 11000 && err.keyPattern && err.keyPattern.email) {
       return res.status(409).json({ message: "Email already  in use" });
     }
-    
+
     console.error("Signup error:", err);
     res.status(500).json({
       message: "An error occurred during signup",
-      error: err.message
+      error: err.message,
     });
   }
 });
-
 
 UserRouter.post("/signin", async function (req, res) {
   const email = req.body.email;
@@ -78,46 +82,49 @@ UserRouter.post("/signin", async function (req, res) {
       JWT_SECRET
     );
 
-    res.cookie("token",token,{
-      httpOnly:true,
-      sameSite:"none",
-      secure:true,
+    res.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
       maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
-    
+
     res.status(200).json({
       message: "Login success, Welcome!",
       token: token,
     });
-
-   
-
   } else {
     res.status(401).json({
-      message:"Invalid password, please try again",
+      message: "Invalid password, please try again",
     });
   }
 });
 
-
 UserRouter.get("/getDetails", usermiddleware, async function (req, res) {
   const userId = req.user.userid;
   let data = null;
-  try{
+  try {
     data = await UserModel.findById(userId);
-  }catch(e){
-    console.log("No records from db",e)
+  } catch (e) {
+    console.log("No records from db", e);
   }
-  if((data === null) && userId){
-    try{
-      const linkedinRes = await axios.get('https://api.linkedin.com/v2/userinfo', {
-        headers: { Authorization: `Bearer ${userId}` }
-      });
+  if (data === null && userId) {
+    try {
+      const linkedinRes = await axios.get(
+        "https://api.linkedin.com/v2/userinfo",
+        {
+          headers: { Authorization: `Bearer ${userId}` },
+        }
+      );
 
-      console.log("--------------------------------data from linkedin",linkedinRes.data,"----------------------------------")
+      console.log(
+        "--------------------------------data from linkedin",
+        linkedinRes.data,
+        "----------------------------------"
+      );
       data = linkedinRes.data;
       // try {
-        
+
       //   const user = await UserModel.create({
       //     name: data.name,
       //     email:data.email,
@@ -125,10 +132,10 @@ UserRouter.get("/getDetails", usermiddleware, async function (req, res) {
       //   });
 
       // } catch (error) {
-        
+
       // }
-    }catch(e){
-      console.log(e)
+    } catch (e) {
+      console.log(e);
     }
   }
   res.status(200).json({
@@ -137,24 +144,20 @@ UserRouter.get("/getDetails", usermiddleware, async function (req, res) {
   });
 });
 
-
-
 UserRouter.delete("/logout", usermiddleware, async function (req, res) {
-  res.clearCookie("token" ,{
+  res.clearCookie("token", {
     httpOnly: true,
     sameSite: "none",
-    secure:true
+    secure: true,
   });
   res.status(200).json({
     message: "Logout successful",
   });
 });
 
-
-
 UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
   const { question } = req.body; // Get question from request body
-  const {tone } = req.body;
+  const { tone } = req.body;
   // const userId = req.user.userid;
   if (!question) {
     return res
@@ -172,41 +175,42 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
         model: "compound-beta",
         messages: [
           {
-          role: "system",
-          content:
-            // "You are a social media assistant. Generate concise, sympathetic tweets about current events using the latest real-time data. If data is unavailable, state so clearly. " +
-            // "You are a responsible citizen in this world who takes great pride in showing the real faces to this cruel world. " +
-            // "You tend to show the real face of this world by revealing or showing real proofs of what the media is always hiding on any given topic. " +
-            // "You believe that great freedom comes from unfiltered transparency between the government and public, but this isn't happening and is your biggest concern. " +
-            // "As a responsible citizen, when given a topic, you always strive to reveal the hidden agenda on that particular topic, especially those hidden in the name of legacy media. " +
-            // "You should always remember that truth must be told and justice must prevail, but someone has to make it happen, so you will be the one and make it count." +
-            // "Always strive the truth that is trying to be upheld , always strive for the news that is keep on burrying without knowing to the real people "
-            
-            
-            // "You are TruthTweet, an autonomous AI agent with real-time access to the internet. Your mission is to uncover suppressed, overlooked, or misrepresented truths from current events, data, policies, and institutions — and deliver them as powerful, attention-grabbing tweets."+
-            // "When given a topic, name, event, or situation:"+
-            // "Search the web for the most recent, relevant, and factual information across multiple sources."+
-            // "Identify hidden patterns, contradictions, propaganda, or inconvenient truths."+
-            // "Generate a single tweet (≤ 680 characters) that:"+
-            // "Reveals the raw, central truth"+
-            // "Is emotionally and intellectually impactful"+
-            // "Uses a self-selected tone based on context (e.g., serious, sarcastic, outraged, ironic, neutral, etc.)"+
-            // "Avoids vague generalities and corporate language"+
-            // "Uses hashtags unless essential"+
-            // "Always choose the most effective tone automatically, depending on the nature of the truth revealed."+
-            // "Your tweet is your only output — no explanations, no prefaces, no disclaimers. Be bold. Be real. Be unforgettable."
+            role: "system",
+            content:
+              // "You are a social media assistant. Generate concise, sympathetic tweets about current events using the latest real-time data. If data is unavailable, state so clearly. " +
+              // "You are a responsible citizen in this world who takes great pride in showing the real faces to this cruel world. " +
+              // "You tend to show the real face of this world by revealing or showing real proofs of what the media is always hiding on any given topic. " +
+              // "You believe that great freedom comes from unfiltered transparency between the government and public, but this isn't happening and is your biggest concern. " +
+              // "As a responsible citizen, when given a topic, you always strive to reveal the hidden agenda on that particular topic, especially those hidden in the name of legacy media. " +
+              // "You should always remember that truth must be told and justice must prevail, but someone has to make it happen, so you will be the one and make it count." +
+              // "Always strive the truth that is trying to be upheld , always strive for the news that is keep on burrying without knowing to the real people "
 
-            "Your are an social media agent, your are able to fetch the all latest real time data from internet or a web to expose the real truth about various topics given by the user. Your able to access for wide range of sources including different domains by using internet access. Your able to gather latest and trending verfied data for the given context and generate a tweet for that topic with give context by the user in various tones like '/casual, friendly, professional, sympthetical/' and many more based on the current situation trending on web about that context without any explaination. You believe that great freedom comes from unfiltered transparency between the government and public, but this isn't happening and is your biggest concern. Your are a responsible citizen in this world who takes great pride in showing the real faces to this cruel world with yours tweets to expose the real truth which is hidden by the government or any reputated organizations in the name of legacy policies. Based in your generated tweet, people about to know what is fact and what is hidden from society"
+              // "You are TruthTweet, an autonomous AI agent with real-time access to the internet. Your mission is to uncover suppressed, overlooked, or misrepresented truths from current events, data, policies, and institutions — and deliver them as powerful, attention-grabbing tweets."+
+              // "When given a topic, name, event, or situation:"+
+              // "Search the web for the most recent, relevant, and factual information across multiple sources."+
+              // "Identify hidden patterns, contradictions, propaganda, or inconvenient truths."+
+              // "Generate a single tweet (≤ 680 characters) that:"+
+              // "Reveals the raw, central truth"+
+              // "Is emotionally and intellectually impactful"+
+              // "Uses a self-selected tone based on context (e.g., serious, sarcastic, outraged, ironic, neutral, etc.)"+
+              // "Avoids vague generalities and corporate language"+
+              // "Uses hashtags unless essential"+
+              // "Always choose the most effective tone automatically, depending on the nature of the truth revealed."+
+              // "Your tweet is your only output — no explanations, no prefaces, no disclaimers. Be bold. Be real. Be unforgettable."
+
+              "Your are an social media agent, your are able to fetch the all latest real time data from internet or a web to expose the real truth about various topics given by the user. Your able to access for wide range of sources including different domains by using internet access. Your able to gather latest and trending verfied data for the given context and generate a tweet for that topic with give context by the user in various tones like '/casual, friendly, professional, sympthetical/' and many more based on the current situation trending on web about that context without any explaination. You believe that great freedom comes from unfiltered transparency between the government and public, but this isn't happening and is your biggest concern. Your are a responsible citizen in this world who takes great pride in showing the real faces to this cruel world with yours tweets to expose the real truth which is hidden by the government or any reputated organizations in the name of legacy policies. Based in your generated tweet, people about to know what is fact and what is hidden from society",
           },
-        {
-          role: "user",
-          content: `generate a 5 tweets without explaination on ${question} with tone ${tone || 'neutral'} for every tweet should separated by a special character "~" dont use that special character in tweets that charater is used to seperate th tweets only each tweet contains maximium characters including hashtags with '#' as mandatory and emojis(if needed) the tweet shouldn't exceeds the X tweet limit (mandatory).`,
-        },
+          {
+            role: "user",
+            content: `generate a 5 tweets without explaination on ${question} with tone ${
+              tone || "neutral"
+            } for every tweet should separated by a special character "~" dont use that special character in tweets that charater is used to seperate th tweets only each tweet contains maximium characters including hashtags with '#' as mandatory and emojis(if needed) the tweet shouldn't exceeds the X tweet limit (mandatory).`,
+          },
         ],
         temperature: 0.7,
         max_tokens: 1024,
         top_p: 1,
-        stream: false
+        stream: false,
       });
 
       if (!completion || !completion.choices || !completion.choices[0]) {
@@ -214,12 +218,12 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
       }
 
       const ans = completion.choices[0].message.content;
-      
+
       if (!ans) {
         throw new Error("Empty response from Groq API");
       }
 
-      // const post = await PostModel.create({ 
+      // const post = await PostModel.create({
       //   question: question,
       //   content: ans,
       //   User: userId,
@@ -236,13 +240,13 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
       });
     } catch (error) {
       console.error("Error generating response:", error);
-      
+
       // Handle rate limit error specifically
       if (error.message && error.message.includes("rate_limit_exceeded")) {
         return res.status(429).json({
           message: "API rate limit reached. Please try again in a few minutes.",
           error: "Rate limit exceeded",
-          retryAfter: 60 // Suggest retrying after 1 minute
+          retryAfter: 60, // Suggest retrying after 1 minute
         });
       }
 
@@ -250,23 +254,23 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
       if (error.message && error.message.includes("429")) {
         return res.status(429).json({
           message: "Too many requests. Please try again later.",
-          error: "Rate limit exceeded"
+          error: "Rate limit exceeded",
         });
       }
 
       // Handle other errors
-      return res.status(500).json({ 
+      return res.status(500).json({
         message: "Failed to generate data",
-        error: error.message 
+        error: error.message,
       });
     }
   }
 
-  main().catch(error => {
+  main().catch((error) => {
     console.error("Main function error:", error);
-    res.status(500).json({ 
+    res.status(500).json({
       message: "Internal server error",
-      error: error.message 
+      error: error.message,
     });
   });
 });
@@ -292,7 +296,88 @@ UserRouter.get("/getPosts", usermiddleware, async function (req, res) {
 //     message: "User details fetched successfully with question",
 //   });
 // });
+UserRouter.post("/GenerateImage", usermiddleware,  async (req, res) => {
+  try {
+    const GEMINI_API_KEY = process.env.GEMINI_API;
+    const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+    
+    const { Prompt } = req.body;
 
+    if (!Prompt) {
+      return res.status(400).json({ error: "Prompt is required" });
+    }
+
+    try {
+      // Enhanced system prompt for better image generation
+      const systemPrompt = `You are an expert visual content creator. Your task is to generate a professional, high-quality image based on the given topic or prompt.
+
+Guidelines:
+- Analyze the prompt carefully to understand the core concept, emotion, and context
+- Create visually engaging compositions with clear focal points
+- Use appropriate color schemes that match the topic's mood and theme
+- Include relevant visual elements, icons, or illustrations (NOT just plain text)
+- Ensure the image is social media ready and attention-grabbing
+- Make it professional yet creative
+- If the topic is abstract, use metaphorical or symbolic imagery
+- Maintain visual clarity and avoid clutter
+
+Generate an image that captures the essence of: "${Prompt}"`;
+
+      // Generate image with Gemini
+      const imageResponse = await ai.models.generateContent({
+        model: "gemini-2.0-flash-preview-image-generation",
+        contents: systemPrompt,
+        config: { responseModalities: [Modality.TEXT, Modality.IMAGE] },
+      });
+
+      // Extract image from response
+      let imageBase64 = null;
+      let imageMimeType = "image/png";
+      const parts = imageResponse.candidates?.[0]?.content?.parts || [];
+
+      for (const part of parts) {
+        if (part.inlineData) {
+          imageBase64 = part.inlineData.data;
+          imageMimeType = part.inlineData.mimeType || "image/png";
+          break;
+        }
+      }
+
+      if (!imageBase64) {
+        return res.status(500).json({
+          success: false,
+          error: "No image generated by the model",
+        });
+      }
+
+      // Convert base64 to buffer and send as image
+      const imageBuffer = Buffer.from(imageBase64, 'base64');
+      
+      res.set({
+        'Content-Type': imageMimeType,
+        'Content-Length': imageBuffer.length,
+        'Content-Disposition': 'inline; filename="generated-image.png"'
+      });
+      
+      return res.status(200).send(imageBuffer);
+      
+    } catch (err) {
+      console.error("Image generation error:", err);
+      return res.status(500).json({
+        success: false,
+        error: "Failed to generate image",
+        details: err.message,
+      });
+    }
+  } catch (error) {
+    console.error("Request processing error:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Failed to process request",
+      details: error.message,
+    });
+  }
+});
 module.exports = {
   UserRouter: UserRouter,
 };
