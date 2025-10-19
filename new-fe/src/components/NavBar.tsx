@@ -59,7 +59,7 @@ function NavBar() {
                 </ul>
             </div>
             <div>
-                {token ? (
+                {!token ? (
                     <button onClick={() => {
                         navigate("/Login")
                     }} className="hover:text-white  cursor-pointer border  border-b-indigo-200 p-2 rounded-2xl">
