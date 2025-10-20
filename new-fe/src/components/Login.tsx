@@ -36,7 +36,8 @@ const Login = () => {
         })
         
         const data = await response.json();
-
+        cookieStore.set("token " , "data.value")
+        console.log("The value is " , data)
         if(response.status === 200){
         toast.success("Login successful!");
         setTimeout(()=>{
