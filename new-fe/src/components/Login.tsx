@@ -39,7 +39,7 @@ const Login = () => {
           console.log("The value is ", data)
           if (response.status === 200) {
             const newtoken = data.token;
-            await cookieStore.set("token ", newtoken)
+            await cookieStore.set("token", newtoken)
             toast.success("Login successful!");
             setTimeout(() => {
               window.location.href = "/home";
