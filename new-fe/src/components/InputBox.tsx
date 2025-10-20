@@ -132,7 +132,7 @@ const InputBox = () => {
                 <hr className="w-[100%] mt-5 text-center"></hr>
             </div>
             <div className="flex gap-2 flex-col">
-              <Posts platform={activeTab} posts={xPosts} post={LinkedInPost}/>
+              <Posts platform={activeTab} posts={xPosts} post={LinkedInPost} tone={activeTone}/>
 
             </div>
         </div>
