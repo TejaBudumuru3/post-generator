@@ -49,7 +49,7 @@ function NavBar() {
 
     return (
 
-        <nav className="sticky top-2 flex justify-between rounded-2xl p-4 items-center sm:m-4 mx-4 sm:mx-8 lg:mx-32 text-white z-1000 bg-blue bg-blend-saturation bg-transparent backdrop-blur">
+        <nav className="sticky top-2 flex justify-between rounded-2xl p-4 items-center sm:p-4 mx-4 sm:mx-8 lg:mx-32 text-white z-1000 bg-blue bg-blend-saturation bg-transparent backdrop-blur">
             <div className="flex justify-center font-extrabold ">
                 PostGen
             </div>
