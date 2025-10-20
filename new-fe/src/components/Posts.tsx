@@ -63,8 +63,11 @@ const Posts = ({tone = "", img=null, post="", platform = "", posts = []}) => {
 
                     (
                         platform.includes("Image") ? 
-                        (<button className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50" onClick={handleDownload}>Download image</button>)
-                        : (<a href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(encodeURIComponent(post))}`} target="_blank" className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50">Post on Linkedin</a>)
+                        (<button className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50" onClick={handleDownload}>Download image
+                        </button>)
+                        : (<button onClick={()=>{window.open(`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(encodeURIComponent(post))}`,'_blank')}}
+                        // {`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(encodeURIComponent(post))}`} target="_blank" 
+                        className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50">Post on Linkedin</button>)
                     )  
                     }
 
@@ -82,10 +85,11 @@ const Posts = ({tone = "", img=null, post="", platform = "", posts = []}) => {
                                 <div className={`${activePost === index ? "block" : "hidden"} duration-700 sm:w-full  ease-in-out flex flex-col justify-between`} data-carousel-item={index === 0 ? "active" : ""}>
                                     <p className="absolute block -translate-x-1/2 w-full lg:w-[75%] -translate-y-1/2 top-1/2 left-1/2 text-white">{post}</p>
                                     <div className=" w-full text-center absolute bottom-12">
-                                        <a href={`https://x.com/compose/post?text=${encodeURIComponent(post)}`} target="_blank"
+                                        <button onClick={()=>{window.open(`https://x.com/compose/post?text=${encodeURIComponent(post)}`,'_blank')}}
+                                        // {`https://x.com/compose/post?text=${encodeURIComponent(post)}`} target="_blank"
                                             className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50">
                                             Post on X
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             ))}
