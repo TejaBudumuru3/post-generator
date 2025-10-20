@@ -1,12 +1,14 @@
 import InputBox from "../components/InputBox";
+import NavBar from "../components/NavBar";
 
 const Home = () => {
 
 
   return (
     <>
-    <div className="pt-20 flex flex-col ">
-      <div className="flex text-[#A9A9A9] text-5xl justify-center font-bold cursor-default">
+    <NavBar/>
+    <div className="pt-10 flex flex-col ">
+      <div className="flex text-[#A9A9A9] text-lg lg:text-5xl justify-center font-bold cursor-default">
         <h1>Hello, user</h1>
       </div>
       {/* Main container with a new gold-colored shadow */}

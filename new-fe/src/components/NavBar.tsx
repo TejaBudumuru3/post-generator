@@ -34,7 +34,7 @@ function NavBar() {
     }, []);
     return (
 
-        <nav className="sticky top-2 flex justify-between rounded-2xl p-4 items-center m-4 mx-32 text-white z-1000 bg-blue bg-blend-saturation backdrop-blur">
+        <nav className="sticky top-2 flex justify-between rounded-2xl p-4 items-center mx-32 text-white z-1000 bg-blue bg-blend-saturation backdrop-blur">
             <div className="flex justify-center font-extrabold ">
             PostGen
             </div>

@@ -77,9 +77,9 @@ const Posts = ({tone = "casual", img=null, post="", platform = "image based", po
                             onTouchStart={handleTouchStart}
                             onTouchEnd={handleTouchEnd}
                             onTouchMove={handleTouchMove}>
-                            {/* <!-- Item 1 --> */}
                             {posts.map((post, index)=>(
-                                <div className={`${activePost === index ? "opacity-100" : "opacity-0"} duration-700 sm:w-full  ease-in-out flex flex-col justify-between`} data-carousel-item={index === 0 ? "active" : ""}>
+                            
+                                <div className={`${activePost === index ? "block" : "hidden"} duration-700 sm:w-full  ease-in-out flex flex-col justify-between`} data-carousel-item={index === 0 ? "active" : ""}>
                                     <p className="absolute block -translate-x-1/2 w-full lg:w-[75%] -translate-y-1/2 top-1/2 left-1/2 text-white">{post}</p>
                                     <div className=" w-full text-center absolute bottom-12">
                                         <a href={`https://x.com/compose/post?text=${encodeURIComponent(post)}`} target="_blank"

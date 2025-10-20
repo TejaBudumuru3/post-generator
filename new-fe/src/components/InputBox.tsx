@@ -11,54 +11,63 @@ const InputBox = () => {
     const [postSection, setPostSection] = useState(false)
     const [xPosts, setXPosts] = useState([])
     const [LinkedInPost, setLinkedinPost] = useState("")
+    const [buttonLoading, setButtonLoading] = useState(false)
 
     const handlePost = async()=>{
-
+        setButtonLoading(true)
         const URL = import.meta.env.VITE_BACKEND_URL;
-        if(!prompt){
-            console.log("prompt empty");
+        try{
+            if(!prompt){
+                console.log("prompt empty");
+                setButtonLoading(false)
+                return
+            }
+            if(activeTab === "X"){
+                const res = await axios.post(`${URL}/GenerateData`,{
+                    question: prompt,
+                    tone: activeTone
+                },{withCredentials: true})
+                
+                console.log(res)
+                if(res.data){
+                    const totalPosts = res.data.ans.split("~")
+                    setXPosts(totalPosts)
+                }
+
+            }else if (activeTab === "Linkedin"){
+                const res = await axios.post(`${URL}/v2/generate-post`,{
+                    question: prompt,
+                    tone: activeTone
+                },{withCredentials: true})
+                    
+                    console.log(res)
+                if(res.data){
+                    const totalPosts = res.data.post.fullPost
+                    setLinkedinPost(totalPosts)
+                    console.log((totalPosts));
+                    
+                }
+            }
+            else{
+                const res = await axios.post(`${URL}/GenerateImage`,{
+                    Prompt: prompt,
+                    // tone: activeTone
+                },{withCredentials: true})
+                    
+                    console.log(res)
+                if(res.data){
+                    const totalPosts = res.data
+                    // setLinkedinPost(totalPosts)
+                    console.log((totalPosts));
+                }
+            }
+            setPostSection(true)
+            setButtonLoading(false)
+        }catch(e: any){
+            setButtonLoading(false)
+            console.log(e);
             return
         }
-        if(activeTab === "X"){
-            const res = await axios.post(`${URL}/GenerateData`,{
-                question: prompt,
-                tone: activeTone
-            },{withCredentials: true})
-            
-            console.log(res)
-            if(res.data){
-                const totalPosts = res.data.ans.split("~")
-                setXPosts(totalPosts)
-            }
-
-        }else if (activeTab === "Linkedin"){
-            const res = await axios.post(`${URL}/v2/generate-post`,{
-                question: prompt,
-                tone: activeTone
-            },{withCredentials: true})
-                
-                console.log(res)
-            if(res.data){
-                const totalPosts = res.data.post.fullPost
-                setLinkedinPost(totalPosts)
-                console.log((totalPosts));
-                
-            }
-        }
-        else{
-            const res = await axios.post(`${URL}/GenerateImage`,{
-                Prompt: prompt,
-                // tone: activeTone
-            },{withCredentials: true})
-                
-                console.log(res)
-            if(res.data){
-                const totalPosts = res.data
-                // setLinkedinPost(totalPosts)
-                console.log((totalPosts));
-            }
-        }
-        setPostSection(true)
     }
     
 
@@ -111,7 +120,7 @@ const InputBox = () => {
                     ))
                 }
             </div>
-            <button type='submit' onClick={handlePost} className="border border-[#00e5ff]/20 h-10 text-white mt-5 w-full rounded-xl bg-[#00e5ff]/70">Generate</button>
+            <button type='submit' onClick={handlePost} className="border border-[#00e5ff]/20 h-10 text-white mt-5 w-full rounded-xl bg-[#00e5ff]/70">{buttonLoading ? "Generating..." : "Generate"}</button>
         </div>
 
         {/* posts output */}
