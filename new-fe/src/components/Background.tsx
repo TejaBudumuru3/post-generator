@@ -91,8 +91,17 @@ export const Background = ({enableMouseMove = false, display = "fixed"})=>{
             mountRef.current.removeChild(renderer.domElement);
         }
         scene.traverse(object => {
-            if (object.geometry) object.geometry.dispose();
-            if (object.material) object.material.dispose();
+            if ((object as THREE.Mesh).geometry) {
+                (object as THREE.Mesh).geometry.dispose();
+            }
+            if ((object as THREE.Mesh).material) {
+                const material = (object as THREE.Mesh).material;
+                if (Array.isArray(material)) {
+                    material.forEach(mat => mat.dispose());
+                } else {
+                    material.dispose();
+                }
+            }
         });
     };
   }, [enableMouseMove]);
