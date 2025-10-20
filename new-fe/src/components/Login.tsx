@@ -39,7 +39,7 @@ const Login = () => {
           console.log("The value is ", data)
           if (response.status === 200) {
             const newtoken = data.token;
-            await cookieStore.set("token ", newtoken)
+            await cookieStore.set("token", newtoken)
             toast.success("Login successful!");
             setTimeout(() => {
               window.location.href = "/home";
@@ -59,7 +59,7 @@ const Login = () => {
 
         } catch (e: any) {
           toast.error("Something went wrong, please try again later.");
-          console.log("server error", e.TypeError)
+          console.log("server error from Login Button ", e.TypeError)
         }
       }
     }
