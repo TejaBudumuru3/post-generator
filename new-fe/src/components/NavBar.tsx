@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 // import { BACKEND_URL } from "../config";
 import { BACKEND_URL } from "./config";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 function NavBar() {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false)
@@ -50,7 +51,7 @@ function NavBar() {
 
     return (
 
-        <nav className="sticky top-2 flex justify-between rounded-2xl p-4 items-center m-2 sm:m-4 mx-4 sm:mx-8 lg:mx-32 text-white z-1000 bg-blue bg-blend-saturation bg-transparent backdrop-blur">
+        <nav className="sticky top-2 flex justify-between rounded-2xl p-4 items-center sm:m-4 mx-4 sm:mx-8 lg:mx-32 text-white z-1000 bg-blue bg-blend-saturation bg-transparent backdrop-blur">
             <div className="flex justify-center font-extrabold ">
                 PostGen
             </div>
@@ -88,6 +89,7 @@ function NavBar() {
                                             onMouseDown={async () => {
                                                 try {
                                                     await cookieStore.delete("token");
+                                                    toast.success("Logout Succesfull")
                                                 } catch { }
                                                 setIsAuthenticated(false);
                                                 navigate("/Login");
