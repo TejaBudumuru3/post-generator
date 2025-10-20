@@ -20,9 +20,7 @@ function NavBar() {
                 if (tokenValue && tokenValue.value) {
                     try {
                         await axios.get(`${BACKEND_URL}/user/getDetails`, {
-                            headers: {
-                                Authorization: `Bearer ${tokenValue.value}`
-                            }
+                            "withCredentials":true
                         });
                         if (isMounted) {
                             setIsAuthenticated(true);
