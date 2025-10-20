@@ -62,11 +62,13 @@ const Posts = ({tone = "", img=null, post="", platform = "", posts = []}) => {
                     {(platform !== "X") &&
 
                     (
-                        platform.includes("Image") ? 
-                        (<button className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50" onClick={handleDownload}>Download image
-                        </button>)
-                        : (<button onClick={()=>{window.open(`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(encodeURIComponent(post))}`,'_blank')}}
-                        // {`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(encodeURIComponent(post))}`} target="_blank" 
+                        platform.includes("Image") && (
+                        <button className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50" onClick={handleDownload}>Download image
+                        </button>),
+                        (platform === "Linkedin") &&
+                         (<button onClick={()=>{window.open(`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(encodeURIComponent(post))}`,'_blank')}}
+                            style={{ display: 'inline-block !important', visibility: 'visible' }}
+                         // {`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(encodeURIComponent(post))}`} target="_blank" 
                         className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50">Post on Linkedin</button>)
                     )  
                     }
