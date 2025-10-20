@@ -194,7 +194,7 @@ Linkedin.post("/generate-post", usermiddleware, async (req, res) => {
             2. 2-3 paragraphs of valuable content
             3. Call-to-action for engagement
             4. 3-5 relevant hashtags
-            - Keep under 2,000 characters
+            - Keep between 400 to 600 characters
             - Make it engaging and shareable
             - Include personal insights or experiences if relevant
             - Use bullet points or emojis sparingly but effectively

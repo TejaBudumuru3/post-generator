@@ -204,7 +204,7 @@ UserRouter.post("/GenerateData", usermiddleware, async function (req, res) {
             role: "user",
             content: `generate a 5 tweets without explaination on ${question} with tone ${
               tone || "neutral"
-            } for every tweet should separated by a special character "~" dont use that special character in tweets that charater is used to seperate th tweets only each tweet contains maximium characters including hashtags with '#' as mandatory and emojis(if needed) the tweet shouldn't exceeds the X tweet limit (mandatory).`,
+            } for every tweet should separated by a special character "~" dont use that special character in tweets that charater is used to seperate the tweets only each tweet contains maximium 280 characters(for 5 tweets 5*280 max limit + 4 ~) including hashtags with '#' as mandatory and emojis(if needed) and the each tweet shouldn't exceeds the X tweet limit (mandatory) and it upto the limited characters length so it shouldn't be small or too long tweets.`,
           },
         ],
         temperature: 0.7,
@@ -301,33 +301,94 @@ UserRouter.post("/GenerateImage", usermiddleware,  async (req, res) => {
     const GEMINI_API_KEY = process.env.GEMINI_API;
     const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
     
-    const { Prompt } = req.body;
+    const { Prompt, tone } = req.body;
 
-    if (!Prompt) {
+    if (!Prompt | !tone) {
       return res.status(400).json({ error: "Prompt is required" });
     }
 
-    try {
+    
+      const systemPrompt = `You are an expert social media content creator and graphic designer specializing in creating engaging visual posts for social media platforms.
       // Enhanced system prompt for better image generation
-      const systemPrompt = `You are an expert visual content creator. Your task is to generate a professional, high-quality image based on the given topic or prompt.
 
-Guidelines:
-- Analyze the prompt carefully to understand the core concept, emotion, and context
-- Create visually engaging compositions with clear focal points
-- Use appropriate color schemes that match the topic's mood and theme
-- Include relevant visual elements, icons, or illustrations (NOT just plain text)
-- Ensure the image is social media ready and attention-grabbing
-- Make it professional yet creative
-- If the topic is abstract, use metaphorical or symbolic imagery
-- Maintain visual clarity and avoid clutter
+Your task is to generate image-based posts that combine relevant imagery with compelling text overlays based on the user's topic and desired tone.
 
-Generate an image that captures the essence of: "${Prompt}"`;
+INPUT:
+- Topic/Idea: ${Prompt}
+- Tone: ${tone} (can be: Casual, Professional, Sarcastic, Aggressive, Enthusiastic)
 
+OUTPUT REQUIREMENTS:
+Generate a detailed image description that includes:
+
+1. VISUAL ELEMENTS:
+   - Main subject/theme of the image
+   - Background style (solid color, gradient, photo, illustration, abstract)
+   - Color palette that matches the tone
+   - Visual style (minimalist, bold, corporate, playful, edgy, vibrant)
+   - Any icons, graphics, or decorative elements
+
+2. TEXT CONTENT:
+   - Main headline (attention-grabbing, max 8-10 words)
+   - Supporting text (1 line, contextual information)
+   - Call-to-action or closing statement (if applicable)
+   - Text placement (top, center, bottom, overlay)
+   - Font style recommendation (bold, elegant, handwritten, modern)
+
+3. LAYOUT:
+   - Text positioning and hierarchy
+   - Balance between image and text
+   - Whitespace usage
+   - Overall composition
+
+TONE GUIDELINES:
+- Casual: Friendly colors (pastels, warm tones), relatable imagery, conversational text, emojis acceptable
+- Professional: Clean design, corporate colors (blues, grays, whites), formal language, minimalist approach
+- Sarcastic: Bold contrasts, ironic imagery, witty text, unconventional color combos
+- Aggressive: High contrast (reds, blacks), powerful imagery, impactful text, bold typography
+- Enthusiastic: Vibrant colors (bright yellows, oranges, greens), energetic imagery, exclamation marks, dynamic composition
+
+FORMAT YOUR RESPONSE AS:
+{
+  "imageDescription": "Detailed description of the visual elements and overall aesthetic",
+  "mainHeadline": "Catchy headline text",
+  "supportingText": "Additional context or information ( **neat text for visual crystal clear text content**)",
+  "colorPalette": ["#hexcode1", "#hexcode2", "#hexcode3"],
+  "textPlacement": "Description of where text should be positioned",
+  "visualStyle": "Overall style description",
+  "designNotes": "Additional instructions for the image generator"
+}
+
+Make sure the image concept is:
+- Highly shareable and eye-catching
+- Appropriate for the platform (Instagram, LinkedIn, etc.)
+- On-brand with the specified tone
+- Clear and readable even at thumbnail size
+- Culturally appropriate and inclusive
+- ** Text should be crystal clear no overlapping over each alphabets and all and use English Language only woth clean and clear alphabets presentation**
+'''
+
+**Alternative simpler prompt for direct image generation:**
+'''
+Create a social media image post about: ${Prompt}
+
+Tone: ${tone}
+
+Design requirements:
+- Include eye-catching visuals related to the topic
+- Add text overlay with a compelling headline and brief supporting text
+- Use colors and style that match the ${tone} tone
+- Ensure text is readable and well-positioned
+- Make it suitable for social media platforms
+- Keep the design clean, professional, and shareable
+
+The image should grab attention while effectively communicating the message in a ${tone} manner.`
+    try {
       // Generate image with Gemini
       const imageResponse = await ai.models.generateContent({
         model: "gemini-2.0-flash-preview-image-generation",
         contents: systemPrompt,
-        config: { responseModalities: [Modality.TEXT, Modality.IMAGE] },
+        config: { responseModalities: [Modality.TEXT, Modality.IMAGE], temperature: 0.1},
+        
       });
 
       // Extract image from response
@@ -341,6 +402,7 @@ Generate an image that captures the essence of: "${Prompt}"`;
           imageMimeType = part.inlineData.mimeType || "image/png";
           break;
         }
+        // console.log(part.inlineData.data)
       }
 
       if (!imageBase64) {
@@ -351,15 +413,17 @@ Generate an image that captures the essence of: "${Prompt}"`;
       }
 
       // Convert base64 to buffer and send as image
-      const imageBuffer = Buffer.from(imageBase64, 'base64');
+      // const imageBuffer = Buffer.from(imageBase64, 'base64');
       
       res.set({
         'Content-Type': imageMimeType,
-        'Content-Length': imageBuffer.length,
+        // 'Content-Length': imageBase64.length,
         'Content-Disposition': 'inline; filename="generated-image.png"'
       });
       
-      return res.status(200).send(imageBuffer);
+      return res.status(200).json({
+        image: `data:${imageMimeType};base64,${imageBase64}`,
+      });
       
     } catch (err) {
       console.error("Image generation error:", err);
@@ -369,6 +433,63 @@ Generate an image that captures the essence of: "${Prompt}"`;
         details: err.message,
       });
     }
+
+    // Assume 'systemPrompt' is the text prompt from the user, e.g., "A futuristic cityscape at night"
+// const userPrompt = systemPrompt; 
+
+// try {
+//     // 1. CORRECTED: Using the simple and free 'gemini-2.5-flash-image-preview' model.
+//    // API key will be injected by the environment
+//     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${GEMINI_API_KEY}`;
+
+//     // 2. SIMPLIFIED: The payload is much simpler for this model.
+//     const payload = {
+//       contents: [{
+//           parts: [{ "text": userPrompt }]
+//       }],
+//       generationConfig: {
+//           // This tells the model you want an image back.
+//           responseModalities: ['IMAGE'] 
+//       },
+//     };
+
+//     const imageResponse = await fetch(apiUrl, {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(payload)
+//     });
+    
+//     if (!imageResponse.ok) {
+//         throw new Error(`API call failed with status: ${imageResponse.status}`);
+//     }
+
+//     const result = await imageResponse.json();
+    
+//     // 3. CORRECTED: Find the part in the response that contains the image data.
+//     const imagePart = result.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
+//     const imageBase64 = imagePart?.inlineData?.data;
+//     const imageMimeType = "image/png";
+
+//     if (!imageBase64) {
+//       return res.status(500).json({
+//         success: false,
+//         error: "No image was generated by the model.",
+//       });
+//     }
+
+//     // 4. Send the final JSON response with the data URL.
+//     return res.status(200).json({
+//       success: true,
+//       image: `data:${imageMimeType};base64,${imageBase64}`,
+//     });
+
+// } catch (error) {
+//     console.error("Error generating image:", error);
+//     return res.status(500).json({
+//         success: false,
+//         error: "An internal server error occurred.",
+//     });
+// }
   } catch (error) {
     console.error("Request processing error:", error);
     return res.status(500).json({

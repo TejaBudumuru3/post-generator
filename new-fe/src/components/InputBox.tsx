@@ -14,6 +14,7 @@ const InputBox = () => {
     const [xPosts, setXPosts] = useState([])
     const [LinkedInPost, setLinkedinPost] = useState("")
     const [buttonLoading, setButtonLoading] = useState(false)
+    const [image, setImage] = useState("")
 
     const handlePost = async()=>{
         setButtonLoading(true)
@@ -56,16 +57,17 @@ const InputBox = () => {
             else{
                 const res = await axios.post(`${URL}/GenerateImage`,{
                     Prompt: prompt,
-                    // tone: activeTone
+                    tone: activeTone
                 },{withCredentials: true})
                     
                     console.log(res)
                 if(res.data){
-                    const totalPosts = res.data
+                    const totalPosts = res.data.image
                     // setLinkedinPost(totalPosts)
                     setTone(activeTone)
                     setTab(activeTab)
                     console.log((totalPosts));
+                    setImage(totalPosts)
                 }
             }
             setPostSection(true)
@@ -127,7 +129,7 @@ const InputBox = () => {
                     ))
                 }
             </div>
-            <button type='submit' onClick={handlePost} className="border border-[#00e5ff]/20 h-10 text-white mt-5 w-full rounded-xl bg-[#00e5ff]/70">{buttonLoading ? "Generating..." : "Generate"}</button>
+            <button type='submit' onClick={handlePost} className={`border border-[#00e5ff]/20 h-10 text-white mt-5 w-full hover:bg-[#00e5ff]/30  ${buttonLoading ? "bg-[#00e5ff]/30 cursor-not-allowed" : "bg-[#00e5ff]/70 cursor-pointer"} rounded-xl `} disabled={buttonLoading}>{buttonLoading ? "Generating..." : "Generate"}</button>
         </div>
 
         {/* posts output */}
@@ -139,7 +141,7 @@ const InputBox = () => {
                 <hr className="w-[100%] mt-5 text-center"></hr>
             </div>
             <div className="flex gap-2 flex-col">
-              <Posts platform={tab} posts={xPosts} post={LinkedInPost} tone={tone}/>
+              <Posts platform={tab} posts={xPosts} post={LinkedInPost} tone={tone} img={image}/>
 
             </div>
         </div>
