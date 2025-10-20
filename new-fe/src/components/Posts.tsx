@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-const Posts = ({tone = "casual", img=null, post="", platform = "image based", posts = ["Labore, perspiciatis ea! Optio nesciunt, ratione quia dolore, sequi excepturi vel, quam officiis aspernatur iure cupiditate ullam fugiat! Quasi voluptatem iusto minima", "Labore, perspiciatis ea! Optio nesciunt, ratione quia dolore, sequi excepturi vel, quam officiis aspernatur iure cupiditate ullam fugiat! Quasi voluptatem iusto minima", "Labore, perspiciatis ea! Optio nesciunt, ratione quia dolore, sequi excepturi vel, quam officiis aspernatur iure cupiditate ullam fugiat! Quasi voluptatem iusto minima","4","5"]}) => {
+const Posts = ({tone = "", img=null, post="", platform = "", posts = []}) => {
     const [activePost, setActivePost] = useState(0)
     const minDistance = 50
     const [touchStart, setTouchStart] = useState<number | null>(null)
@@ -62,7 +62,7 @@ const Posts = ({tone = "casual", img=null, post="", platform = "image based", po
                     {(platform !== "X") &&
 
                     (
-                        platform.includes("image") ? 
+                        platform.includes("Image") ? 
                         (<button className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50" onClick={handleDownload}>Download image</button>)
                         : (<a href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(encodeURIComponent(post))}`} target="_blank" className="border border-[#00e5ff]/20 text-white px-6 py-2 cursor-pointer rounded-full bg-[#00e5ff]/70 hover:bg-[#00e5ff]/50">Post on Linkedin</a>)
                     )  

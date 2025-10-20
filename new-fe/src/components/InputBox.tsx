@@ -6,6 +6,8 @@ const InputBox = () => {
     const options = ["Casual", "Professional", "Sarcastic", "Aggressive", "Enthusiastic"]
     const [activeTone, setActiveTone] = useState("Casual")
     const [activeTab, setActiveTab] = useState("X");
+    const [tab, setTab] = useState("")
+    const [tone, setTone]= useState("")
     const [prompt, setPrompt] = useState("")
     const tabs = ["X", "Linkedin", "Image base"];
     const [postSection, setPostSection] = useState(false)
@@ -32,6 +34,8 @@ const InputBox = () => {
                 if(res.data){
                     const totalPosts = res.data.ans.split("~")
                     setXPosts(totalPosts)
+                    setTab(activeTab)
+                    setTone(activeTone)
                 }
 
             }else if (activeTab === "Linkedin"){
@@ -45,7 +49,8 @@ const InputBox = () => {
                     const totalPosts = res.data.post.fullPost
                     setLinkedinPost(totalPosts)
                     console.log((totalPosts));
-                    
+                    setTab(activeTab)
+                    setTone(activeTone)
                 }
             }
             else{
@@ -58,6 +63,8 @@ const InputBox = () => {
                 if(res.data){
                     const totalPosts = res.data
                     // setLinkedinPost(totalPosts)
+                    setTone(activeTone)
+                    setTab(activeTab)
                     console.log((totalPosts));
                 }
             }
@@ -132,7 +139,7 @@ const InputBox = () => {
                 <hr className="w-[100%] mt-5 text-center"></hr>
             </div>
             <div className="flex gap-2 flex-col">
-              <Posts platform={activeTab} posts={xPosts} post={LinkedInPost} tone={activeTone}/>
+              <Posts platform={tab} posts={xPosts} post={LinkedInPost} tone={tone}/>
 
             </div>
         </div>
