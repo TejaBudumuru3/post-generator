@@ -36,7 +36,7 @@ function NavBar() {
                     if (isMounted) setIsAuthenticated(false);
                 }
             } catch (err) {
-                console.error(err);
+                console.error(`server error from Navbar ${err}`);
                 if (isMounted) setIsAuthenticated(false);
             } finally {
                 if (isMounted) setLoading(false);

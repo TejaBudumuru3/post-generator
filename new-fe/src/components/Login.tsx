@@ -59,7 +59,7 @@ const Login = () => {
 
         } catch (e: any) {
           toast.error("Something went wrong, please try again later.");
-          console.log("server error", e.TypeError)
+          console.log("server error", e)
         }
       }
     }
