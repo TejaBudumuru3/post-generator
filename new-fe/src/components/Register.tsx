@@ -1,5 +1,5 @@
 import React from 'react';
-import Toast from './Toast';
+// import Toast from './Toast';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -14,38 +14,38 @@ const Register = ({onClose}:any) => {
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [fname,setFname] = React.useState("");
   const [lname,setLname] = React.useState("");
-  const [toast, setToast] = React.useState(false);
-  const [toastMsg, setToastMsg] = React.useState('');
-  const [toastState, setToastState] = React.useState('');
+  // const [toast, setToast] = React.useState(false);
+  // const [toastMsg, setToastMsg] = React.useState('');
+  // const [toastState, setToastState] = React.useState('');
 
   const registerEvent = async(e:any) => {
     e.preventDefault(); 
     if(!email || !password || !name || !confirmPassword){
-      setToastMsg("Fill the details");
-          setToastState("primary");
-          setToast(true);
-          setTimeout(() => {
-            setToast(false);
-          }, 3000);
+      // setToastMsg("Fill the details");
+      //     setToastState("primary");
+      //     setToast(true);
+      //     setTimeout(() => {
+      //       setToast(false);
+      //     }, 3000);
           return
     }
     setFname(name.split(" ")[0])
     setLname(name.split(" ")[1])
     if(password.length<8){
-      setToastMsg("Password must contains 8 characters");
-          setToastState("danger");
-          setToast(true);
-          setTimeout(() => {
-            setToast(false);
-          }, 3000);
+      // setToastMsg("Password must contains 8 characters");
+      //     setToastState("danger");
+      //     setToast(true);
+      //     setTimeout(() => {
+      //       setToast(false);
+      //     }, 3000);
     }
     else if(!(email.match(/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/))){
-      setToastMsg("Enter valid email id");
-          setToastState("danger");
-          setToast(true);
-          setTimeout(() => {
-            setToast(false);
-          }, 3000);
+      // setToastMsg("Enter valid email id");
+      //     setToastState("danger");
+      //     setToast(true);
+      //     setTimeout(() => {
+      //       setToast(false);
+      //     }, 3000);
     }
     else{
       if((password === confirmPassword)){
@@ -66,44 +66,46 @@ const Register = ({onClose}:any) => {
 
           const data = await response.json();
           if(response.ok){
-            setToastMsg(data.message || "Registration successful! Please log in.");
-            setToastState("success");
-            setToast(true);
+            // setToastMsg(data.message || "Registration successful! Please log in.");
+            // setToastState("success");
+            // setToast(true);
             setTimeout(() => {
               onClose(); 
-              setToast(false);
+              // setToast(false);
               Navigate("/login");
             }, 3000);
             
           }
           else {
-            setToastMsg(data.message);
-            setToastState("danger");
-            setToast(true);
-            setTimeout(() => {
-              setToast(false);
-            }, 2000);
+            console.log(data.message);
+            
+            // setToastMsg(data.message);
+            // setToastState("danger");
+            // setToast(true);
+            // setTimeout(() => {
+            //   setToast(false);
+            // }, 2000);
             return;
           }
         } catch (error) {
           console.log("Error during registration:", error);
-          setToastMsg("An error occurred during registration. Please try again.");
-          setToastState("danger");
-          setToast(true);
+          // setToastMsg("An error occurred during registration. Please try again.");
+          // setToastState("danger");
+          // setToast(true);
           setTimeout(() => {
             onClose();
-            setToast(false);
+            // setToast(false);
           }, 2000);
         }
 
       }
       else{
-        setToastMsg("Passwords do not match");
-        setToastState("danger");
-        setToast(true);
-        setTimeout(() => {
-          setToast(false);
-        }, 2000);
+        // setToastMsg("Passwords do not match");
+        // setToastState("danger");
+        // setToast(true);
+        // setTimeout(() => {
+        //   setToast(false);
+        // }, 2000);
       }
     }
   };
@@ -117,12 +119,12 @@ const Register = ({onClose}:any) => {
 
         window.location.href = URL
       } catch (error) {
-        setToast(true);
-        setToastMsg("Something went wrong, please try again later.");
-        setToastState("danger");
+        // setToast(true);
+        // setToastMsg("Something went wrong, please try again later.");
+        // setToastState("danger");
         console.log("server error",e)
         setTimeout(() => {
-          setToast(false);
+          // setToast(false);
         }, 2000);
       }
     }
@@ -163,7 +165,7 @@ const Register = ({onClose}:any) => {
 
             </div>
           </div>
-      {toast && <Toast state={toastState} message={toastMsg} />}
+      {/* {toast && <Toast state={toastState} message={toastMsg} />} */}
     </>
   );
 };

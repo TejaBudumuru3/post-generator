@@ -1,34 +1,34 @@
 import React from 'react'
-import Toast from './Toast';
+// import Toast from './Toast';
 import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const URL = import.meta.env.VITE_BACKEND_URL;
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [toast, setToast] = React.useState(false);
-    const [toastMsg, setToastMsg] = React.useState('');
-    const [toastState, setToastState] = React.useState('');
+    // const [toast, setToast] = React.useState(false);
+    // const [toastMsg, setToastMsg] = React.useState('');
+    // const [toastState, setToastState] = React.useState('');
     const Navigate = useNavigate();
 
     const loginEvent = async(e:any)=> {
       e.preventDefault();
       if(email.trim() === "" || password.trim() === ""){
-        setToastMsg("Please fill in all fields.");
-        setToastState("primary");
-        setToast(true);
-        setTimeout(() => {
-          setToast(false);
-        }, 2000);
+        // setToastMsg("Please fill in all fields.");
+        // setToastState("primary");
+        // setToast(true);
+        // setTimeout(() => {
+        //   setToast(false);
+        // }, 2000);
         return;
       }
       else{
         if(!(email.match(/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/))){
-          setToastMsg("Enter valid email id");
-          setToastState("danger");
-          setToast(true);
-          setTimeout(() => {
-            setToast(false);
-          }, 3000);
+          // setToastMsg("Enter valid email id");
+          // setToastState("danger");
+          // setToast(true);
+          // setTimeout(() => {
+          //   setToast(false);
+          // }, 3000);
         }
         else{
               try
@@ -49,12 +49,12 @@ const Login = () => {
               const data = await response.json();
 
               if(response.status === 200){
-                setToastMsg("Login successful!");
-                setToastState("success");
-                setToast(true);
-                setTimeout(() => {
-                  setToast(false);
-                }, 3000);
+                // setToastMsg("Login successful!");
+                // setToastState("success");
+                // setToast(true);
+                // setTimeout(() => {
+                //   setToast(false);
+                // }, 3000);
 
                 setTimeout(()=>{
                   // onClose();
@@ -65,34 +65,34 @@ const Login = () => {
               }  
               // invalid password
               if(response.status === 401){
-                  setToast(true);
-                  setToastMsg(data.message);
-                  setToastState("danger");
-                  setTimeout(() => {
-                  setToast(false);
-                  }, 3000);
+                  // setToast(true);
+                  // setToastMsg(data.message);
+                  // setToastState("danger");
+                  // setTimeout(() => {
+                  // setToast(false);
+                  // }, 3000);
                   return;
                 }
               // invalid email  
               if(response.status === 404){
                 console.log("Login failed:", data.message);
-                setToast(true);
-                setToastMsg(data.message);
-                setToastState("danger");
-                setTimeout(() => {
-                  setToast(false);
-                }, 3000);
+                // setToast(true);
+                // setToastMsg(data.message);
+                // setToastState("danger");
+                // setTimeout(() => {
+                //   setToast(false);
+                // }, 3000);
                 return;
               }
        
               }catch(e :any){
-                setToast(true);
-                setToastMsg("Something went wrong, please try again later.");
-                setToastState("danger");
+                // setToast(true);
+                // setToastMsg("Something went wrong, please try again later.");
+                // setToastState("danger");
                 console.log("server error",e.TypeError)
-                setTimeout(() => {
-                  setToast(false);
-                }, 2000);
+                // setTimeout(() => {
+                //   setToast(false);
+                // }, 2000);
 
               }
             }
@@ -109,13 +109,13 @@ const Login = () => {
 
         window.location.href = URL
       } catch (error) {
-        setToast(true);
-        setToastMsg("Something went wrong, please try again later.");
-        setToastState("danger");
+        // setToast(true);
+        // setToastMsg("Something went wrong, please try again later.");
+        // setToastState("danger");
         console.log("server error",e)
-        setTimeout(() => {
-          setToast(false);
-        }, 2000);
+        // setTimeout(() => {
+        //   setToast(false);
+        // }, 2000);
       }
     }
     
@@ -152,7 +152,7 @@ const Login = () => {
           </div>
           
       </div>
-      {toast && <Toast message={toastMsg} state={toastState} />}
+      {/* {toast && <Toast message={toastMsg} state={toastState} />} */}
     </>
   )
 }
