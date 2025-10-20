@@ -54,17 +54,11 @@ function NavBar() {
             <div className="flex justify-center font-extrabold ">
                 PostGen
             </div>
-            <div className="">
-                <ul className="flex flex-col sm:flex-row gap-4 sm:gap-10 font-bold ">
-                    <li>
-                        Home
-                    </li>
-                    <li>
-                        Features
-                    </li>
-                    <li>
-                        About Us
-                    </li>
+            <div className="hidden lg:block">
+                <ul className="flex gap-10 font-bold">
+                    <li>Home</li>
+                    <li>Features</li>
+                    <li>About Us</li>
                 </ul>
             </div>
             <div>
