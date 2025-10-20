@@ -91,11 +91,11 @@ export const Background = ({enableMouseMove = false, display = "fixed"})=>{
             mountRef.current.removeChild(renderer.domElement);
         }
         scene.traverse(object => {
-            if ((object as THREE.Mesh).geometry) {
-                (object as THREE.Mesh).geometry.dispose();
+            if ((object as THREE.Mesh | THREE.Points).geometry) {
+                ((object as THREE.Mesh | THREE.Points).geometry as THREE.BufferGeometry).dispose();
             }
-            if ((object as THREE.Mesh).material) {
-                const material = (object as THREE.Mesh).material;
+            if ((object as THREE.Mesh | THREE.Points).material) {
+                const material = (object as THREE.Mesh | THREE.Points).material;
                 if (Array.isArray(material)) {
                     material.forEach(mat => mat.dispose());
                 } else {
