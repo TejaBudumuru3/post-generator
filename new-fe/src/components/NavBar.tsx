@@ -55,9 +55,9 @@ function NavBar() {
 
     return (
 
-        <nav className="sticky cursor-default top-2 flex justify-between rounded-2xl p-4 items-center sm:p-4 mx-4 sm:mx-8 lg:mx-32 text-white z-1000 bg-blue bg-blend-saturation bg-transparent backdrop-blur">
-            <div className="flex justify-center font-extrabold ">
-                PostGen
+        <nav className="sticky shadow-[0_0_5px_1px_white] cursor-default top-2 flex justify-between rounded-2xl p-4 items-center w-[80%] place-self-center text-white z-1000 bg-blue bg-blend-saturation bg-transparent backdrop-blur">
+            <div className="border rounded-full shadow shadow-[0_0_5px_1px_white]">
+                <img src="/AppLogo.png" className="size-15 rounded-full"/>
             </div>
             <div className="hidden lg:block">
                 <ul className="flex gap-10 font-bold">
@@ -66,13 +66,13 @@ function NavBar() {
                     <li>About Us</li>
                 </ul>
             </div>
-            <div className="cursor-pointer">
+            <div className="cursor-pointer mr-6">
                 {loading ? (
                     <span className="inline-block px-4 py-2 rounded-2xl opacity-70 animate-pulse">Loading...</span>
                 ) : !isAuthenticated ? (
                     <button onClick={() => {
                         navigate("/Login")
-                    }} className="hover:text-white cursor-pointer border border-b-indigo-200 p-2 rounded-2xl font-bold">
+                    }} className="hover:text-black hover:scale-110 hover:transition ease-in-out text-white bg-gradient-to-r from-[#15e0ff] from-40% to-[#a259f7] to-100% cursor-pointer p-2 rounded-2xl font-bold">
                         Get started
                     </button>
                 ) : (

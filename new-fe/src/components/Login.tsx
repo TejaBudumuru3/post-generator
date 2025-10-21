@@ -58,8 +58,8 @@ const Login = () => {
 
           console.log("The value is ", data)
           if (response.status === 200) {
-            const newtoken = data.token;
-            await cookieStore.set("token", newtoken)
+            // const newtoken = data.token;
+            // await cookieStore.set("token", newtoken)
             toast.success(data.message);
             setButtonLoading(false)
             setTimeout(() => {
@@ -96,7 +96,11 @@ const Login = () => {
     try {
       const URL = `${import.meta.env.VITE_LINKEDIN_URL}auth/linkedin`
       console.log(URL)
-      window.location.href = URL
+      await fetch(URL,{
+        method:"GET",
+        credentials:"include"
+      })
+      // window.location.href = URL
     } catch (error) {
       toast.error("Something went wrong, please try again later.");
       console.log("server error", error)
