@@ -3,12 +3,13 @@ import { useEffect, useState } from "react"
 // import { BACKEND_URL } from "../config";
 import { BACKEND_URL } from "./config";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
+import ProfileWrapper from "./ProfileWrapper";
 function NavBar() {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false)
     const navigate = useNavigate();
-
+    const [user, setUser] = useState({})
     useEffect(() => {
         let isMounted = true;
 
@@ -19,9 +20,14 @@ function NavBar() {
 
                 if (tokenValue && tokenValue.value) {
                     try {
-                        await axios.get(`${BACKEND_URL}/user/getDetails`, {
+                        const res = await axios.get(`${BACKEND_URL}/user/getDetails`, {
                             "withCredentials":true
                         });
+                        const data = await res.data.data
+                        console.log("userdata from nav:",data);
+                        setUser(data)
+                        await cookieStore.set("name",data.name)
+                        await cookieStore.set("email",data.email)
                         if (isMounted) {
                             setIsAuthenticated(true);
                             console.log({ message: "Data fetched successfully" });
@@ -49,7 +55,7 @@ function NavBar() {
 
     return (
 
-        <nav className="sticky top-2 flex justify-between rounded-2xl p-4 items-center sm:p-4 mx-4 sm:mx-8 lg:mx-32 text-white z-1000 bg-blue bg-blend-saturation bg-transparent backdrop-blur">
+        <nav className="sticky cursor-default top-2 flex justify-between rounded-2xl p-4 items-center sm:p-4 mx-4 sm:mx-8 lg:mx-32 text-white z-1000 bg-blue bg-blend-saturation bg-transparent backdrop-blur">
             <div className="flex justify-center font-extrabold ">
                 PostGen
             </div>
@@ -60,7 +66,7 @@ function NavBar() {
                     <li>About Us</li>
                 </ul>
             </div>
-            <div>
+            <div className="cursor-pointer">
                 {loading ? (
                     <span className="inline-block px-4 py-2 rounded-2xl opacity-70 animate-pulse">Loading...</span>
                 ) : !isAuthenticated ? (
@@ -70,36 +76,37 @@ function NavBar() {
                         Get started
                     </button>
                 ) : (
-                    <div className="border border-amber-50 px-4 rounded-xl">
-                        <div className="relative group inline-block">
-                            <button
-                                type="button"
-                                className="px-3 py-2 rounded-lg hover:bg-white/10"
-                            >
-                                Profile
-                            </button>
+                    // <div className="border border-amber-50 px-4 rounded-xl">
+                    //     <div className="relative group inline-block">
+                    //         <button
+                    //             type="button"
+                    //             className="px-3 py-2 rounded-lg hover:bg-white/10"
+                    //         >
+                    //             Profile
+                    //         </button>
 
-                            <div className="absolute right-0 top-full w-44 rounded-xl border border-white/20 bg-gray-900/90 backdrop-blur shadow-lg hidden group-hover:block group-focus-within:block z-50">
-                                <ul className="py-2 text-sm">
-                                    <li>
-                                        <button
-                                            className="w-full text-left px-4 py-2 hover:bg-white/10 text-red-300"
-                                            onMouseDown={async () => {
-                                                try {
-                                                    await cookieStore.delete("token");
-                                                    toast.success("Logout Succesfull")
-                                                } catch { }
-                                                setIsAuthenticated(false);
-                                                navigate("/Login");
-                                            }}
-                                        >
-                                            Logout
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    //         <div className="absolute right-0 top-full w-44 rounded-xl border border-white/20 bg-gray-900/90 backdrop-blur shadow-lg hidden group-hover:block group-focus-within:block z-50">
+                    //             <ul className="py-2 text-sm">
+                    //                 <li>
+                    //                     <button
+                    //                         className="w-full text-left px-4 py-2 hover:bg-white/10 text-red-300"
+                    //                         onMouseDown={async () => {
+                    //                             try {
+                    //                                 await cookieStore.delete("token");
+                    //                                 toast.success("Logout Succesfull")
+                    //                             } catch { }
+                    //                             setIsAuthenticated(false);
+                    //                             navigate("/Login");
+                    //                         }}
+                    //                     >
+                    //                         Logout
+                    //                     </button>
+                    //                 </li>
+                    //             </ul>
+                    //         </div>
+                    //     </div>
+                    // </div>
+                    <ProfileWrapper user={user}/>
                 )}
             </div>
         </nav>
