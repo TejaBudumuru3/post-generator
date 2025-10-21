@@ -15,7 +15,7 @@ const Home = () => {
     <NavBar/>
     <div className="pt-10 flex flex-col ">
       <div className="flex text-[#A9A9A9] text-lg lg:text-5xl justify-center font-bold cursor-default">
-        <h1>Hello, {name?.value}</h1>
+        <h1>{name ? `Hello, ${name?.value}` : ""}</h1>
       </div>
       {/* Main container with a new gold-colored shadow */}
       <div className="flex flex-col items-center mt-5 place-self-center sm:w-3/5 w-[90%] rounded-2xl 

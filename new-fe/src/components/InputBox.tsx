@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Posts from "./Posts";
 import axios from "axios";
+import toast, {Toaster} from "react-hot-toast";
 
 const InputBox = () => {
     const options = ["Casual", "Professional", "Sarcastic", "Aggressive", "Enthusiastic"]
@@ -22,6 +23,7 @@ const InputBox = () => {
         try{
             if(!prompt){
                 console.log("prompt empty");
+                toast.error("Provide your Idea/Topic")
                 setButtonLoading(false)
                 return
             }
@@ -75,6 +77,7 @@ const InputBox = () => {
         }catch(e: any){
             setButtonLoading(false)
             console.log(e);
+            toast.error("something went wrong, please try again later")
             return
         }
     }
@@ -93,6 +96,7 @@ const InputBox = () => {
                 color:#00e5ff;
             }
         `}</style>
+        <Toaster position="top-right"/>
         <div className=" w-full h-auto p-6">
             <div className="bg-white/10 lg:rounded-full rounded-3xl gap-2 lg:h-12 p-1 w-full grid grid-cols-1 font-bold md:grid-cols-3">
             {tabs.map((tab) => (
