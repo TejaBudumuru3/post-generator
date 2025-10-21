@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import Posts from "./Posts";
 import axios from "axios";
 import toast, {Toaster} from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const InputBox = () => {
     const options = ["Casual", "Professional", "Sarcastic", "Aggressive", "Enthusiastic"]
@@ -18,24 +18,23 @@ const InputBox = () => {
     const [buttonLoading, setButtonLoading] = useState(false)
     const [image, setImage] = useState("")
     const [token, setToken] = useState<CookieListItem | null>(null)
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
-    useEffect(()=>{
-        async function getToken(){
-            setToken(await cookieStore.get("token"))
-            if(!token){
-                toast.error("Unauthorized access please login")
-                setTimeout(()=>{
-                    navigate("/login")
-                },1000)
-            }
-        }
-        getToken()
-    },[token])
+
+    async function getToken(){
+        setToken(await cookieStore.get("token"))
+    }
+    getToken()
+   
     const handlePost = async()=>{
         setButtonLoading(true)
         const URL = import.meta.env.VITE_BACKEND_URL;
         try{
+            if(!token){
+                toast.error("Unauthorized access, please login")
+                setButtonLoading(false)
+                return
+            }
             if(!prompt){
                 console.log("prompt empty");
                 toast.error("Provide your Idea/Topic")
@@ -111,7 +110,7 @@ const InputBox = () => {
                 color:#00e5ff;
             }
         `}</style>
-        <Toaster position="top-right"/>
+            <Toaster position="top-right"/>
         <div className=" w-full h-auto p-6">
             <div className="bg-white/10 lg:rounded-full rounded-3xl gap-2 lg:h-12 p-1 w-full grid grid-cols-1 font-bold md:grid-cols-3">
             {tabs.map((tab) => (
