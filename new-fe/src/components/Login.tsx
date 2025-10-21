@@ -96,11 +96,7 @@ const Login = () => {
     try {
       const URL = `${import.meta.env.VITE_LINKEDIN_URL}auth/linkedin`
       console.log(URL)
-      await fetch(URL,{
-        method:"GET",
-        credentials:"include"
-      })
-      // window.location.href = URL
+      window.location.href = URL
     } catch (error) {
       toast.error("Something went wrong, please try again later.");
       console.log("server error", error)
