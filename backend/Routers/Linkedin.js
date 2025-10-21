@@ -98,11 +98,11 @@ Linkedin.get("/auth/linkedin/callback", async (req, res) => {
 
     // Optionally redirect or send response
     console.log(accessToken);
-    return res.redirect(process.env.FRONTEND_URL); // Redirect to your frontend application
-    // return res.status(200).json({
-    //   message: 'Login success',
-    //   token: accessToken,
-    // });
+    // return res.redirect(`${process.env.FRONTEND_URL}/auth/callback?token=${token}`); // Redirect to your frontend application
+    return res.status(200).json({
+      message: 'Login success',
+      token: accessToken,
+    });
   } catch (error) {
     const msg = error.response?.data || error.message;
     console.error("❌ Error during token exchange:", msg);
