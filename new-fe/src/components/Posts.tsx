@@ -68,7 +68,7 @@ const Posts = ({tone = "", img="", post="", platform = "", posts = []}) => {
                             <button
                                 onClick={() => {
                                     window.open(
-                                        `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(encodeURIComponent(post))}`,
+                                        `https://www.linkedin.com/feed/?shareActive=true&text=${(encodeURIComponent(post))}`,
                                         '_blank'
                                     );
                                 }}

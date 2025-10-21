@@ -58,8 +58,8 @@ const Login = () => {
 
           console.log("The value is ", data)
           if (response.status === 200) {
-            // const newtoken = data.token;
-            // await cookieStore.set("token", newtoken)
+            const newtoken = data.token;
+            await cookieStore.set("token", newtoken)
             toast.success(data.message);
             setButtonLoading(false)
             setTimeout(() => {

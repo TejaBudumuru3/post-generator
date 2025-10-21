@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Posts from "./Posts";
 import axios from "axios";
 import toast, {Toaster} from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const InputBox = () => {
     const options = ["Casual", "Professional", "Sarcastic", "Aggressive", "Enthusiastic"]
@@ -16,7 +17,21 @@ const InputBox = () => {
     const [LinkedInPost, setLinkedinPost] = useState("")
     const [buttonLoading, setButtonLoading] = useState(false)
     const [image, setImage] = useState("")
+    const [token, setToken] = useState<CookieListItem | null>(null)
+    const navigate = useNavigate()
 
+    useEffect(()=>{
+        async function getToken(){
+            setToken(await cookieStore.get("token"))
+            if(!token){
+                toast.error("Unauthorized access please login")
+                setTimeout(()=>{
+                    navigate("/login")
+                },1000)
+            }
+        }
+        getToken()
+    },[token])
     const handlePost = async()=>{
         setButtonLoading(true)
         const URL = import.meta.env.VITE_BACKEND_URL;
