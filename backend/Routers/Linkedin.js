@@ -51,15 +51,14 @@ Linkedin.get("/auth/linkedin", (req, res) => {
   res.redirect(authUrl);
 });
 
+
 Linkedin.get("/auth/linkedin/callback", async (req, res) => {
   console.log("callback hit");
   const code = req.query.code;
   console.log("code from linkedin callback", code);
   if (!code) {
     console.log("no code provided from linkedin callback");
-    return res.redirect(
-      `${process.env.FRONTEND_URL}/auth/error?message=No code provided`
-    );
+    return res.redirect(`${process.env.FRONTEND_URL}/auth/error?message=No code provided`);
   }
 
   try {
@@ -88,27 +87,35 @@ Linkedin.get("/auth/linkedin/callback", async (req, res) => {
 
     const token = jwt.sign({ userid: accessToken }, JWT_SECRET);
     // Set access token as HTTP-only cookie
-    res.cookie("token", token, {
+     res.cookie("token", token, {
       httpOnly: true,
       secure: true, // Set true on production (HTTPS)
       sameSite: "none", // Use 'none' + secure: true for cross-origin cookies
       maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
+    console.log("This is from res without reutrn" , token.valueOf)
+      res.cookie("token", token, {
+      httpOnly: true,
+      secure: true, // Set true on production (HTTPS)
+      sameSite: "none", // Use 'none' + secure: true for cross-origin cookies
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+    });
+    console.log("This is from res without reutrn" , token.valueOf)
 
-    console.log("✅ Token set as cookie successfully");
+    // console.log("✅ Token set as cookie successfully");
 
     // Optionally redirect or send response
     console.log(accessToken);
-    return res.redirect(`${process.env.FRONTEND_URL}/home`); // Redirect directly to home    // return res.status(200).json({
+    // return res.redirect(`${process.env.FRONTEND_URL}/auth/callback?token=${token}`); // Redirect to your frontend application
+    // return res.status(200).json({
     //   message: 'Login success',
     //   token: accessToken,
     // });
   } catch (error) {
     const msg = error.response?.data || error.message;
     console.error("❌ Error during token exchange:", msg);
-    return res.redirect(
-      `${process.env.FRONTEND_URL}/auth/error?message=Authentication failed`
-    );
+    return res.redirect(`${process.env.FRONTEND_URL}/auth/error?message=Authentication failed`);
+
   }
 });
 
@@ -168,7 +175,7 @@ Linkedin.post("/verify-otp", async (req, res) => {
 Linkedin.post("/generate-post", usermiddleware, async (req, res) => {
   const GEMINI_API_KEY = process.env.GEMINI_API;
   const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
-  const { question, tone } = req.body;
+  const { question, tone, } = req.body;
 
   function extractJsonFromMarkdown(text) {
     return text
@@ -219,17 +226,17 @@ Linkedin.post("/generate-post", usermiddleware, async (req, res) => {
 
     const jsonResponse = extractJsonFromMarkdown(response.text);
     console.log(jsonResponse, "this is the response from the gemini api");
-
+    
     const postData = JSON.parse(jsonResponse);
-    return res.status(200).json({
-      message: "Post generated successfully",
-      post: postData,
+    return res.status(200).json({ 
+      message: "Post generated successfully", 
+      post: postData 
     });
   } catch (error) {
     console.error("Error generating LinkedIn post:", error);
-    return res.status(500).json({
-      message: "Error generating post",
-      error: error.message,
+    return res.status(500).json({ 
+      message: "Error generating post", 
+      error: error.message 
     });
   }
 });
