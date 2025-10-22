@@ -22,6 +22,8 @@ const ProfileMenu = (props: any) => {
       if (response.status === 200) {
         // window.location.reload() 
         await cookieStore.delete("token");
+        await cookieStore.delete("name");
+        await cookieStore.delete("email")
         Navigate("/")
       }
     }
