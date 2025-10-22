@@ -5,7 +5,7 @@ import { BACKEND_URL } from "./config";
 import { useNavigate } from "react-router-dom";
 // import toast from "react-hot-toast";
 import ProfileWrapper from "./ProfileWrapper";
-import Features from "./Features";
+// import Features from "./Features";
 function NavBar() {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false)
