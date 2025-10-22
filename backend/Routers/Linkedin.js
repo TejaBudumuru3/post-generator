@@ -87,30 +87,17 @@ Linkedin.get("/auth/linkedin/callback", async (req, res) => {
 
     const token = jwt.sign({ userid: accessToken }, JWT_SECRET);
     // Set access token as HTTP-only cookie
-     res.cookie("token", token, {
+    res.cookie("token", token, {
       httpOnly: true,
       secure: true, // Set true on production (HTTPS)
       sameSite: "none", // Use 'none' + secure: true for cross-origin cookies
       maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
-    console.log("This is from res without reutrn" , token.valueOf)
-      res.cookie("token", token, {
-      httpOnly: true,
-      secure: true, // Set true on production (HTTPS)
-      sameSite: "none", // Use 'none' + secure: true for cross-origin cookies
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
-    });
-    console.log("This is from res without reutrn" , token.valueOf)
+    console.log("Token set successfully:", token);
+    console.log("✅ Token set as cookie successfully");
 
-    // console.log("✅ Token set as cookie successfully");
-
-    // Optionally redirect or send response
-    console.log(accessToken);
-    // return res.redirect(`${process.env.FRONTEND_URL}/auth/callback?token=${token}`); // Redirect to your frontend application
-    // return res.status(200).json({
-    //   message: 'Login success',
-    //   token: accessToken,
-    // });
+    // Redirect to your frontend application
+    return res.redirect(`${process.env.FRONTEND_URL}/auth/callback`);
   } catch (error) {
     const msg = error.response?.data || error.message;
     console.error("❌ Error during token exchange:", msg);
