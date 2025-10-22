@@ -8,7 +8,7 @@ const Cookie = () => {
     useEffect(()=>{
      const handleAuthCallback = async() => {
       const token = searchParams.get('token');
-      
+      console.log(token)
       if (!token) {
         console.error('No token received');
         toast.error('Authentication failed: No token received');
@@ -26,7 +26,7 @@ const Cookie = () => {
         
         // Optional: Store in state management (Redux, Zustand, etc.)
         // dispatch(setAuthToken(token));
-        
+        console.log(token)
         console.log('✅ Token stored successfully');
         toast.success('Login successful! Redirecting...');
         

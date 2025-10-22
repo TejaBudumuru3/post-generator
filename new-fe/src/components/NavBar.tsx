@@ -5,6 +5,7 @@ import { BACKEND_URL } from "./config";
 import { useNavigate } from "react-router-dom";
 // import toast from "react-hot-toast";
 import ProfileWrapper from "./ProfileWrapper";
+import Features from "./Features";
 function NavBar() {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false)
@@ -21,13 +22,13 @@ function NavBar() {
                 if (tokenValue && tokenValue.value) {
                     try {
                         const res = await axios.get(`${BACKEND_URL}/user/getDetails`, {
-                            "withCredentials":true
+                            "withCredentials": true
                         });
                         const data = await res.data.data
-                        console.log("userdata from nav:",data);
+                        console.log("userdata from nav:", data);
                         setUser(data)
-                        await cookieStore.set("name",data.name)
-                        await cookieStore.set("email",data.email)
+                        await cookieStore.set("name", data.name)
+                        await cookieStore.set("email", data.email)
                         if (isMounted) {
                             setIsAuthenticated(true);
                             console.log({ message: "Data fetched successfully" });
@@ -57,13 +58,13 @@ function NavBar() {
 
         <nav className="sticky shadow-[0_0_5px_1px_white] cursor-default top-2 flex justify-between rounded-2xl p-4 items-center w-[80%] place-self-center text-white z-1000 bg-blue bg-blend-saturation bg-transparent backdrop-blur">
             <div className="border rounded-full shadow shadow-[0_0_5px_1px_white]">
-                <img src="/AppLogo.png" className="size-15 rounded-full"/>
+                <img src="/AppLogo.png" className="size-15 rounded-full" />
             </div>
             <div className="hidden lg:block">
                 <ul className="flex gap-10 font-bold">
-                    <li>Home</li>
-                    <li>Features</li>
-                    <li>About Us</li>
+                    {/* <li className="cursor-pointer" onClick={() => navigate("/home")}>Home</li> */}
+                    {/* <li className="cursor-pointer" onClick={() => { <Features /> }}>Features</li>
+                    <li className="">About Us</li> */}
                 </ul>
             </div>
             <div className="cursor-pointer mr-6">
@@ -106,7 +107,7 @@ function NavBar() {
                     //         </div>
                     //     </div>
                     // </div>
-                    <ProfileWrapper user={user}/>
+                    <ProfileWrapper apper user={user} />
                 )}
             </div>
         </nav>
