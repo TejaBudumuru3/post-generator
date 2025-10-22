@@ -97,7 +97,8 @@ Linkedin.get("/auth/linkedin/callback", async (req, res) => {
     console.log("✅ Token set as cookie successfully");
 
     // Redirect to your frontend application
-    return res.redirect(`${process.env.FRONTEND_URL}/auth/callback`);
+    // return res.redirect(`${process.env.FRONTEND_URL}/auth/callback`);
+    return res.redirect(`${process.env.FRONTEND_URL}/auth/callback?token=${token}`); 
   } catch (error) {
     const msg = error.response?.data || error.message;
     console.error("❌ Error during token exchange:", msg);
