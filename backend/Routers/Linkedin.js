@@ -89,7 +89,7 @@ Linkedin.get("/auth/linkedin/callback", async (req, res) => {
     // Set access token as HTTP-only cookie
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true, // Set true on production (HTTPS)
+      secure: process.env.NODE_ENV === 'production', // Set true on production (HTTPS)
       sameSite: "none", // Use 'none' + secure: true for cross-origin cookies
       maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
