@@ -7,34 +7,27 @@ const Cookie = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const handleAuthCallback = async () => {
-      const token = await cookieStore.get('token');
-      console.log(token)
-      if (!token) {
-        console.error('No token received');
-        toast.error('Authentication failed: No token received');
-
-        // Redirect to login after 2 seconds
-        setTimeout(() => {
-          navigate('/login');
-        }, 2000);
-        return;
-      }
-
       try {
-        // Store token in localStorage
-        if (!token.value)
-          return
-        navigate("/login")
-          ;
-        await cookieStore.set("token", token.value)
+        const token = await cookieStore.get('token');
+        console.log(token);
+
+        if (!token || !token.value) {
+          console.error('No token received');
+          toast.error('Authentication failed: No token received');
+          setTimeout(() => {
+            navigate('/login');
+          }, 2000);
+          return;
+        }
+
+        await cookieStore.set("token", token.value);
 
         // Optional: Store in state management (Redux, Zustand, etc.)
         // dispatch(setAuthToken(token));
-        console.log(token)
+        console.log(token);
         console.log('✅ Token stored successfully');
         toast.success('Login successful! Redirecting...');
 
-        // Redirect to dashboard after 1 second
         setTimeout(() => {
           navigate('/home');
         }, 1000);
@@ -42,7 +35,6 @@ const Cookie = () => {
       } catch (error) {
         console.error('Error storing token:', error);
         toast.error('Failed to complete authentication');
-
         setTimeout(() => {
           navigate('/login');
         }, 2000);
@@ -50,7 +42,7 @@ const Cookie = () => {
     };
 
     handleAuthCallback();
-  }, [, navigate]);
+  }, [navigate]);
 
   return (
     <>
