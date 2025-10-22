@@ -7,7 +7,7 @@ const Cookie = () => {
   const navigate = useNavigate();
     useEffect(()=>{
      const handleAuthCallback = async() => {
-      const token = searchParams.get('token');
+      const token = await cookieStore.get('token');
       console.log(token)
       if (!token) {
         console.error('No token received');
