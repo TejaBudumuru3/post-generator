@@ -1,18 +1,18 @@
 import { useEffect } from "react";
-import toast, {Toaster} from "react-hot-toast";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Cookie = () => {
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-    useEffect(()=>{
-     const handleAuthCallback = async() => {
+  useEffect(() => {
+    const handleAuthCallback = async () => {
       const token = await cookieStore.get('token');
       console.log(token)
       if (!token) {
         console.error('No token received');
         toast.error('Authentication failed: No token received');
-        
+
         // Redirect to login after 2 seconds
         setTimeout(() => {
           navigate('/login');
@@ -22,23 +22,27 @@ const Cookie = () => {
 
       try {
         // Store token in localStorage
-        await cookieStore.set("token",token)
-        
+        if (!token.value)
+          return
+        navigate("/login")
+          ;
+        await cookieStore.set("token", token.value)
+
         // Optional: Store in state management (Redux, Zustand, etc.)
         // dispatch(setAuthToken(token));
         console.log(token)
         console.log('✅ Token stored successfully');
         toast.success('Login successful! Redirecting...');
-        
+
         // Redirect to dashboard after 1 second
         setTimeout(() => {
           navigate('/home');
         }, 1000);
-        
+
       } catch (error) {
         console.error('Error storing token:', error);
         toast.error('Failed to complete authentication');
-        
+
         setTimeout(() => {
           navigate('/login');
         }, 2000);
@@ -46,11 +50,11 @@ const Cookie = () => {
     };
 
     handleAuthCallback();
-  }, [searchParams, navigate]);
+  }, [, navigate]);
 
   return (
     <>
-    <Toaster position="top-right"/>
+      <Toaster position="top-right" />
     </>
   )
 }
