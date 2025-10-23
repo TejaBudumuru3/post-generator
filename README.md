@@ -1,356 +1,153 @@
 # Post Generator
 
-A full-stack web application to generate creative, AI-powered tweets based on user input. The app allows users to log in, enter a prompt, select a desired tweet tone, and receive five different tweet suggestions, which are displayed in a carousel. Only authenticated users can access the tweet generation functionality.
+A full-stack web application that generates AI-powered social media content (X / LinkedIn / Image prompts). Includes an Express + MongoDB backend and two React frontends (classic Frontend and a TypeScript/Vite "new-fe").
 
 ---
 
-## Table of Contents
+## Quick summary
 
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Directory Structure](#directory-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Reference & Detailed Functionality](#api-reference--detailed-functionality)
-- [Development](#development)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+- Backend: Node.js + Express, AI generation logic and authentication.
+  - Main router & AI logic: [backend/Routers/user.js](backend/Routers/user.js)
+  - LinkedIn generation helper: [backend/Routers/Linkedin.js](backend/Routers/Linkedin.js)
+  - User model: [`UserModel`](backend/models/userSchema.js) — [backend/models/userSchema.js](backend/models/userSchema.js)
+  - Config tokens: [`JWT_SECRET`, `JWT_SECRET_ADMIN`](backend/config.js) — [backend/config.js](backend/config.js)
 
----
-
-## Overview
-
-**Post Generator** enables users to generate, manage, and interact with posts via a modern web interface. It combines a React + Vite frontend with a Node.js/Express backend, and connects to a MongoDB database for persistent storage.
+- Frontend(s):
+  - Classic React frontend: [Frontend/](Frontend/)
+  - New TypeScript + Vite frontend: [new-fe/](new-fe/)
+    - Configured backend constant: [`BACKEND_URL`](new-fe/src/components/config.ts) — [new-fe/src/components/config.ts](new-fe/src/components/config.ts)
+    - Key components: [`Register`](new-fe/src/components/Register.tsx), [`Login`](new-fe/src/components/Login.tsx), [`InputBox`](new-fe/src/components/InputBox.tsx), [`NavBar`](new-fe/src/components/NavBar.tsx), [`Posts`](new-fe/src/components/Posts.tsx) — see files:
+      - [new-fe/src/components/Register.tsx](new-fe/src/components/Register.tsx)
+      - [new-fe/src/components/Login.tsx](new-fe/src/components/Login.tsx)
+      - [new-fe/src/components/InputBox.tsx](new-fe/src/components/InputBox.tsx)
+      - [new-fe/src/components/NavBar.tsx](new-fe/src/components/NavBar.tsx)
+      - [new-fe/src/components/Posts.tsx](new-fe/src/components/Posts.tsx)
 
 ---
 
-## Architecture
+## Prerequisites
 
-```
-post-generator/
-├── backend/      # Node.js/Express server and API
-├── Frontend/     # React + Vite frontend application
-├── package.json  # Project metadata and scripts
-```
-
-### Backend
-
-- RESTful API built with Express.js
-- MongoDB integration via Mongoose
-- Authentication via JWT
-- Modular routing and middleware for scalability
-
-### Frontend
-
-- Built with React (Vite-powered)
-- Modern SPA architecture
-- ESLint-configured for code quality
+- Node.js >= 18
+- npm (or yarn)
+- MongoDB (local or cloud)
+- For new-fe: pnpm / npm (Vite + TypeScript)
 
 ---
 
-## Features
+## Environment
 
-- **User Authentication**: Secure login required before accessing tweet generation.
-- **AI-Powered Tweets**: Enter a prompt and receive five creative tweet suggestions.
-- **Tone Selection**: Choose the tone (e.g., formal, casual, funny, etc.) for the generated tweets.
-- **Carousel Display**: View and browse suggested tweets in a responsive carousel.
-- **Modern UI**: Built with React, Vite, and Redux for a fast, modern web experience.
-- **RESTful API Backend**: Node.js/Express backend with secure token-based authentication.
+Backend expects environment variables (or local files):
+- VITE-like variables are used in frontends. For backend, check `backend/index.js` and `backend/config.js`.
+- Frontend classic: uses Vite env keys like `VITE_BACKEND_URL` (referenced across [Frontend/](Frontend/)).
+- new-fe: uses `import.meta.env.VITE_BACKEND_URL` and `VITE_LINKEDIN_URL`. See [new-fe/src/components/config.ts](new-fe/src/components/config.ts) and components that read env (e.g. [new-fe/src/components/InputBox.tsx](new-fe/src/components/InputBox.tsx), [new-fe/src/components/Register.tsx](new-fe/src/components/Register.tsx)).
 
----
-
-## Tech Stack
-
-- **Frontend:** React, Vite
-- **Backend:** Node.js, Express, Mongoose
-- **Database:** MongoDB
-- **Testing/Dev Tools:** Nodemon, Dotenv, 
-- **Other:** Redux, JWT, Groq SDK, Cookie-parser, bcrypt, redux
+Recommendation:
+- Create `.env` (or platform environment) entries:
+  - BACKEND: MONGO_URI, PORT, JWT_SECRET, JWT_SECRET_ADMIN
+  - FRONTEND / new-fe: VITE_BACKEND_URL, VITE_LINKEDIN_URL
 
 ---
 
-## Project Structure
+## Install & Run
 
-```
-post-generator/
-│
-├── Frontend/
-│   ├── public/
-│   ├── src/
-│   ├── package.json
-│   ├── vite.config.js
-│   └── ... (React app files)
-│
-├── backend/
-│   ├── Routers/
-│   ├── middlewares/
-│   ├── config.js
-│   ├── db.js
-│   ├── index.js
-│   ├── package.json
-│   └── ... (Node/Express server files)
-│
-├── .gitignore
-├── package.json
-└── README.md
-```
+1. Root (optional)
+   - npm install
 
----
+2. Backend
+   - cd backend
+   - npm install
+   - Start (development):
+     - nodemon index.js
+     - or: node index.js
+   - Important files:
+     - [backend/index.js](backend/index.js)
+     - [backend/Routers/user.js](backend/Routers/user.js)
 
-## Installation
+3. Frontend (classic)
+   - cd Frontend
+   - npm install
+   - npm run dev
+   - Entry: [Frontend/src/main.jsx](Frontend/src/main.jsx)
 
-### Prerequisites
-
-- Node.js (>= 18.x)
-- npm or yarn
-- MongoDB (local or remote instance)
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/TejaBudumuru3/post-generator.git
-cd post-generator
-```
-
-### Install Dependencies
-
-**Root dependencies:**
-```bash
-npm install
-```
-
-**Backend dependencies:**
-```bash
-cd backend
-npm install
-```
-
-**Frontend dependencies:**
-```bash
-cd ../Frontend
-npm install
-```
+4. Frontend (new-fe - TypeScript / Vite)
+   - cd new-fe
+   - npm install
+   - npm run dev
+   - Entry: [new-fe/src/main.tsx](new-fe/src/main.tsx)
 
 ---
 
-## Usage
+## API Endpoints (overview)
 
-### Running Backend
+Most endpoints are defined in [backend/Routers/user.js](backend/Routers/user.js). Common endpoints used by frontends:
 
-1. Configure your `.env` file in the `backend/` directory (see `.env.example` if available).
-2. Start the backend server:
-   ```bash
-   nodemon backend/index.js
-   ```
+- POST /signup — user registration (used by [`registerEvent`](new-fe/src/components/Register.tsx))
+- POST /login — user login (used by [`loginEvent`](new-fe/src/components/Login.tsx))
+- GET /getDetails — fetch current user details (used by [Frontend/src/App.jsx](Frontend/src/App.jsx))
+- POST /GenerateData — generate X tweets (AI) (used by [`InputBox`](new-fe/src/components/InputBox.tsx) and [Frontend/src/component/InputField.jsx](Frontend/src/component/InputField.jsx))
+- POST /generate-post — LinkedIn post generation (see [backend/Routers/Linkedin.js](backend/Routers/Linkedin.js))
+- DELETE /logout — clear auth cookies (used by profile menu components)
 
-### Running Frontend
-
-1. From the `Frontend/` directory:
-   ```bash
-   npm run dev
-   ```
-2. Visit the local address provided (usually `http://localhost:5173/`).
+See implementation: [backend/Routers/user.js](backend/Routers/user.js) and [backend/Routers/Linkedin.js](backend/Routers/Linkedin.js).
 
 ---
 
-## API Reference & Detailed Functionality
+## Frontend notes
 
-### Functionality Overview
-
-**Post Generator** is a web application that allows users to:
-- Register and authenticate securely.
-- Generate multiple social media posts/tweets on a given topic in various tones using a generative AI.
-- View generated posts in a user-friendly, carousel-style UI.
-- Manage sessions (login/logout) with JWT authentication.
-- Interact via a responsive React frontend communicating with an Express REST API backend.
-
-The backend uses real-time AI content generation, pulling data from the internet and generating tweets/posts that are fact-focused, transparent, and customizable in tone. The application is designed for users who want to create impactful, data-driven social media content efficiently.
+- Redux store (classic Frontend): [Frontend/src/store.js](Frontend/src/store.js) and slices like [`linkedinSlice`](Frontend/src/slices/linkedinSlice.js).
+- Toasting:
+  - Classic: custom `Toast` component at [Frontend/src/component/Toast.jsx](Frontend/src/component/Toast.jsx)
+  - new-fe: uses `react-hot-toast` and [`Toaster`](new-fe/src/components/Register.tsx)
+- Image generation & prompts: check the system prompts and image spec in [backend/Routers/user.js](backend/Routers/user.js) and [backend/Routers/Linkedin.js](backend/Routers/Linkedin.js).
+- Token flow for OAuth callback (new-fe): [new-fe/src/components/Cookie.tsx](new-fe/src/components/Cookie.tsx)
 
 ---
 
-### API Endpoints
+## Security & Notes
 
-All backend routes are prefixed with `/user`.
-
-#### Authentication & User Management
-
-##### POST `/user/signup`
-Registers a new user.
-
-**Request Body:**
-```json
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "password123",
-  "fname": "John",
-  "lname": "Doe"
-}
-```
-**Response:**
-- `201 Created` on success
-- `409 Conflict` if user/email exists
+- JWT secrets are in [backend/config.js](backend/config.js) — rotate & move to environment variables in production.
+- The backend code contains elaborate system prompts for an AI model (review for policy and safety before production usage). See [backend/Routers/user.js](backend/Routers/user.js) and [backend/Routers/Linkedin.js](backend/Routers/Linkedin.js).
+- Ensure CORS and cookie settings match frontends (credentials:true used in fetch calls).
 
 ---
 
-##### POST `/user/login`
-Authenticates a user and sets a JWT token cookie.
+## Troubleshooting
 
-**Request Body:**
-```json
-{
-  "email": "john@example.com",
-  "password": "password123"
-}
-```
-**Response:**
-- `200 OK` with user info and token in cookies
-- `401 Unauthorized` on invalid credentials
-
----
-
-##### DELETE `/user/logout`
-Logs out the user by clearing the JWT token cookie.
-
-**Response:**
-- `200 OK` and confirmation message
-
----
-
-#### Post Generation
-
-##### POST `/user/GenerateData`
-Generates five tweets/posts on a given topic, in a specified tone.
-
-**Authentication:** Requires JWT token cookie to access the application.
-
-**Request Body:**
-```json
-{
-  "question": "climate change policy",
-  "tone": "sympathetic" // Optional, defaults to "neutral"
-}
-```
-
-**Response:**
-```json
-{
-  "ans": "Tweet1~Tweet2~Tweet3~Tweet4~Tweet5",
-  "message": "Data generated successfully"
-}
-```
-- Each tweet is separated by the `~` character.
-- Tweets are context-aware, fact-based, and generated by Groq SDK with web data.
-
----
-
-#### User Details
-
-##### GET `/user/getDetails`
-Fetches user profile data (requires authentication).
-
-**Response:**
-```json
-{
-  "data": {
-    "_id": "...",
-    "name": "...",
-    "email": "...",
-    // other user fields
-  }
-}
-```
-
----
-
-### Authentication Middleware
-
-All protected endpoints use a JWT token stored in cookies:
-
-```javascript
-const token = req.cookies.token;
-const Decoded = jwt.verify(token, JWT_SECRET);
-// Checks existence and validity, attaches user info to req.user
-```
-If the token is missing or invalid, endpoints return `401 Unauthorized`.
-
----
-
-### Example Usage (Frontend)
-
-- Upon signup/login, the user receives a JWT token.
-- The React frontend calls `/user/GenerateData` with the desired topic and tone.
-- The backend returns five tweets, which are split and displayed as a carousel.
-- Logout clears the session.
-
----
-
-### AI Content Generation Logic
-
-- Uses the Groq SDK with custom system and user prompts.
-- Searches web data for the latest, verified information.
-- Produces tweets that are concise, impactful, and transparent, exposing truths and promoting awareness.
-- Each tweet includes hashtags and may use emojis.
-
----
-
-### Typical User Flow
-
-1. User signs up or logs in.
-2. User inputs a topic/question and selects a tone.
-3. Frontend sends a POST request to `/user/GenerateData`.
-4. Backend authenticates the user, queries the AI, and returns five tweets.
-5. Frontend displays the posts in a carousel.
-6. User can log out at any time.
-
----
-
-### Error Handling
-
-- All endpoints return descriptive error messages and appropriate HTTP status codes.
-- Missing or invalid tokens result in `401 Unauthorized`.
-- Missing required fields result in `400 Bad Request`.
-
----
-
-## Development
-
-- **Lint code:** `npm run lint` (Frontend)
-- **Build frontend:** `npm run build`
-- **Preview frontend:** `npm run preview`
-- **Testing:** (need to be done)
+- 401 / missing token: verify cookie flow (see [new-fe/src/components/Cookie.tsx](new-fe/src/components/Cookie.tsx)).
+- AI response parsing issues: inspect `completion` handling in [backend/Routers/user.js](backend/Routers/user.js) and JSON extraction helpers in [backend/Routers/Linkedin.js](backend/Routers/Linkedin.js).
+- Mongo errors: check `MONGO_URI` and model at [backend/models/userSchema.js](backend/models/userSchema.js).
 
 ---
 
 ## Contributing
 
-Contributions are welcome! Please open issues or submit pull requests.
-
-**Code Style:**  
-- Use ESLint (`npm run lint`) for consistent code formatting in the frontend.
-- Write clear commit messages.
-- Follow branch naming conventions (e.g., `feature/`, `bugfix/`).
- **Follow the below instructions to contribute**
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature-name`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature-name`)
-5. Create a Pull Request
+- Fork, branch, lint, and open PR.
+- Follow existing patterns in the frontends, use TypeScript for new-fe features.
+- Run linters in respective frontends:
+  - [new-fe/eslint.config.js](new-fe/eslint.config.js)
+  - [Frontend/eslint.config.js](Frontend/eslint.config.js)
 
 ---
 
-## Authors & Acknowledgments
+## Useful files & entry points
 
-- Developed by [TejaBudumuru3](https://github.com/TejaBudumuru3), [Vamsidarling](https://github.com/Vamsidarling)
-- Built with open source technologies
+- Backend entry: [backend/index.js](backend/index.js)
+- Backend routers: [backend/Routers/user.js](backend/Routers/user.js), [backend/Routers/Linkedin.js](backend/Routers/Linkedin.js)
+- Backend model: [`UserModel`](backend/models/userSchema.js) — [backend/models/userSchema.js](backend/models/userSchema.js)
+- Frontend (classic) entry: [Frontend/src/main.jsx](Frontend/src/main.jsx)
+- Frontend (new-fe) entry: [new-fe/src/main.tsx](new-fe/src/main.tsx)
+- new-fe core config: [new-fe/src/components/config.ts](new-fe/src/components/config.ts)
+- new-fe important components:
+  - [new-fe/src/components/Register.tsx](new-fe/src/components/Register.tsx) — [`registerEvent`](new-fe/src/components/Register.tsx)
+  - [new-fe/src/components/Login.tsx](new-fe/src/components/Login.tsx) — [`loginEvent`](new-fe/src/components/Login.tsx)
+  - [new-fe/src/components/InputBox.tsx](new-fe/src/components/InputBox.tsx)
+  - [new-fe/src/components/NavBar.tsx](new-fe/src/components/NavBar.tsx)
 
 ---
 
-## Contact
+## License & Authors
 
-For issues or feature requests, please use the [GitHub Issues](https://github.com/TejaBudumuru3/post-generator/issues) page.
+- Authors: TejaBudumuru3, Vamsidarling (see repo metadata)
+- License: (specify your license file if present)
 
 ---
