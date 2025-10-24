@@ -308,80 +308,62 @@ UserRouter.post("/GenerateImage", usermiddleware,  async (req, res) => {
     }
 
     
-      const systemPrompt = `You are an expert social media content creator and graphic designer specializing in creating engaging visual posts for social media platforms.
-      // Enhanced system prompt for better image generation
+      // Build a focused, semantically faithful image prompt from user input
+      const normalize = (s) => String(s || "").toLowerCase().trim();
+      const toneKey = normalize(tone);
+      const tonePresets = {
+        casual: {
+        style: "friendly, approachable, modern, soft shadows, slight grain",
+        palette: "warm pastels, soft blues, peach, off-white"
+        },
+        professional: {
+        style: "clean, corporate, minimalist, grid-aligned, high legibility",
+        palette: "navy, cool gray, white, subtle accents"
+        },
+        sarcastic: {
+        style: "bold, high-contrast, ironic visual metaphors, edgy typography",
+        palette: "black, white, neon accent (magenta or lime)"
+        },
+        aggressive: {
+        style: "high-impact, dramatic lighting, strong contrast, bold type",
+        palette: "deep red, charcoal, black, white"
+        },
+        enthusiastic: {
+        style: "vibrant, energetic, dynamic gradients, playful motion cues",
+        palette: "bright yellow, orange, teal, white"
+        }
+      };
+      const preset = tonePresets[toneKey] || tonePresets.professional;
+      const corePrompt = String(Prompt || "").trim();
 
-Your task is to generate image-based posts that combine relevant imagery with compelling text overlays based on the user's topic and desired tone.
+      const systemPrompt = `
+    Create a single high-quality social media poster image only.
 
-INPUT:
-- Topic/Idea: ${Prompt}
-- Tone: ${tone} (can be: Casual, Professional, Sarcastic, Aggressive, Enthusiastic)
+    Understand the core semantic intent of: "${corePrompt}"
+    Depict its main idea with relevant, compelling visuals (avoid literal blocks of text).
 
-OUTPUT REQUIREMENTS:
-Generate a detailed image description that includes:
+    Tone: ${toneKey || "professional"}
+    Visual style: ${preset.style}
+    Color palette: ${preset.palette}
 
-1. VISUAL ELEMENTS:
-   - Main subject/theme of the image
-   - Background style (solid color, gradient, photo, illustration, abstract)
-   - Color palette that matches the tone
-   - Visual style (minimalist, bold, corporate, playful, edgy, vibrant)
-   - Any icons, graphics, or decorative elements
+    Design and composition:
+    - One clear focal subject tied to the core idea.
+    - Clean background (gradient or subtle texture); generous whitespace and safe margins.
+    - Balanced layout with strong hierarchy and visual flow.
+    - 2048×2048 resolution (or square), sharp, anti-aliased.
 
-2. TEXT CONTENT:
-   - Main headline (attention-grabbing, max 8-10 words)
-   - Supporting text (1 line, contextual information)
-   - Call-to-action or closing statement (if applicable)
-   - Text placement (top, center, bottom, overlay)
-   - Font style recommendation (bold, elegant, handwritten, modern)
+    Text overlay (English only, crystal clear, no overlap/warping):
+    - Headline: <= 9 words capturing the essence of "${corePrompt}".
+    - Supporting line: <= 12 words.
+    - High contrast, large sizes, proper kerning/leading, no tiny text.
 
-3. LAYOUT:
-   - Text positioning and hierarchy
-   - Balance between image and text
-   - Whitespace usage
-   - Overall composition
+    Restrictions:
+    - No logos, trademarks, or watermarks.
+    - No copyrighted or branded characters.
+    - Avoid graphic violence, sexual content, or hate symbols.
 
-TONE GUIDELINES:
-- Casual: Friendly colors (pastels, warm tones), relatable imagery, conversational text, emojis acceptable
-- Professional: Clean design, corporate colors (blues, grays, whites), formal language, minimalist approach
-- Sarcastic: Bold contrasts, ironic imagery, witty text, unconventional color combos
-- Aggressive: High contrast (reds, blacks), powerful imagery, impactful text, bold typography
-- Enthusiastic: Vibrant colors (bright yellows, oranges, greens), energetic imagery, exclamation marks, dynamic composition
-
-FORMAT YOUR RESPONSE AS:
-{
-  "imageDescription": "Detailed description of the visual elements and overall aesthetic",
-  "mainHeadline": "Catchy headline text",
-  "supportingText": "Additional context or information ( **neat text for visual crystal clear text content**)",
-  "colorPalette": ["#hexcode1", "#hexcode2", "#hexcode3"],
-  "textPlacement": "Description of where text should be positioned",
-  "visualStyle": "Overall style description",
-  "designNotes": "Additional instructions for the image generator"
-}
-
-Make sure the image concept is:
-- Highly shareable and eye-catching
-- Appropriate for the platform (Instagram, LinkedIn, etc.)
-- On-brand with the specified tone
-- Clear and readable even at thumbnail size
-- Culturally appropriate and inclusive
-- ** Text should be crystal clear no overlapping over each alphabets and all and use English Language only woth clean and clear alphabets presentation**
-'''
-
-**Alternative simpler prompt for direct image generation:**
-'''
-Create a social media image post about: ${Prompt}
-
-Tone: ${tone}
-
-Design requirements:
-- Include eye-catching visuals related to the topic
-- Add text overlay with a compelling headline and brief supporting text
-- Use colors and style that match the ${tone} tone
-- Ensure text is readable and well-positioned
-- Make it suitable for social media platforms
-- Keep the design clean, professional, and shareable
-
-The image should grab attention while effectively communicating the message in a ${tone} manner.`
+    Output:
+    - Return one image. Do not include explanations or captions.`;
     try {
       // Generate image with Gemini
       const imageResponse = await ai.models.generateContent({
